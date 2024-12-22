@@ -1,9 +1,29 @@
-import { FC } from "react";
+import classNames from "classnames";
+import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 
-const ButtonSubmit: FC = () => {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+    children: ReactNode,
+}
+
+const ButtonSubmit: FC<Props> = ({children, ...attributes}) => {
+    let linkClass = classNames(
+        'bg-accent hover:bg-accentHover',
+        'text-white font-semibold',
+        'flex items-center justify-center',
+        'duration-500 ease-in-out transition-colors',
+
+         // 'D:text-[16px]',
+         //'L:text-[16px]',
+         'T:text-[16px] T:py-[20px] T:px-[44px]',
+         'TS:text-h[14px] TS:py-[16px] TS:px-[35px]',
+         'P:text-[16px] P:py-[20px] P:px-[44px]',
+    );
+
     return(
         <>
-        ButtonSubmit
+            <button type="button" {...attributes} className={linkClass}>
+                {children}
+            </button>
         </>
     );
 }

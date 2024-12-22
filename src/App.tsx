@@ -9,7 +9,6 @@ function App() {
       {/* Landing for user */}
       <Route path="/" element={<Landing />} />
 
-
       {/* Landing for admin */}
       <Route path="/admin/login" element={<Login />} />
       <Route path="/admin" element={<Admin />} />

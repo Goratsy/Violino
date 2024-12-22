@@ -7,10 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#9B8E6C',
-        secondary: '#6D6967',
-        bgSection: '#F5F0EA',
-        bgElements: '#B38E6A',
+        primary: '#9B8E6C',       // Основной цвет
+        secondary: '#6D6967',     // Вспомогательный цвет, для текста
+        surfaceLight: '#F5F0EA', // Светлый фон для секций
+        accent: '#B38E6A',        // Акцентный цвет для элементов
+        accentHover: '#C59B77',  // Hover-состояние для акцентов
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
