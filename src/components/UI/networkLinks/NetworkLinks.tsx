@@ -4,7 +4,7 @@ import whatsapp_SVG from '../../../assets/svg/whatsapp.svg';
 import phone_SVG from '../../../assets/svg/phone.svg';
 
 
-const NetworkLinks: FC = () => {
+const NetworkLinks: FC<{styleDisplay?: string}> = ({styleDisplay}) => {
     let copyBufferPhone = async () => {
         const textToCopy = "89166904531";
         try {
@@ -17,7 +17,7 @@ const NetworkLinks: FC = () => {
     }
 
     return(
-        <div>
+        <div className={`${styleDisplay}`}>
             <a href="https://t.me/viotort" target="_blank" className="inline-flex justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full">
                 <img src={telegram_SVG} alt="telegram_SVG"/>
             </a>

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { FC, InputHTMLAttributes } from "react";
 
-const ButtonSubmit: FC<InputHTMLAttributes<HTMLInputElement>> = ({...attributes}) => {
+const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({...attributes}) => {
     let linkClass = classNames(
         'w-full',
         'bg-white border border-accent hover:border-accentHover hover:bg-[#fffcfa]',
@@ -11,9 +11,10 @@ const ButtonSubmit: FC<InputHTMLAttributes<HTMLInputElement>> = ({...attributes}
 
          // 'D:text-[16px]',
          //'L:text-[16px]',
-         'T:text-[16px] T:py-[20px] T:px-[20px]',
+         'text-[16px] py-[20px] px-[20px]',
          'TS:text-[14px] TS:py-[16px] TS:px-[15px]',
          'P:text-[16px] P:py-[20px] P:px-[20px]',
+         
     );
 
     return(
@@ -23,4 +24,4 @@ const ButtonSubmit: FC<InputHTMLAttributes<HTMLInputElement>> = ({...attributes}
     );
 }
 
-export default ButtonSubmit;
+export default Input;

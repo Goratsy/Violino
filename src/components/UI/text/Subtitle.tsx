@@ -12,9 +12,8 @@ const Subtitle: FC<Props> = ({children, align = 'text-left', fontWeight = 'font-
         'font-sans text-secondary',
         fontWeight,
         align,
-        // 'D:text-subtitle_D',
-        // 'L:text-subtitle_D',
-        'T:text-subtitle_D',
+
+        'text-subtitle_D',
         'TS:text-subtitle_TS',
         'P:text-subtitle_P',
     );    

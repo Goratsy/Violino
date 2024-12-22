@@ -10,8 +10,8 @@ const H1: FC<Props> = ({children, align = 'text-left'}) => {
     let headingClass = classNames(
         'font-sans text-primary font-semibold',
         align,
-        // 'D:text-h1_D',
-        'L:text-h1_D',
+
+        'text-h1_D',
         'T:text-h1_T',
         'TS:text-h1_TS',
         'P:text-h1_P',

@@ -7,14 +7,13 @@ interface Props {
     fontWeight?: string,
 }
 
-const Text: FC<Props> = ({children, align = 'text-left', fontWeight = 'font-normal'}) => {
+const TextMain: FC<Props> = ({children, align = 'text-left', fontWeight = 'font-normal'}) => {
     let textClass = classNames(
         'font-sans text-secondary',
         fontWeight,
         align,
-        // 'D:text-text_D',
-        // 'L:text-text_D',
-        'T:text-text_D',
+
+        'text-text_D',
         'TS:text-text_TS',
         'P:text-text_P',
     );    
@@ -25,4 +24,4 @@ const Text: FC<Props> = ({children, align = 'text-left', fontWeight = 'font-norm
         </>
     );
 }
-export default Text;
+export default TextMain;

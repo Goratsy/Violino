@@ -12,7 +12,7 @@ const H2: FC<Props> = ({children, align = 'text-left'}) => {
         'font-sans text-primary font-semibold',
         align,
         // 'D:text-h2_D',
-        'L:text-h2_D',
+        'text-h2_D',
         'T:text-h2_T',
         'TS:text-h2_TS',
         'P:text-h2_P',

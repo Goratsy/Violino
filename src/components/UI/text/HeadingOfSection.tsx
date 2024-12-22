@@ -8,12 +8,12 @@ interface Props {
 
 const HeadingOfSection: FC<Props> = ({children, align = 'text-left'}) => {
     let headingOfSectionClass = classNames(
-        'font-fancy text-primary',
+        'font-fancy text-primary tracking-[1px]',
         align,
         // 'D:text-text_D',
         // 'L:text-text_D',
         // 'T:text-heading_of_section_D',
-        'TS:text-heading_of_section_D',
+        'text-heading_of_section_D',
         'P:text-heading_of_section_P',
     );    
 

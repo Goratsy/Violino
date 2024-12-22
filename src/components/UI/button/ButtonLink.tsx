@@ -14,9 +14,10 @@ const ButtonLink: FC<Props> = ({children, ...attributes}) => {
 
          // 'D:text-[16px]',
          //'L:text-[16px]',
-         'T:text-[16px] T:py-[20px] T:px-[44px]',
+         'text-[16px] py-[20px] px-[44px]',
          'TS:text-h[14px] TS:py-[16px] TS:px-[35px]',
          'P:text-[16px] P:py-[20px] P:px-[44px]',
+         
     );
 
     return(
