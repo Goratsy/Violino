@@ -9,13 +9,13 @@ import home_bg_PNG from "../../../../../assets/png/home_bg.png";
 const HomeSection: FC = () => {
     return (
         <>
-            <div className="absolute w-full h-[100vh] z-0 T:h-[50vh] LS:min-h-[700px]">
+            <div className="absolute w-full h-[100vh] z-0 T:h-[50vh] LS:min-h-[700px] TS:hidden">
                 <div className="absolute w-full h-full overflow-hidden">
-                    <img src={home_bg_PNG} alt="" className="absolute w-[40%] L:w-[50%] T:w-[58%] h-auto right-0 top-0 -translate-y-44 translate-x-36 TS:hidden" />
+                    <img src={home_bg_PNG} alt="" className="absolute w-[40%] L:w-[50%] T:w-[58%] h-auto right-0 top-0 -translate-y-44 translate-x-36" />
                 </div>
-                <img src={home_bg_PNG} alt="" className="absolute w-[40%] L:w-[50%] T:w-[58%] h-auto bottom-0 -left-[15rem] translate-y-44 TS:hidden" />
+                <img src={home_bg_PNG} alt="" className="absolute w-[40%] L:w-[50%] T:w-[58%] h-auto bottom-0 -left-[15rem] translate-y-44" />
             </div>
-            <section className="pl-[12%] h-[100vh] LS:min-h-[700px] pt-[110px] relative flex flex-row items-center gap-[75px]  L:pl-0 z-10 T:h-[50vh]">
+            <section className="h-[100vh] T:h-[60vh] LS:min-h-[700px] pt-[110px] L:pt-[150px] pl-[12%] L:pl-0 relative flex flex-row L:flex-col items-center gap-[75px] z-10 ">
                 <div className="w-[40%] L:w-full">
                     <HeadingOfSection align="text-left mb-[4px] L:text-center">Главная</HeadingOfSection>
                     <H1 align="text-left L:hidden" textWrap="text-nowrap">Торты<br /> на заказ</H1>
@@ -30,7 +30,7 @@ const HomeSection: FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="block L:hidden w-[60%] h-full">
+                <div className="w-[60%] L:w-full h-full L:min-h-[700px] P:min-h-[400px] z-40">
                     <Carousel></Carousel>
                 </div>
             </section>

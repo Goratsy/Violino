@@ -23,18 +23,18 @@ const Carousel: FC = () => {
             <div className="relative h-full">
                 <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full">
-                        <div className="relative embla__slide border h-full overflow-hidden">
-                            <img src={Cake_main_1} alt="cake1" className="h-auto w-full absolute bottom-0"/>
+                        <div className="relative embla__slide border h-full">
+                            <img src={Cake_main_1} alt="cake1" className="h-auto w-full absolute bottom-0 T:-bottom-24 P:bottom-0"/>
                         </div>
-                        <div className="relative embla__slide border h-full overflow-hidden">
-                            <img src={Cake_main_2} alt="cake2" className="h-auto w-full absolute bottom-0"/>
+                        <div className="relative embla__slide border h-full">
+                            <img src={Cake_main_2} alt="cake2" className="h-auto w-full absolute bottom-0 T:-bottom-24 P:bottom-0"/>
                         </div>
-                        <div className="relative embla__slide border h-full overflow-hidden">
-                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute bottom-0"/>
+                        <div className="relative embla__slide border h-full">
+                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute bottom-0 T:-bottom-24 P:bottom-0"/>
                         </div>
                     </div>
                 </div>
-                <div className="absolute bottom-0 left-0 flex">
+                <div className="absolute bottom-0 left-0 flex L:justify-between L:items-center L:w-full L:bottom-[calc(50%-25px)]">
                     <ButtonSwitch onClick={scrollPrev}></ButtonSwitch>
                     <ButtonSwitch onClick={scrollNext} rotateArrow="rotate-180"></ButtonSwitch>
                 </div>
