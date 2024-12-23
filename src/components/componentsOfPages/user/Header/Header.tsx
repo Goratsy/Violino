@@ -14,20 +14,31 @@ const Header: FC = () => {
     }
 
     useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1200) { // Если ширина >= 1200px (desktop)
+                setIsOpenBurgerMenu(false); // Закрыть меню
+                document.body.style.overflow = ''; // Восстановить прокрутку
+            }
+        };
+
         if (isOpenBurgerMenu) {
-            document.body.style.overflow = 'hidden'; // Отключаем прокрутку
+            document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = ''; // Восстанавливаем прокрутку
+            document.body.style.overflow = ''; 
         }
+
+        // Добавляем слушатель на изменение размеров окна
+        window.addEventListener('resize', handleResize);
 
         // Очистка эффекта
         return () => {
-            document.body.style.overflow = '';
+            document.body.style.overflow = ''; // Восстанавливаем прокрутку при размонтировании
+            window.removeEventListener('resize', handleResize); // Удаляем слушатель
         };
     }, [isOpenBurgerMenu]);
 
     return (
-        <header className={`absolute w-full z-50 duration-500 ease overflow-hidden ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : 'bg-transparent h-[100px]'}`}>
+        <header className={`absolute w-full z-50 duration-500 ease overflow-hidden h-[100px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : 'bg-transparent'}`}>
             <div className={`w-full flex justify-between items-center px-[7%] py-[27px] L:px-[20px] TS:py-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
@@ -72,7 +83,7 @@ const Header: FC = () => {
                     ></span>
                 </div>
             </div>
-            <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0'}`}>
+            <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'L:opacity-0'}`}>
                 <nav className="flex flex-col justify-center items-left pb-[50px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary">
                     <a href="#" className="" onClick={closeBurgerMenu}>Главная</a>
                     <a href="#" className="" onClick={closeBurgerMenu}>О нас</a>
