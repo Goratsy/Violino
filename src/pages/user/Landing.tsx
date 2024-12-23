@@ -7,7 +7,7 @@ const Landing: FC = () => {
         <>
             <Header />
             <main className="mb-80">
-                <HomeSection/>
+                <HomeSection />
             </main>
 
         </>

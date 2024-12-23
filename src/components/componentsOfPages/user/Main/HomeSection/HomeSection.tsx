@@ -17,11 +17,14 @@ const HomeSection: FC = () => {
             </div>
             <section className="h-[100vh] T:h-[60vh] LS:min-h-[700px] pt-[110px] L:pt-[150px] pl-[12%] L:pl-0 relative flex flex-row L:flex-col items-center gap-[75px] z-10 ">
                 <div className="w-[40%] L:w-full">
-                    <HeadingOfSection align="text-left mb-[4px] L:text-center">Главная</HeadingOfSection>
-                    <H1 align="text-left L:hidden" textWrap="text-nowrap">Торты<br /> на заказ</H1>
-                    <H1 align="text-center hidden L:block" textWrap="text-nowrap">Торты на заказ</H1>
-
-                    <div className="pl-[40px] mt-[15px] L:p-0 L:flex L:items-center L:flex-col">
+                    <span className="animate-fade-right animate-duration-600 animate-ease-out animate-delay-300">
+                        <HeadingOfSection align="text-left mb-[4px] L:text-center">Главная</HeadingOfSection>
+                    </span>
+                    <span className="animate-fade-right animate-duration-600 animate-ease-out animate-delay-300">
+                        <H1 align="text-left L:hidden" textWrap="text-nowrap">Торты<br /> на заказ</H1>
+                        <H1 align="text-center hidden L:block" textWrap="text-nowrap">Торты на заказ</H1>
+                    </span>
+                    <div className="pl-[40px] mt-[15px] L:p-0 L:flex L:items-center L:flex-col animate-fade animate-duration-500 animate-ease-out animate-delay-300">
                         <div className="L:w-2/4 TS:w-[80%]">
                             <Subtitle align="text-left L:text-center">Виолино воплощает ваши сладкие мечты в реальность, создавая уникальные и вкусные торты</Subtitle>
                         </div>
