@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Header from "../../components/componentsOfPages/user/Header/Header";
 import HomeSection from "../../components/componentsOfPages/user/Main/HomeSection/HomeSection";
+import AboutSection from "../../components/componentsOfPages/user/Main/AboutSection/AboutSection";
 
 const Landing: FC = () => {
     return (
@@ -8,6 +9,7 @@ const Landing: FC = () => {
             <Header />
             <main className="mb-80">
                 <HomeSection />
+                <AboutSection />
             </main>
 
         </>

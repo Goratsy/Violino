@@ -15,7 +15,7 @@ const HomeSection: FC = () => {
                 </div>
                 <img src={home_bg_PNG} alt="" className="absolute w-[40%] L:w-[50%] T:w-[58%] h-auto bottom-0 -left-[15rem] translate-y-44" />
             </div>
-            <section className="h-[100vh] T:h-[60vh] LS:min-h-[700px] pt-[110px] L:pt-[150px] pl-[12%] L:pl-0 relative flex flex-row L:flex-col items-center gap-[75px] z-10 ">
+            <section className="h-[100vh] L:h-auto LS:min-h-[700px] pt-[110px] L:pt-[150px] pl-[12%] L:pl-0 relative flex flex-row L:flex-col items-center gap-[75px] L:gap-[100px] z-10 ">
                 <div className="w-[40%] L:w-full">
                     <span className="animate-fade-right animate-duration-600 animate-ease-out animate-delay-300">
                         <HeadingOfSection align="text-left mb-[4px] L:text-center">Главная</HeadingOfSection>
@@ -33,7 +33,7 @@ const HomeSection: FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[60%] L:w-full h-full L:min-h-[700px] P:min-h-[400px] z-40">
+                <div className="w-[60%] L:w-full h-full L:h-[700px] TS:h-[600px] P:h-[400px] z-40">
                     <Carousel></Carousel>
                 </div>
             </section>
