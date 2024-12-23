@@ -17,12 +17,12 @@ export default {
         sans: ['Montserrat', 'sans-serif'],
         fancy: ['"Great Vibes"', 'sans-serif'],
       },
-      fontSize: { // D - desktop, L - laptop, T - tablet, TS - tablet small, P - phone
+      fontSize: { // D - desktop, L - laptop, T - tablet, TS - tablet small, P - phone, LS - landscape
         'h1_D': ['98px', '96px'],
-        //'h1_L': [], the same
+        'h1_L': ['72px', '1'], 
         'h1_T': ['60px', '1'],
-        'h1_TS': ['46px', '1'],
-        'h1_P': ['98px', '1'], // TODO: write correct size font
+        'h1_TS': ['8.5vw', '1'],
+        'h1_P': ['10vw', '1'], // TODO: write correct size font
   
         'h2_D': ['48px', '55px'],
         //'h2_L': [], the same
@@ -39,8 +39,8 @@ export default {
         'subtitle_D': ['20px', '30px'],
         //'subtitle_L': [],
         //'subtitle_T': [],
-        'subtitle_TS': ['18px', '1'],
-        'subtitle_P': ['20px', '1'],  // TODO: write correct size font. Mb 16 px
+        'subtitle_TS': ['18px', '24px'],
+        'subtitle_P': ['16px', '20px'],  // TODO: write correct size font. Mb 16 px
   
         'heading_of_section_D': ['18px', '1'],
         //'heading_of_section_L': [],
@@ -67,7 +67,12 @@ export default {
         T: { max: '1024px' }, // от 1024px и ниже
         TS: { max: '780px' }, // от 780px и ниже
         P: { max: '480px' },  // от 480px и ниже
+
+        LS: { 'raw': '(orientation: landscape)' }, // Горизонтальная ориентация
       },
+      backgroundImage: {
+        home_bg: "url(./public/png/home_bg.png)",
+      }
     },
   },
   plugins: [],

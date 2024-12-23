@@ -1,10 +1,14 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { FC, useCallback } from "react";
-import './Carousel.css';
 import ButtonSwitch from "../button/ButtonSwitch";
+import Autoplay from "embla-carousel-autoplay";
+import './Carousel.css';
+import Cake_main_1 from '../../../assets/jpg/cake_home_section.jpg';
+import Cake_main_2 from '../../../assets/jpg/cake_home_section.jpg';
+import Cake_main_3 from '../../../assets/jpg/cake_home_section.jpg';
 
 const Carousel: FC = () => {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({delay: 4000})])
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
@@ -19,9 +23,15 @@ const Carousel: FC = () => {
             <div className="relative h-full">
                 <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full">
-                        <div className="embla__slide border h-full">Slide 1</div>
-                        <div className="embla__slide border h-full">Slide 2</div>
-                        <div className="embla__slide border h-full">Slide 3</div>
+                        <div className="relative embla__slide border h-full overflow-hidden">
+                            <img src={Cake_main_1} alt="cake1" className="h-auto w-full absolute bottom-0"/>
+                        </div>
+                        <div className="relative embla__slide border h-full overflow-hidden">
+                            <img src={Cake_main_2} alt="cake2" className="h-auto w-full absolute bottom-0"/>
+                        </div>
+                        <div className="relative embla__slide border h-full overflow-hidden">
+                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute bottom-0"/>
+                        </div>
                     </div>
                 </div>
                 <div className="absolute bottom-0 left-0 flex">

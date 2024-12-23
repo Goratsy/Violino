@@ -3,7 +3,7 @@ import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import Logo from "../../../UI/logo/Logo";
 
 const Header: FC = () => {
-    let [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(true);
+    let [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
 
     let openBurgerMenu = (): void => {
         setIsOpenBurgerMenu(!isOpenBurgerMenu);
@@ -15,10 +15,8 @@ const Header: FC = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1200) { // Если ширина >= 1200px (desktop)
-                setIsOpenBurgerMenu(false); // Закрыть меню
-                document.body.style.overflow = ''; // Восстановить прокрутку
-            }
+            setIsOpenBurgerMenu(false); 
+            document.body.style.overflow = ''; 
         };
 
         if (isOpenBurgerMenu) {
@@ -49,25 +47,6 @@ const Header: FC = () => {
                     <a href="#">Контакты</a>
                 </nav>
                 <NetworkLinks styleDisplay="L:hidden block" />
-                {/* <div className="L:block hidden cursor-pointer" onClick={openBurgerMenu}>
-                    <svg className="w-[40px] h-[22px] stroke-accent hover:stroke-accentHover duration-500 ease-in-out transition-colors" viewBox="0 0 40 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                       
-                        <path
-                            d="M0 1.8335L40 1.8335"
-                            strokeWidth="3"
-                            className={`transition-transform duration-500 ease-in-out ${isOpenBurgerMenu ? '-rotate-45' : ''}`}
-                        />
-                        <path
-                            d="M0 11L40 11"
-                            strokeWidth="3"
-                            className={`transition-transform duration-500 ease-in-out ${isOpenBurgerMenu ? 'rotate-45' : ''}`}
-                        />
-                        <path
-                            d="M10 20.1665L40 20.1665"
-                            strokeWidth="3"
-                            className={`transition-opacity duration-500 ease-in-out ${isOpenBurgerMenu ? 'opacity-0' : ''}`}                        />
-                    </svg>
-                </div> */}
                 <div
                     onClick={openBurgerMenu}
                     className="cursor-pointer L:block hidden relative w-[40px] h-[22px]"

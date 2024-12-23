@@ -14,6 +14,7 @@ const H1: FC<Props> = ({children, align = 'text-left', textWrap}) => {
         textWrap,
 
         'text-h1_D',
+        'L:text-h1_L',
         'T:text-h1_T',
         'TS:text-h1_TS',
         'P:text-h1_P',

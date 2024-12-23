@@ -6,7 +6,7 @@ const Landing: FC = () => {
     return (
         <>
             <Header />
-            <main className="pb-80">
+            <main className="">
                 <HomeSection/>
             </main>
 
