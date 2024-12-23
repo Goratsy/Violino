@@ -40,9 +40,9 @@ const Header: FC = () => {
             <div className={`w-full flex justify-between items-center px-[7%] py-[27px] L:px-[20px] TS:py-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
-                    <a href="#">Главная</a>
-                    <a href="#">О нас</a>
-                    <a href="#">Преимущества</a>
+                    <a href="#homeSection">Главная</a>
+                    <a href="#aboutSection">О нас</a>
+                    <a href="#advantagesSection">Преимущества</a>
                     <a href="#">Оформление</a>
                     <a href="#">Контакты</a>
                 </nav>

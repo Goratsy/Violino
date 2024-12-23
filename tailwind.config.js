@@ -28,31 +28,31 @@ export default {
         //'h2_L': [], the same
         'h2_T': ['40px', '1'],
         'h2_TS': ['35px', '1'],
-        'h2_P': ['48px', '1'], // TODO: write correct size font
+        'h2_P': ['30px', '1'], // TODO: write correct size font
   
         'h4_D': ['24px', '1'],
         //'h4_L': [],
         //'h4_T': [], the same
         'h4_TS': ['22px', '1'],
-        'h4_P': ['24px', '1'], // TODO: write correct size font. Mb 20 px
+        'h4_P': ['21px', '1'], // TODO: write correct size font. Mb 20 px
   
         'subtitle_D': ['20px', '30px'],
         //'subtitle_L': [],
         //'subtitle_T': [],
         'subtitle_TS': ['18px', '24px'],
-        'subtitle_P': ['16px', '20px'],  // TODO: write correct size font. Mb 16 px
+        'subtitle_P': ['16px', '18px'],  // TODO: write correct size font. Mb 16 px
   
-        'heading_of_section_D': ['18px', '1'],
+        'heading_of_section_D': ['20px', '1'],
         //'heading_of_section_L': [],
         //'heading_of_section_T': [],
         //'heading_of_section_TS': [],
-        'heading_of_section_P': ['18px', '1'], // TODO: write correct size font. Mb 16 px
+        'heading_of_section_P': ['22px', '1'], // TODO: write correct size font. Mb 16 px
   
         'text_D': ['16px', '24px'],
         //'text_L': [],
         //'text_T': [],
-        'text_TS': ['14px', '22px'],
-        'text_P': ['16px', '20px'], // TODO: write correct size font. Mb 12 px
+        'text_TS': ['15px', '22px'],
+        'text_P': ['14px', '20px'], // TODO: write correct size font. Mb 12 px
   
         'text_footer_D': ['14px', '24px'],
         //'text_footer_L': [],
