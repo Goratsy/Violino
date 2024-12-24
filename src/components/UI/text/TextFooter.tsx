@@ -3,15 +3,15 @@ import classNames from 'classnames';
 
 interface Props {
     children: ReactNode,
-    align?: string,
+    className?: string,
     fontWeight?: string,
 }
 
-const TextFooter: FC<Props> = ({children, align = 'text-left', fontWeight = 'font-normal'}) => {
+const TextFooter: FC<Props> = ({children, className = 'text-left', fontWeight = 'font-normal'}) => {
     let textClass = classNames(
         'font-sans text-secondary',
         fontWeight,
-        align,
+        className,
 
         'text-text_footer_D',
         'TS:text-text_footer_TS',

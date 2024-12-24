@@ -43,7 +43,7 @@ const Header: FC = () => {
                     <a href="#homeSection">Главная</a>
                     <a href="#aboutSection">О нас</a>
                     <a href="#advantagesSection">Преимущества</a>
-                    <a href="#">Оформление</a>
+                    <a href="#formalisation">Оформление</a>
                     <a href="#">Контакты</a>
                 </nav>
                 <NetworkLinks styleDisplay="L:hidden block" />

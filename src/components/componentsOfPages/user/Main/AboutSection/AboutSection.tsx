@@ -12,7 +12,7 @@ import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 const AboutSection: FC = () => {
     return (
         <>
-            <section id="aboutSection" className="pt-[130px] T:pt-[100px] TS:pt-[70px] px-[12%] L:px-[20px] P:px-[10px] relative flex flex-row gap-[75px]">
+            <section id="aboutSection" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px] relative flex flex-row gap-[75px]">
                 <div className="w-1/2 T:w-full ">
                     <AnimatedElementFade animateFade="animate-fade">
                         <img src={cake_about_small} alt="cake_about_small" className='w-full z-10' loading="lazy" />
@@ -22,8 +22,8 @@ const AboutSection: FC = () => {
                             <HeadingOfSection>О нас</HeadingOfSection>
                         </AnimatedElementFade>
                         <AnimatedElementFade animateFade="animate-fade-left">
-                            <H2 align="text-left T:hidden mt-[4px]">История<br /> нашего пути</H2>
-                            <H2 align="text-left hidden T:block mt-[4px]">Наша история</H2>
+                            <H2 className="text-left T:hidden mt-[4px]">История<br /> нашего пути</H2>
+                            <H2 className="text-left hidden T:block mt-[4px]">Наша история</H2>
                         </AnimatedElementFade>
                         <div className="pl-[40px] mt-[18px] T:mt-[12px] T:pl-[30px] P:mt-[8px] P:pl-[20px] T:w-2/3 TS:w-5/6 P:w-11/12 ">
                             <AnimatedElementFade animateFade="animate-fade-left">

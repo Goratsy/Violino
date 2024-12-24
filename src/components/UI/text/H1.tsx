@@ -3,14 +3,14 @@ import classNames from 'classnames';
 
 interface Props {
     children: ReactNode,
-    align?: string,
+    className?: string,
     textWrap?: string
 }
 
-const H1: FC<Props> = ({children, align = 'text-left', textWrap}) => {
+const H1: FC<Props> = ({children, className = 'text-left', textWrap}) => {
     let headingClass = classNames(
         'font-sans text-primary font-semibold',
-        align,
+        className,
         textWrap,
 
         'text-h1_D',

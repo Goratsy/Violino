@@ -3,13 +3,13 @@ import classNames from 'classnames';
 
 interface Props {
     children: ReactNode,
-    align?: string,
+    className?: string,
 }
 
-const HeadingOfSection: FC<Props> = ({children, align = 'text-left'}) => {
+const HeadingOfSection: FC<Props> = ({children, className = 'text-left'}) => {
     let headingOfSectionClass = classNames(
         'font-fancy text-primary tracking-[1px]',
-        align,
+        className,
         // 'D:text-text_D',
         // 'L:text-text_D',
         // 'T:text-heading_of_section_D',

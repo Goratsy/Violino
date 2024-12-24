@@ -15,13 +15,13 @@ import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 const AdvantagesSection: FC = () => {
     return (
         <>
-            <section id="advantagesSection" className="pt-[130px] T:pt-[100px] TS:pt-[70px]">
+            <section id="advantagesSection" className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
                 <div className="w-full bg-surface py-[40px] mb-[40px] TS:mb-[30px]">
                     <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8}>
-                        <HeadingOfSection align="text-center">Наши преимущества</HeadingOfSection>
+                        <HeadingOfSection className="text-center">Наши преимущества</HeadingOfSection>
                     </AnimatedElementFade>
                     <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8} additionallyClasses="mt-[4px]">
-                        <H2 align="text-center">Воплощаем ваши мечты!</H2>
+                        <H2 className="text-center">Воплощаем ваши мечты!</H2>
                     </AnimatedElementFade>
                 </div>
                 <div className="flex justify-center items-center TS:flex-col-reverse gap-[75px] TS:gap-[50px] px-[12%] L:px-[20px] P:px-[10px]">
@@ -61,7 +61,7 @@ const AdvantagesSection: FC = () => {
                         </AnimatedElementFade>
                     </div>
                     <AnimatedElementFade animateFade="animate-fade" threshold={0.5} additionallyClasses="w-1/2 TS:w-full">
-                        <img src={cake_advantage} alt="cake_advantage" className="w-full" />
+                        <img src={cake_advantage} alt="cake_advantage" className="w-full" loading="lazy"/>
                     </AnimatedElementFade>
                 </div>
             </section>

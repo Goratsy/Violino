@@ -42,7 +42,7 @@ export default {
         'subtitle_TS': ['18px', '24px'],
         'subtitle_P': ['16px', '18px'],  // TODO: write correct size font. Mb 16 px
   
-        'heading_of_section_D': ['20px', '1'],
+        'heading_of_section_D': ['24px', '24px'],
         //'heading_of_section_L': [],
         //'heading_of_section_T': [],
         //'heading_of_section_TS': [],

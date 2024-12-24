@@ -19,15 +19,15 @@ const HomeSection: FC = () => {
             <section id="homeSection" className="h-[100vh] L:h-auto LS:min-h-[700px] pt-[110px] L:pt-[150px] pl-[12%] L:pl-0 relative flex flex-row L:flex-col items-center gap-[75px] L:gap-[100px] z-10 ">
                 <div className="w-[40%] L:w-full">
                     <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[450ms]">
-                        <HeadingOfSection align="text-left mb-[4px] L:text-center">Главная</HeadingOfSection>
+                        <HeadingOfSection className="text-left mb-[4px] L:text-center">Главная</HeadingOfSection>
                     </AnimatedElementFade>
                     <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[350ms]">
-                        <H1 align="text-left L:hidden" textWrap="text-nowrap ">Торты<br /> на заказ</H1>
-                        <H1 align="text-center hidden L:block" textWrap="text-nowrap">Торты на заказ</H1>
+                        <H1 className="text-left L:hidden" textWrap="text-nowrap ">Торты<br /> на заказ</H1>
+                        <H1 className="text-center hidden L:block" textWrap="text-nowrap">Торты на заказ</H1>
                     </AnimatedElementFade>
                     <div className="pl-[40px] mt-[15px] L:p-0 L:flex L:items-center L:flex-col">
                         <AnimatedElementFade animateFade="animate-fade-down" additionallyClasses="L:w-2/4 TS:w-[80%]" delay="animate-delay-[250ms]">
-                            <Subtitle align="text-left L:text-center">Виолино воплощает ваши сладкие мечты в реальность, создавая уникальные и вкусные торты</Subtitle>
+                            <Subtitle className="text-left L:text-center">Виолино воплощает ваши сладкие мечты в реальность, создавая уникальные и вкусные торты</Subtitle>
                         </AnimatedElementFade>
                         <AnimatedElementFade animateFade="animate-fade-down" additionallyClasses="w-[164px] mt-[30px] P:w-[120px]" delay="animate-delay-[150ms]">
                             <ButtonLink>Заказать</ButtonLink>
