@@ -63,8 +63,8 @@ const Header: FC = () => {
     }, [lastScrollY]);
 
     return (
-        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'}  w-full z-50 duration-500 ease overflow-hidden h-[100px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : ''}`}>
-            <div className={`w-full flex justify-between items-center px-[7%] py-[27px] L:px-[20px] TS:py-[20px] duration-500 ease-out`}>
+        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'}  w-full z-50 duration-500 ease overflow-hidden h-[105px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : ''}`}>
+            <div className={`w-full flex justify-between items-center px-[7%] p-[25px] L:px-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
                     <a href="#homeSection">Главная</a>
@@ -89,7 +89,7 @@ const Header: FC = () => {
                     ></span>
                 </div>
             </div>
-            <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'L:opacity-0'}`}>
+            <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0'}`}>
                 <nav className="flex flex-col justify-center items-left pb-[50px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary">
                     <a href="#" className="" onClick={closeBurgerMenu}>Главная</a>
                     <a href="#" className="" onClick={closeBurgerMenu}>О нас</a>

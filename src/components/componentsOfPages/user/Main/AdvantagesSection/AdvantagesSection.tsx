@@ -20,13 +20,13 @@ const AdvantagesSection: FC = () => {
                     <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8}>
                         <HeadingOfSection className="text-center">Наши преимущества</HeadingOfSection>
                     </AnimatedElementFade>
-                    <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8} additionallyClasses="mt-[4px]">
+                    <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8} additionalClasses="mt-[4px]">
                         <H2 className="text-center">Воплощаем ваши мечты!</H2>
                     </AnimatedElementFade>
                 </div>
                 <div className="flex justify-center items-center TS:flex-col-reverse gap-[75px] TS:gap-[50px] px-[12%] L:px-[20px] P:px-[10px]">
                     <div className="w-1/2 TS:w-full flex flex-col gap-[70px] TS:gap-[50px] TS:px-[40px] P:px-0">
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionallyClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={person_SVG} alt="person_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -37,7 +37,7 @@ const AdvantagesSection: FC = () => {
                                 </div>
                             </div>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionallyClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={eco_SVG} alt="eco_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -48,7 +48,7 @@ const AdvantagesSection: FC = () => {
                                 </div>
                             </div>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionallyClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={brush_SVG} alt="brush_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -60,7 +60,7 @@ const AdvantagesSection: FC = () => {
                             </div>
                         </AnimatedElementFade>
                     </div>
-                    <AnimatedElementFade animateFade="animate-fade" threshold={0.5} additionallyClasses="w-1/2 TS:w-full">
+                    <AnimatedElementFade animateFade="animate-fade" threshold={0.5} additionalClasses="w-1/2 TS:w-full">
                         <img src={cake_advantage} alt="cake_advantage" className="w-full" loading="lazy"/>
                     </AnimatedElementFade>
                 </div>

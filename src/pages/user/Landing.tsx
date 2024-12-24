@@ -10,7 +10,7 @@ const Landing: FC = () => {
     return (
         <>
             <Header />
-            <main className="mb-80">
+            <main>
                 <HomeSection />
                 <AboutSection />
                 <AdvantagesSection />

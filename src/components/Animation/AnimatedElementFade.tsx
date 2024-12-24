@@ -5,12 +5,12 @@ interface Props {
     children: ReactNode,
     threshold?: number,
     animateFade: string,
-    additionallyClasses?: string,
+    additionalClasses?: string,
     triggerOnce?: boolean,
     delay?: string
 }
 
-const AnimatedElementFade: FC<Props> = ({ children, threshold = 0.1, triggerOnce = true, delay, animateFade, additionallyClasses }) => {
+const AnimatedElementFade: FC<Props> = ({ children, threshold = 0.1, triggerOnce = true, delay, animateFade, additionalClasses }) => {
     const { ref, inView } = useInView({
         triggerOnce, // При true: Анимация срабатывает только при первом просмотре
         threshold   // Срабатывает, когда какая-то часть элемента видима
@@ -19,7 +19,7 @@ const AnimatedElementFade: FC<Props> = ({ children, threshold = 0.1, triggerOnce
     return (
         <div
             ref={ref}
-            className={`${inView ? `${animateFade} opacity-100` : `opacity-0`} duration-500 transition-opacity animate-duration-500 animate-ease-in-out ${delay} ${additionallyClasses}`}
+            className={`${inView ? `${animateFade} opacity-100` : `opacity-0`} duration-500 transition-opacity animate-duration-500 animate-ease-in-out ${delay} ${additionalClasses}`}
         >
             {children}
         </div>

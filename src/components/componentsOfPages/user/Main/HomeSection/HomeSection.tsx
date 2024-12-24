@@ -26,10 +26,10 @@ const HomeSection: FC = () => {
                         <H1 className="text-center hidden L:block" textWrap="text-nowrap">Торты на заказ</H1>
                     </AnimatedElementFade>
                     <div className="pl-[40px] mt-[15px] L:p-0 L:flex L:items-center L:flex-col">
-                        <AnimatedElementFade animateFade="animate-fade-down" additionallyClasses="L:w-2/4 TS:w-[80%]" delay="animate-delay-[250ms]">
+                        <AnimatedElementFade animateFade="animate-fade-down" additionalClasses="L:w-2/4 TS:w-[80%]" delay="animate-delay-[250ms]">
                             <Subtitle className="text-left L:text-center">Виолино воплощает ваши сладкие мечты в реальность, создавая уникальные и вкусные торты</Subtitle>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-down" additionallyClasses="w-[164px] mt-[30px] P:w-[120px]" delay="animate-delay-[150ms]">
+                        <AnimatedElementFade animateFade="animate-fade-down" additionalClasses="w-[164px] mt-[30px] P:w-[120px]" delay="animate-delay-[150ms]">
                             <ButtonLink>Заказать</ButtonLink>
                         </AnimatedElementFade>
                     </div>
