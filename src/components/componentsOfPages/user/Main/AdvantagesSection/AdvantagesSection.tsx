@@ -7,6 +7,7 @@ import brush_SVG from '../../../../../assets/svg/brush.svg';
 import person_SVG from '../../../../../assets/svg/person.svg';
 import H4 from "../../../../UI/text/H4";
 import TextMain from "../../../../UI/text/TextMain";
+import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 
 
 
@@ -16,16 +17,16 @@ const AdvantagesSection: FC = () => {
         <>
             <section id="advantagesSection" className="pt-[130px] T:pt-[100px] TS:pt-[70px]">
                 <div className="w-full bg-surface py-[40px] mb-[40px] TS:mb-[30px]">
-                    <div className="animate-fade-down animate-duration-600 animate-ease-in-out animate-delay-[200ms]">
+                    <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8}>
                         <HeadingOfSection align="text-center">Наши преимущества</HeadingOfSection>
-                    </div>
-                    <div className="mt-[4px] animate-fade-down animate-duration-600 animate-ease-in-out animate-delay-[100ms]">
+                    </AnimatedElementFade>
+                    <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8} additionallyClasses="mt-[4px]">
                         <H2 align="text-center">Воплощаем ваши мечты!</H2>
-                    </div>
+                    </AnimatedElementFade>
                 </div>
                 <div className="flex justify-center items-center TS:flex-col-reverse gap-[75px] TS:gap-[50px] px-[12%] L:px-[20px] P:px-[10px]">
                     <div className="w-1/2 TS:w-full flex flex-col gap-[70px] TS:gap-[50px] TS:px-[40px] P:px-0">
-                        <div className="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%] animate-fade-left animate-duration-600 animate-ease-in-out animate-delay-[300ms]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionallyClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={person_SVG} alt="person_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -35,8 +36,8 @@ const AdvantagesSection: FC = () => {
                                     <TextMain>Уникальные рецепты, созданные с душой, чтобы каждые из них дарили незабываемые впечатления</TextMain>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%] animate-fade-left animate-duration-600 animate-ease-in-out animate-delay-[200ms]">
+                        </AnimatedElementFade>
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionallyClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={eco_SVG} alt="eco_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -46,8 +47,8 @@ const AdvantagesSection: FC = () => {
                                     <TextMain>Используем только натуральные ингредиенты, чтобы десерты были вкусными, полезными и безопасными</TextMain>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%] animate-fade-left animate-duration-600 animate-ease-in-out animate-delay-[100ms]">
+                        </AnimatedElementFade>
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionallyClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={brush_SVG} alt="brush_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -57,11 +58,11 @@ const AdvantagesSection: FC = () => {
                                     <TextMain>Современные оформления, отражающие тренды и подчеркивающие эстетику каждого праздничного момента</TextMain>
                                 </div>
                             </div>
-                        </div>
+                        </AnimatedElementFade>
                     </div>
-                    <div className="w-1/2 TS:w-full animate-fade animate-duration-500 animate-ease-in-out animate-delay-[200ms]">
+                    <AnimatedElementFade animateFade="animate-fade" threshold={0.5} additionallyClasses="w-1/2 TS:w-full">
                         <img src={cake_advantage} alt="cake_advantage" className="w-full" />
-                    </div>
+                    </AnimatedElementFade>
                 </div>
             </section>
         </>
