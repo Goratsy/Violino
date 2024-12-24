@@ -35,8 +35,35 @@ const Header: FC = () => {
         };
     }, [isOpenBurgerMenu]);
 
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY < lastScrollY) {
+            // Прокрутка вверх
+            setShowHeader(true);
+        } else if (currentScrollY > lastScrollY) {
+            // Прокрутка вниз
+            setShowHeader(false);
+        }
+        console.log(currentScrollY);
+        
+        
+        setLastScrollY(currentScrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <header className={`absolute w-full z-50 duration-500 ease overflow-hidden h-[100px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : 'bg-transparent'}`}>
+        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'}  w-full z-50 duration-500 ease overflow-hidden h-[100px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : ''}`}>
             <div className={`w-full flex justify-between items-center px-[7%] py-[27px] L:px-[20px] TS:py-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
