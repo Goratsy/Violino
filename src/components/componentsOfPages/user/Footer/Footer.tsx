@@ -30,28 +30,36 @@ const Footer: FC = () => {
                 <div className="mt-[40px] TS:mt-[30px] P:mt-[20px] ">
                     <form action="">
                         <div className="flex flex-row gap-[30px] T:flex-col T:gap-[15px]">
-                            <Input placeholder="Имя" />
-                            <Input placeholder="Телефон" />
+                            <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
+                                <Input placeholder="Имя" />
+                            </AnimatedElementFade>
+                            <AnimatedElementFade animateFade="animate-fade-right" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
+                                <Input placeholder="Телефон" />
+                            </AnimatedElementFade>
                         </div>
                         <div className="my-[30px] T:my-[15px]">
-                            <Textarea placeholder="Сообщение, которое вы хотели бы передать..." />
+                            <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                <Textarea placeholder="Сообщение, которое вы хотели бы передать..." />
+                            </AnimatedElementFade>
                         </div>
-                        <ButtonSubmit>Отправить</ButtonSubmit>
+                        <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                            <ButtonSubmit>Отправить</ButtonSubmit>
+                        </AnimatedElementFade>
                     </form>
                 </div>
             </section>
             <section className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
-                <div className="w-full max-h-[600px]">
+                <AnimatedElementFade animateFade="animate-fade" threshold={0.4} delay="animate-delay-300" additionalClasses="w-full max-h-[600px]">
                     <YandexMap />
-                </div>
+                </AnimatedElementFade>
                 <div className="flex flex-row items-start justify-center L:flex-col L:items-center gap-[80px] L:gap-y-[40px] py-[130px] T:py-[100px] TS:py-[70px] text-nowrap">
                     <div className="flex justify-between flex-row P:flex-col gap-[80px] L:gap-[70px] TS:gap-[30px] ">
-                        <div className="flex flex-col gap-[14px] L:w-[200px] -translate-y-2 L:translate-x-0">
+                        <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[100ms]" additionalClasses="flex flex-col gap-[14px] L:w-[200px] -translate-y-2 L:translate-x-0">
                             <Logo></Logo>
                             <TextFooter fontWeight="font-semibold">Москва<br />
                                 Ленинский проспект, 79</TextFooter>
-                        </div>
-                        <div className="flex flex-col gap-[30px] L:w-[200px]">
+                        </AnimatedElementFade>
+                        <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[200ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>Контакты</H4>
                             <div>
                                 <div>
@@ -63,10 +71,10 @@ const Footer: FC = () => {
                                     <TextFooter>viotort@gmail.com</TextFooter>
                                 </div>
                             </div>
-                        </div>
+                        </AnimatedElementFade>
                     </div>
                     <div className="flex justify-between flex-row P:flex-col gap-[80px] L:gap-[70px] TS:gap-[30px] ">
-                        <div className="flex flex-col gap-[30px] L:w-[200px]">
+                        <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[300ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>График работы</H4>
                             <div>
                                 <div>
@@ -76,8 +84,8 @@ const Footer: FC = () => {
                                     <TextFooter>Сб-Вс с 10 до 20</TextFooter>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex flex-col gap-[30px] L:w-[200px]">
+                        </AnimatedElementFade>
+                        <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[400ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>Полезные ссылки</H4>
                             <div>
                                 <div>
@@ -87,7 +95,7 @@ const Footer: FC = () => {
                                     <NetworkLinks />
                                 </div>
                             </div>
-                        </div>
+                        </AnimatedElementFade>
                     </div>
                 </div>
             </section>
