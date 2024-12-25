@@ -17,13 +17,12 @@ const YandexMap: React.FC = () => {
             <YMaps query={{ apikey: apiYandexKey, lang: 'en_RU' }}>
                 <Map
                     defaultState={defaultState}
-                    className='w-full h-[600px] T:h-[500px] TS:h-[400px]'
+                    className='w-full h-[500px]'
                     modules={['control.ZoomControl']}
                     behaviors={{scrollZoom: false}}
-                    
-                    
+
                 >
-                    <ZoomControl options={{ size: 'large', position: { bottom: 200, left: 10 } }} />
+                    <ZoomControl options={{ size: 'small', position: { bottom: 200, left: 10 } }} />
 
                     <Placemark
                         geometry={coordinatesViolino}

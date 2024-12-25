@@ -41,17 +41,17 @@ const Footer: FC = () => {
                 </div>
             </section>
             <section className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
-                <div className="w-full h-[600px]">
+                <div className="w-full max-h-[600px]">
                     <YandexMap />
                 </div>
-                <div className="flex justify-center items-start L:flex-wrap gap-[70px] L:gap-x-[100px] L:gap-y-[50px] P:gap-x-0 P:gap-y-[40px] px-[12%] L:px-[20px] P:px-[10px] py-[130px] T:py-[100px] TS:py-[70px] text-nowrap">
-                    <div className="flex gap-[70px] justify-start items-start">
-                        <div className="flex flex-col gap-[14px]">
+                <div className="flex flex-row items-start justify-center L:flex-col L:items-center gap-[80px] L:gap-y-[40px] py-[130px] T:py-[100px] TS:py-[70px] text-nowrap">
+                    <div className="flex justify-between flex-row P:flex-col gap-[80px] L:gap-[70px] TS:gap-[30px] ">
+                        <div className="flex flex-col gap-[14px] L:w-[200px] -translate-y-2 L:translate-x-0">
                             <Logo></Logo>
                             <TextFooter fontWeight="font-semibold">Москва<br />
                                 Ленинский проспект, 79</TextFooter>
                         </div>
-                        <div className="flex flex-col gap-[30px]">
+                        <div className="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>Контакты</H4>
                             <div>
                                 <div>
@@ -65,8 +65,8 @@ const Footer: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-[70px] justify-start items-start">
-                        <div className="flex flex-col gap-[30px]">
+                    <div className="flex justify-between flex-row P:flex-col gap-[80px] L:gap-[70px] TS:gap-[30px] ">
+                        <div className="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>График работы</H4>
                             <div>
                                 <div>
@@ -77,13 +77,13 @@ const Footer: FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-col gap-[30px]">
+                        <div className="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>Полезные ссылки</H4>
                             <div>
                                 <div>
                                     <TextFooter>Контакты для связи:</TextFooter>
                                 </div>
-                                <div className="mt-[6px]">
+                                <div className="mt-[20px]">
                                     <NetworkLinks />
                                 </div>
                             </div>
