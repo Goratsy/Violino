@@ -19,7 +19,7 @@ const Footer: FC = () => {
                     <Subtitle className="text-center">Оставьте ваш номер телефона для обратной связи, или свяжитесь с нами удобным для вас способом</Subtitle>
                 </AnimatedElementFade>
             </section>
-            <section className="">
+            <section className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
                 <div className="w-full h-[600px]">
                     <YandexMap/>
                 </div>

@@ -48,8 +48,6 @@ const Header: FC = () => {
             // Прокрутка вниз
             setShowHeader(false);
         }
-        console.log(currentScrollY);
-        
         
         setLastScrollY(currentScrollY);
     };
