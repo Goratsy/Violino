@@ -11,6 +11,9 @@ import Logo from "../../../UI/logo/Logo";
 import TextFooter from "../../../UI/text/TextFooter";
 import H4 from "../../../UI/text/H4";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
+import smartPhone_SVG from '../../../../assets/svg/smartphone.svg'
+import gmail_SVG from '../../../../assets/svg/gmail.svg'
+
 
 const Footer: FC = () => {
     return (
@@ -30,10 +33,10 @@ const Footer: FC = () => {
                 <div className="mt-[40px] TS:mt-[30px] P:mt-[20px] ">
                     <form action="">
                         <div className="flex flex-row gap-[30px] T:flex-col T:gap-[15px]">
-                            <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
+                            <AnimatedElementFade animateFade="animate-fade-right" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
                                 <Input placeholder="Имя" />
                             </AnimatedElementFade>
-                            <AnimatedElementFade animateFade="animate-fade-right" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
+                            <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
                                 <Input placeholder="Телефон" />
                             </AnimatedElementFade>
                         </div>
@@ -62,12 +65,16 @@ const Footer: FC = () => {
                         <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[200ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
                             <H4>Контакты</H4>
                             <div>
-                                <div>
-                                    <img src="" alt="" />
+                                <div className="flex items-center ">
+                                    <div className="inline-block w-[20px] mr-2">
+                                        <img src={smartPhone_SVG} alt="smartphone" className="w-auto h-[19px]" />
+                                    </div>
                                     <TextFooter>+7 (915) 331-45-31</TextFooter>
                                 </div>
-                                <div className="mt-[6px]">
-                                    <img src="" alt="" />
+                                <div className="flex items-center mt-[10px]">
+                                    <div className="inline-block w-[20px] mr-2">
+                                        <img src={gmail_SVG} alt="gmail" className="w-[19px] h-auto" />
+                                    </div>
                                     <TextFooter>viotort@gmail.com</TextFooter>
                                 </div>
                             </div>
@@ -80,7 +87,7 @@ const Footer: FC = () => {
                                 <div>
                                     <TextFooter>Пн-Пт с 9 до 20</TextFooter>
                                 </div>
-                                <div className="mt-[6px]">
+                                <div className="mt-[10px]">
                                     <TextFooter>Сб-Вс с 10 до 20</TextFooter>
                                 </div>
                             </div>
