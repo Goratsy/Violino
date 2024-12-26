@@ -1,11 +1,11 @@
-import { Device } from "./Device";
+import { LoginHistory } from "./LoginHistory";
 
 interface Manager {
     manager_id: number,
     manager_name: string,
     login: string,
     password: string,
-    devices?: Device[],
+    devices?: LoginHistory[],
 }
 
 export type {Manager};
