@@ -8,7 +8,7 @@ import { UserPhone } from "../../../../models/UserPhone";
 const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUserPhones }) => {
     return (
         <>
-            <section className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
+            <section id="today" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <div>
                         <HeadingOfSection className="text-center">Заявки на сегодня</HeadingOfSection>

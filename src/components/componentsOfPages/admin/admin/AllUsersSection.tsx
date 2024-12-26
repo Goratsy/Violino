@@ -8,7 +8,7 @@ import { UserPhone } from "../../../../models/UserPhone";
 const AllUsersSection: FC<{userPhones: UserPhone[]}> = ({userPhones}) => {
     return (
         <>
-            <section className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
+            <section id="database" className="px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <div>
                         <HeadingOfSection className="text-center">Панель администрации</HeadingOfSection>

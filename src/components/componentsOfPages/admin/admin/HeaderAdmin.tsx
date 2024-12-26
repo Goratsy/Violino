@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import Logo from "../../../UI/logo/Logo";
 
-const Header: FC = () => {
+const HeaderAdmin: FC = () => {
     let [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState<boolean>(false);
 
     let openBurgerMenu = (): void => {
@@ -65,11 +65,9 @@ const Header: FC = () => {
             <div className={`w-full flex justify-between items-center px-[7%] p-[25px] L:px-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
-                    <a href="#homeSection">Главная</a>
-                    <a href="#aboutSection">О нас</a>
-                    <a href="#advantagesSection">Преимущества</a>
-                    <a href="#formalisation">Оформление</a>
-                    <a href="#contacts">Контакты</a>
+                    <a href="#database">База данных</a>
+                    <a href="#today">Сегодня</a>
+                    <a href="#manager">Менеджеры</a>
                 </nav>
                 <NetworkLinks styleDisplay="L:hidden block" />
                 <div
@@ -89,11 +87,9 @@ const Header: FC = () => {
             </div>
             <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0'}`}>
                 <nav className="flex flex-col justify-center items-left pb-[50px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary">
-                    <a href="#homeSection" className="" onClick={closeBurgerMenu}>Главная</a>
-                    <a href="#aboutSection" className="" onClick={closeBurgerMenu}>О нас</a>
-                    <a href="#advantagesSection" className="" onClick={closeBurgerMenu}>Преимущества</a>
-                    <a href="#formalisation" className="" onClick={closeBurgerMenu}>Оформление</a>
-                    <a href="#contacts" className="" onClick={closeBurgerMenu}>Контакты</a>
+                    <a href="#database" onClick={closeBurgerMenu}>База данных</a>
+                    <a href="#today" onClick={closeBurgerMenu}>Сегодня</a>
+                    <a href="#manager" onClick={closeBurgerMenu}>Менеджеры</a>
                 </nav>
                 <NetworkLinks />
             </div>
@@ -101,4 +97,4 @@ const Header: FC = () => {
     );
 }
 
-export default Header;
+export default HeaderAdmin;

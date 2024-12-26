@@ -5,6 +5,8 @@ import { UserPhone } from "../../../models/UserPhone";
 import LoginHistory from "../../../components/componentsOfPages/admin/admin/LoginHistory";
 import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
 import { userPhones_testdata } from "../../../models/testdata";
+import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
+
 
 const Admin: FC = () => {
     let [auth, setAuth] = useState<boolean>(true);
@@ -21,11 +23,14 @@ const Admin: FC = () => {
             {auth ?
                 <>
                     {userPhones ?
-                        <main className="pb-52">
-                            <AllUsersSection userPhones={userPhones} />
-                            <TodayUsersSection filteredUserPhones={filterUsersPhoneByDate(userPhones)}/>
-                            <LoginHistory />
-                        </main>
+                        <>
+                            <HeaderAdmin />
+                            <main className="relative mb-52 top-[130px] T:top-[100px] TS:top-[70px]">
+                                <AllUsersSection userPhones={userPhones} />
+                                <TodayUsersSection filteredUserPhones={filterUsersPhoneByDate(userPhones)} />
+                                <LoginHistory />
+                            </main>
+                        </>
                     : ''}
                 </>
                 : ''}

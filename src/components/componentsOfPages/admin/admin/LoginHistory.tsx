@@ -9,7 +9,7 @@ import TextMain from "../../../UI/text/TextMain";
 const LoginHistory: FC = () => {
     return (
         <>
-            <section className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
+            <section id="manager" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <div>
                         <HeadingOfSection className="text-center">История входов</HeadingOfSection>
