@@ -3,8 +3,9 @@ import HeadingOfSection from "../../../UI/text/HeadingOfSection";
 import H2 from "../../../UI/text/H2";
 import Subtitle from "../../../UI/text/Subtitle";
 import TableUsers from "../../../UI/tableUsers/TableUsers";
+import { UserPhone } from "../../../../models/UserPhone";
 
-const AllUsersSection: FC = () => {
+const AllUsersSection: FC<{userPhones: UserPhone[]}> = ({userPhones}) => {
     return (
         <>
             <section className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
@@ -20,7 +21,7 @@ const AllUsersSection: FC = () => {
                     </div>
                 </div>
                 <div className="mt-[40px] overflow-x-auto">
-                    <TableUsers users={[{}, {}, {}]} />
+                    <TableUsers userPhones={userPhones}/>
                 </div>
             </section>
         </>

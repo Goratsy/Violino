@@ -2,12 +2,9 @@ import { FC } from "react";
 import H4 from "../text/H4";
 import Input from "../input/Input";
 import trash_SVG from '../../../assets/svg/trash.svg';
+import { UserPhone } from "../../../models/UserPhone";
 
-interface Props {
-    users: Array<any>
-}
-
-const TableUsers: FC<Props> = ({ users }) => {
+const TableUsers: FC<{userPhones: UserPhone[]}> = ({ userPhones }) => {
 
     const deleteUserPhone = (): void => {
         if(window.confirm('Вы действительно хотите удалить пользователя?')) {
@@ -44,17 +41,15 @@ const TableUsers: FC<Props> = ({ users }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user, number) => {
-                        console.log(number);
-                        
+                    {userPhones.map((userPhone, number) => {
                         return (
                             <>
-                                <tr className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} key={number}>
-                                    <td className="pl-5">1</td>
-                                    <td className="overflow-x-auto pl-5">ljжыдвафыs</td>
-                                    <td className="pl-5">+ 7 (916) 690-45-31</td>
-                                    <td className="pl-5">26.12.2024</td>
-                                    <td className="overflow-x-auto pl-5">hjlks;fdsa;sdflasf;asdlkfasklf;lasd;flsdf</td>
+                                <tr className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} key={userPhone.user_phone_id}>
+                                    <td className="pl-5">{number + 1}</td>
+                                    <td className="overflow-x-auto pl-5">{userPhone.name}</td>
+                                    <td className="pl-5">{userPhone.name}</td>
+                                    <td className="pl-5">{userPhone.date_of_send}</td>
+                                    <td className="overflow-x-auto pl-5">{userPhone?.information_about_user}</td>
                                     <td className="px-5 text-right"><div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={deleteUserPhone}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div></td>
                                 </tr>
                             </>

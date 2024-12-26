@@ -1,5 +1,5 @@
 interface LoginHistory {
-    date_of_logi: string,
+    date_of_login: string,
     device:	string,
     ip_address:	string,
     failed_login_attempts: number,
