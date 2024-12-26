@@ -44,10 +44,10 @@ const TableUsers: FC<{userPhones: UserPhone[]}> = ({ userPhones }) => {
                     {userPhones.map((userPhone, number) => {
                         return (
                             <>
-                                <tr className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} key={userPhone.user_phone_id}>
+                                <tr key={userPhone.user_phone_id} className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} >
                                     <td className="pl-5">{number + 1}</td>
                                     <td className="overflow-x-auto pl-5">{userPhone.name}</td>
-                                    <td className="pl-5">{userPhone.name}</td>
+                                    <td className="pl-5">{userPhone.phone}</td>
                                     <td className="pl-5">{userPhone.date_of_send}</td>
                                     <td className="overflow-x-auto pl-5">{userPhone?.information_about_user}</td>
                                     <td className="px-5 text-right"><div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={deleteUserPhone}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div></td>

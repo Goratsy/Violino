@@ -4,8 +4,12 @@ import H2 from "../../../UI/text/H2";
 import Subtitle from "../../../UI/text/Subtitle";
 import TableUsers from "../../../UI/tableUsers/TableUsers";
 import { UserPhone } from "../../../../models/UserPhone";
+import H4 from "../../../UI/text/H4";
 
 const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUserPhones }) => {
+    console.log(filteredUserPhones);
+    
+
     return (
         <>
             <section id="today" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
@@ -21,7 +25,8 @@ const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUs
                     </div>
                 </div>
                 <div className="mt-[40px] overflow-x-auto">
-                    <TableUsers userPhones={filteredUserPhones} />
+                    {filteredUserPhones.length !== 0 ? 
+                    <TableUsers userPhones={filteredUserPhones} /> : <H4 className="text-center underline underline-offset-2">Пока нет заявок на сегодня</H4>}
                 </div>
             </section>
         </>

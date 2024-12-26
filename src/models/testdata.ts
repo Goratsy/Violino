@@ -19,7 +19,7 @@ const userPhones_testdata: UserPhone[] = [
         user_phone_id: 3,
         name: "Сергей Сидоров",
         phone: "+7 (900) 345-67-89",
-        date_of_send: "2023-10-03",
+        date_of_send: "2024-12-27",
         information_about_user: "Новый пользователь"
     },
     {
