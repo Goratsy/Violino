@@ -69,7 +69,6 @@ const HeaderAdmin: FC = () => {
                     <a href="#today">Сегодня</a>
                     <a href="#manager">Менеджеры</a>
                 </nav>
-                <NetworkLinks styleDisplay="L:hidden block" />
                 <div
                     onClick={openBurgerMenu}
                     className="cursor-pointer L:block hidden relative w-[40px] h-[22px]"
@@ -91,7 +90,6 @@ const HeaderAdmin: FC = () => {
                     <a href="#today" onClick={closeBurgerMenu}>Сегодня</a>
                     <a href="#manager" onClick={closeBurgerMenu}>Менеджеры</a>
                 </nav>
-                <NetworkLinks />
             </div>
         </header>
     );
