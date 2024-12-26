@@ -5,7 +5,7 @@ interface Manager {
     manager_name: string,
     login: string,
     password: string,
-    devices?: LoginHistory[],
+    loginHistory?: LoginHistory[],
 }
 
 export type {Manager};

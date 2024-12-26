@@ -4,13 +4,15 @@ import TodayUsersSection from "../../../components/componentsOfPages/admin/admin
 import { UserPhone } from "../../../models/UserPhone";
 import LoginHistory from "../../../components/componentsOfPages/admin/admin/LoginHistory";
 import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
-import { userPhones_testdata } from "../../../models/testdata";
+import { managers_testdata, userPhones_testdata } from "../../../models/testdata";
 import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
+import { Manager } from "../../../models/Manager";
 
 
 const Admin: FC = () => {
     let [auth, setAuth] = useState<boolean>(true);
     let [userPhones, setUserPhones] = useState<UserPhone[] | null>(userPhones_testdata);
+    let [managers, setManagers] = useState<Manager[] | null>(managers_testdata);
 
     useEffect(() => {
         // Authentification
@@ -28,10 +30,10 @@ const Admin: FC = () => {
                             <main className="relative mb-52 top-[130px] T:top-[100px] TS:top-[70px]">
                                 <AllUsersSection userPhones={userPhones} />
                                 <TodayUsersSection filteredUserPhones={filterUsersPhoneByDate(userPhones)} />
-                                <LoginHistory />
+                                {managers ? <LoginHistory managers={managers} /> : ''}
                             </main>
                         </>
-                    : ''}
+                        : ''}
                 </>
                 : ''}
         </>

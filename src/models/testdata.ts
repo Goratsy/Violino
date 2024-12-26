@@ -75,7 +75,7 @@ const managers_testdata: Manager[] = [
         manager_name: "Александр Смирнов",
         login: "alex.smirnov",
         password: "securepassword123",
-        devices: [
+        loginHistory: [
             {
                 date_of_login: "2023-10-01",
                 device: "Ноутбук",
@@ -104,7 +104,7 @@ const managers_testdata: Manager[] = [
         manager_name: "Мария Коваленко",
         login: "maria.kovalenko",
         password: "anothersecurepassword456",
-        devices: [
+        loginHistory: [
             {
                 date_of_login: "2023-10-04",
                 device: "Ноутбук",
