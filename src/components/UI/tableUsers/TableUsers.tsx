@@ -15,11 +15,12 @@ const TableUsers: FC<Props> = ({ users }) => {
         } else {
             console.log('The operation was canceled');
         }
+        location.reload();
     }
 
     return (
         <>
-            <table className="table-fixed w-full min-w-[1400px]">
+            <table className="table-fixed w-full min-w-[1200px]">
                 <thead className="h-[90px] px-5">
                     <tr>
                         <th className="pl-5 w-36">
@@ -28,7 +29,7 @@ const TableUsers: FC<Props> = ({ users }) => {
                         <th className="pl-5 w-36">
                             <H4>Имя</H4>
                         </th>
-                        <th className="pl-5 w-36">
+                        <th className="pl-5 w-44">
                             <H4>Телефон</H4>
                         </th>
                         <th className="pl-5 w-36">
@@ -50,9 +51,9 @@ const TableUsers: FC<Props> = ({ users }) => {
                             <>
                                 <tr className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} key={number}>
                                     <td className="pl-5">1</td>
-                                    <td className="pl-5">ljs</td>
-                                    <td className="pl-5">;sdfl;</td>
-                                    <td className="pl-5">sdhaf</td>
+                                    <td className="overflow-x-auto pl-5">ljжыдвафыs</td>
+                                    <td className="pl-5">+ 7 (916) 690-45-31</td>
+                                    <td className="pl-5">26.12.2024</td>
                                     <td className="overflow-x-auto pl-5">hjlks;fdsa;sdflasf;asdlkfasklf;lasd;flsdf</td>
                                     <td className="px-5 text-right"><div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={deleteUserPhone}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div></td>
                                 </tr>
