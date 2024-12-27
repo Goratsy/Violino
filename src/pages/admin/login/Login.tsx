@@ -1,12 +1,27 @@
-import { FC } from "react";
+import { FC, useContext, useEffect } from "react";
 import AnimatedElementFade from "../../../components/Animation/AnimatedElementFade";
 import HeadingOfSection from "../../../components/UI/text/HeadingOfSection";
 import H2 from "../../../components/UI/text/H2";
 import Subtitle from "../../../components/UI/text/Subtitle";
 import Input from "../../../components/UI/input/Input";
 import ButtonSubmit from "../../../components/UI/button/ButtonSubmit";
+import { AuthentificationContext } from "../../../App";
+import { useNavigate } from "react-router-dom";
 
 const Login: FC = () => {
+    let {isAuthenticated, setIsAuthenticated} = useContext(AuthentificationContext);
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        // Authentification
+
+        // Redirecting
+        if (isAuthenticated) {
+            navigate('/admin');
+        }
+        // Requests
+    }, []);
+
     return (
         <>
             <main className="h-[100vh] w-full min-h-[700px] flex items-center justify-center">

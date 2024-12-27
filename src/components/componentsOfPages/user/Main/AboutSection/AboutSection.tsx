@@ -33,7 +33,7 @@ const AboutSection: FC = () => {
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-left">
                                 <div className="w-[164px] P:w-[120px]">
-                                    <ButtonLink>Заказать</ButtonLink>
+                                    <ButtonLink href="#contacts">Заказать</ButtonLink>
                                 </div>
                             </AnimatedElementFade>
                         </div>
