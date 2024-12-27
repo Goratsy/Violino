@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react";
+import { FC, FormEvent, useContext, useEffect, useState } from "react";
 import AnimatedElementFade from "../../../components/Animation/AnimatedElementFade";
 import HeadingOfSection from "../../../components/UI/text/HeadingOfSection";
 import H2 from "../../../components/UI/text/H2";
@@ -7,20 +7,48 @@ import Input from "../../../components/UI/input/Input";
 import ButtonSubmit from "../../../components/UI/button/ButtonSubmit";
 import { AuthentificationContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
+import Manager from "../../../api/requests/Manager";
+import { getOSInfo } from "../../../utils/getUserDevice";
 
 const Login: FC = () => {
-    let {isAuthenticated, setIsAuthenticated} = useContext(AuthentificationContext);
+    const [ip, setIp] = useState("");
+    const [username, setUserName] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [isSubmit, setIsSubmit] = useState<boolean>(false);
+
+    let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
     let navigate = useNavigate();
+
+    const submitForm = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+        event.preventDefault();
+        setIsSubmit(true);
+
+        try {
+            await fetch("https://api.ipify.org?format=json")
+                .then((response) => response.json())
+                .then((data) => setIp(data.ip))
+                .catch((error) => console.error("Ошибка получения IP-адреса:", error));
+
+            console.log({ login: username, password: password, date_of_login: String(Date.now()), device: getOSInfo(), ip_address: ip });
+            let token = await Manager.logManagerLogin({ login: username, password: password, date_of_login: String(Date.now()), device: getOSInfo(), ip_address: ip });
+            window.localStorage.setItem('bearer_token', token);
+
+            setIsAuthenticated(true);
+
+        } catch (error) {
+            alert("Произошла ошибка: " + String(error));
+        }
+
+        setIsSubmit(false);
+    }
 
     useEffect(() => {
         // Authentification
-
         // Redirecting
         if (isAuthenticated) {
             navigate('/admin');
         }
-        // Requests
-    }, []);
+    }, [isAuthenticated]);
 
     return (
         <>
@@ -38,17 +66,17 @@ const Login: FC = () => {
                         </AnimatedElementFade>
                     </div>
                     <div className="mt-[40px] TS:mt-[30px] P:mt-[20px] ">
-                        <form action="">
+                        <form action="/admin/login" method="POST" onSubmit={submitForm}>
                             <div className="flex flex-col gap-[30px] T:flex-col T:gap-[15px]">
                                 <AnimatedElementFade animateFade="animate-fade-right" delay="animate-delay-100" additionalClasses="w-full">
-                                    <Input placeholder="Логин" />
+                                    <Input value={username} onChange={(event: any) => { setUserName(event.target.value); }} name="username" required type="text" placeholder="Логин" autoComplete="on" />
                                 </AnimatedElementFade>
                                 <AnimatedElementFade animateFade="animate-fade-left" delay="animate-delay-100" additionalClasses="w-full">
-                                    <Input placeholder="Пароль" />
+                                    <Input value={password} onChange={(event: any) => { setPassword(event.target.value); }} name="password" required type="password" placeholder="Пароль" autoComplete="on" />
                                 </AnimatedElementFade>
                             </div>
-                            <AnimatedElementFade animateFade="animate-fade-up" delay="animate-delay-300" additionalClasses="mt-[30px] T:mt-[15px]">
-                                <ButtonSubmit>Войти</ButtonSubmit>
+                            <AnimatedElementFade animateFade="animate-fade-up" delay="animate-delay-300" additionalClasses="mt-[30px] T:mt-[15px]" threshold={0}>
+                                <ButtonSubmit disabled={isSubmit} type="submit">{!isSubmit ? 'Войти' : 'Войти...'}</ButtonSubmit>
                             </AnimatedElementFade>
                         </form>
                     </div>

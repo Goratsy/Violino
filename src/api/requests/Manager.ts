@@ -1,10 +1,11 @@
 import { Manager } from "../../models/Manager";
+import URL_server from "./URL";
 
 const BEARER_TOKEN = localStorage.getItem("bearer_token");
 
 // Fetch all managers
 async function fetchManagers(): Promise<Manager[]> {
-    const response = await fetch('http://localhost:5173/managers', {
+    const response = await fetch(`${URL_server}/managers`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ async function logManagerLogin(loginData: {
     device: string;
     ip_address: string;
 }): Promise<string> {
-    const response = await fetch('http://localhost:5173/managers/logins', {
+    const response = await fetch(`${URL_server}/managers/logins`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const ButtonSubmit: FC<Props> = ({children, ...attributes}) => {
     let linkClass = classNames(
         'w-full',
-        'bg-accent hover:bg-accentHover',
+        'bg-accent hover:bg-accentHover disabled:opacity-70',
         'text-white font-semibold',
         'flex items-center justify-center',
         'duration-500 ease-in-out transition-colors',

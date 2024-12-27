@@ -1,10 +1,11 @@
 import { UserPhone } from "../../models/UserPhone";
+import URL_server from "./URL";
 
 const BEARER_TOKEN = localStorage.getItem("bearer_token");
 
 // Fetch all user phones
 async function fetchUserPhones(): Promise<UserPhone[]> {
-    const response = await fetch('http://localhost:5173/user_phones', {
+    const response = await fetch(`${URL_server}/user_phones`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ async function fetchUserPhones(): Promise<UserPhone[]> {
 
 // Create a new user phone
 async function createUserPhone(newPhone: Omit<UserPhone, 'user_phone_id'>): Promise<void> {
-    const response = await fetch('http://localhost:5173/user_phones', {
+    const response = await fetch(`${URL_server}/user_phones`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -37,7 +38,7 @@ async function createUserPhone(newPhone: Omit<UserPhone, 'user_phone_id'>): Prom
 
 // Update a specific user phone by ID
 async function updateUserPhone(id: number, updatedPhone: Partial<UserPhone>): Promise<void> {
-    const response = await fetch(`http://localhost:5173/user_phones/${id}`, {
+    const response = await fetch(`${URL_server}/user_phones/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ async function updateUserPhone(id: number, updatedPhone: Partial<UserPhone>): Pr
 
 // Delete a user phone by ID
 async function deleteUserPhone(id: number): Promise<void> {
-    const response = await fetch(`http://localhost:5173/user_phones/${id}`, {
+    const response = await fetch(`${URL_server}/user_phones/${id}`, {
         method: 'DELETE',
         headers: {
             Authorization: BEARER_TOKEN || '',

@@ -4,13 +4,23 @@ import Landing from "./pages/user/Landing";
 import Login from "./pages/admin/login/Login";
 import { createContext, useState } from "react";
 
-const AuthentificationContext = createContext<{ isAuthenticated: boolean, setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>> | null}>({isAuthenticated: false, setIsAuthenticated: null});
+const noop = () => {
+  throw new Error("setIsAuthenticated is not initialized");
+};
+
+const AuthentificationContext = createContext<{
+  isAuthenticated: boolean,
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
+}>({
+  isAuthenticated: false,
+  setIsAuthenticated: noop
+});
 
 function App() {
   let [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   return (
-    <AuthentificationContext.Provider value={{isAuthenticated, setIsAuthenticated}}>
+    <AuthentificationContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
       <Routes>
         {/* Landing for user */}
         <Route path="/" element={<Landing />} />
@@ -27,5 +37,5 @@ function App() {
   )
 }
 
-export {AuthentificationContext};
+export { AuthentificationContext };
 export default App;
