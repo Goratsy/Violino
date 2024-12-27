@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Admin from "./pages/admin/admin/Admin";
 import Landing from "./pages/user/Landing";
 import Login from "./pages/admin/login/Login";
@@ -12,6 +12,9 @@ function App() {
       {/* Landing for admin */}
       <Route path="/admin/login" element={<Login />} />
       <Route path="/admin" element={<Admin />} />
+
+      {/* 404 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

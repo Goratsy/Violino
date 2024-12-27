@@ -7,22 +7,28 @@ import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
 import { managers_testdata, userPhones_testdata } from "../../../models/testdata";
 import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
 import { Manager } from "../../../models/Manager";
+import { useNavigate } from "react-router-dom";
 
 
 const Admin: FC = () => {
-    let [auth, setAuth] = useState<boolean>(true);
+    let [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
     let [userPhones, setUserPhones] = useState<UserPhone[] | null>(userPhones_testdata);
     let [managers, setManagers] = useState<Manager[] | null>(managers_testdata);
+    let navigate = useNavigate();
 
     useEffect(() => {
         // Authentification
+        
         // Redirecting
+        if (!isAuthenticated) {
+            navigate('/');
+        }
         // Requests
     }, []);
 
     return (
         <>
-            {auth ?
+            {isAuthenticated ?
                 <>
                     {userPhones ?
                         <>

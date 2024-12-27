@@ -17,7 +17,7 @@ import gmail_SVG from '../../../../assets/svg/gmail.svg'
 
 const Footer: FC = () => {
     return (
-        <footer className="mt-[130px] T:mt-[100px] TS:mt-[70px] ">
+        <footer id="contacts" className="mt-[130px] T:mt-[100px] TS:mt-[70px] ">
             <section className="px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[100ms]">
