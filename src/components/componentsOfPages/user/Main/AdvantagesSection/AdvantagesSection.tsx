@@ -26,7 +26,7 @@ const AdvantagesSection: FC = () => {
                 </div>
                 <div className="flex justify-center items-center TS:flex-col-reverse gap-[75px] TS:gap-[50px] px-[12%] L:px-[20px] P:px-[10px]">
                     <div className="w-1/2 TS:w-full flex flex-col gap-[70px] TS:gap-[50px] TS:px-[40px] P:px-0">
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={person_SVG} alt="person_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -37,7 +37,7 @@ const AdvantagesSection: FC = () => {
                                 </div>
                             </div>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={eco_SVG} alt="eco_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -48,7 +48,7 @@ const AdvantagesSection: FC = () => {
                                 </div>
                             </div>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.5} delay="animate-delay-[200ms]" additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={brush_SVG} alt="brush_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">

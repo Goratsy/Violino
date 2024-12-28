@@ -53,7 +53,8 @@ const Footer: FC = () => {
             </section>
             <section className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
                 <AnimatedElementFade animateFade="animate-fade" threshold={0.4} delay="animate-delay-300" additionalClasses="w-full max-h-[600px]">
-                    <YandexMap />
+                    <YandexMap /> 
+                    {/* в будущем надо будет заменить карту */}
                 </AnimatedElementFade>
                 <div className="flex flex-row items-start justify-center L:flex-col L:items-center gap-[80px] L:gap-y-[40px] py-[130px] T:py-[100px] TS:py-[70px] text-nowrap">
                     <div className="flex justify-between flex-row P:flex-col gap-[80px] L:gap-[70px] TS:gap-[30px] ">

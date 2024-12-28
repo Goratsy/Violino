@@ -7,11 +7,11 @@ import Input from "../../../components/UI/input/Input";
 import ButtonSubmit from "../../../components/UI/button/ButtonSubmit";
 import { AuthentificationContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
-import Manager from "../../../api/requests/Manager";
 import { getOSInfo } from "../../../utils/getUserDevice";
+import { logManagerLogin } from "../../../api/requests/Requests";
 
 const Login: FC = () => {
-    const [ip, setIp] = useState("");
+    const [ip_address, setIp_address] = useState("");
     const [username, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
@@ -26,14 +26,26 @@ const Login: FC = () => {
         try {
             await fetch("https://api.ipify.org?format=json")
                 .then((response) => response.json())
-                .then((data) => setIp(data.ip))
+                .then((data) => setIp_address(data.ip))
                 .catch((error) => console.error("Ошибка получения IP-адреса:", error));
 
-            console.log({ login: username, password: password, date_of_login: String(Date.now()), device: getOSInfo(), ip_address: ip });
-            let token = await Manager.logManagerLogin({ login: username, password: password, date_of_login: String(Date.now()), device: getOSInfo(), ip_address: ip });
-            window.localStorage.setItem('bearer_token', token);
+            const device = getOSInfo()
 
-            setIsAuthenticated(true);
+            if (device && ip_address || true) { // !!! Убрать true при prod !!!
+                console.log({ login: username, password: password, date_of_login: String(Date.now()), device, ip_address });
+                let response_log = await logManagerLogin({ login: username, password: password, date_of_login: String(Date.now()), device, ip_address });
+
+                if (response_log.code >= 200 && response_log.code <= 299) {
+                    window.localStorage.setItem('bearer_token', (response_log.data ? response_log.data.token : ''));
+                    setIsAuthenticated(true);
+                } else {
+                    alert("Невозможно отправить данные. Повторите попытку позже");
+                }
+                
+                
+            } else {
+                alert("Невозможно отправить данные. Повторите попытку позже");
+            }
 
         } catch (error) {
             alert("Произошла ошибка: " + String(error));
@@ -47,6 +59,7 @@ const Login: FC = () => {
         // Redirecting
         if (isAuthenticated) {
             navigate('/admin');
+            return;
         }
     }, [isAuthenticated]);
 

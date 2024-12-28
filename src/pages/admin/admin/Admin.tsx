@@ -6,25 +6,54 @@ import LoginHistory from "../../../components/componentsOfPages/admin/admin/Logi
 import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
 import { managers_testdata, userPhones_testdata } from "../../../models/testdata";
 import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
-import { Manager } from "../../../models/Manager";
+import { Manager as IManager } from "../../../models/Manager";
 import { useNavigate } from "react-router-dom";
 import { AuthentificationContext } from "../../../App";
+import { getAllManagers, getAllUserPhones } from "../../../api/requests/Requests";
 
 const Admin: FC = () => {
     let {isAuthenticated, setIsAuthenticated} = useContext(AuthentificationContext);
-    let [userPhones, setUserPhones] = useState<UserPhone[] | null>(userPhones_testdata);
-    let [managers, setManagers] = useState<Manager[] | null>(managers_testdata);
+    let [userPhones, setUserPhones] = useState<UserPhone[] | undefined>(userPhones_testdata); // Убрать тестовые данные
+    let [managers, setManagers] = useState<IManager[] | undefined>(managers_testdata); // Убрать тестовые данные
     let navigate = useNavigate();
+
+    const getData = async () => {
+        const response_userphone = await getAllUserPhones();
+        if (response_userphone.code >= 200 && response_userphone.code <= 299) {
+            setUserPhones(response_userphone.data);
+        } else if (response_userphone.code === 401) {
+            alert('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
+            setIsAuthenticated(false);
+        } else {
+            alert('Произошла ошибка при получении данных: ' + String(response_userphone.error) + 'Перезагрузите страницу, чтобы снова получить данные');
+        }
+
+        const response_managers = await getAllManagers();
+        if (response_managers.code >= 200 && response_managers.code <= 299) {
+            setManagers(response_managers.data);
+        } else if (response_managers.code === 401) {
+            alert('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
+            setIsAuthenticated(false);
+        } else {
+            alert('Произошла ошибка при получении данных: ' + String(response_managers.error) + 'Перезагрузите страницу, чтобы снова получить данные');
+        }
+    }
 
     useEffect(() => {
         // Authentification
-        
         // Redirecting
         if (!isAuthenticated) {
             navigate('/');
+            return;
         }
         // Requests
-    }, []);
+        try {
+            getData();
+        } catch (error) {
+            alert('Произошла ошибка при получении данных: ' + String(error) + 'Перезагрузите страницу, чтобы снова получить данные');
+        }
+        
+    }, [isAuthenticated]);
 
     return (
         <>
