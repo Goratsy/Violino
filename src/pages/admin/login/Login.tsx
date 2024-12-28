@@ -9,6 +9,7 @@ import { AuthentificationContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 import { getOSInfo } from "../../../utils/getUserDevice";
 import { logManagerLogin } from "../../../api/requests/Requests";
+import { Helmet } from "react-helmet-async";
 
 const Login: FC = () => {
     const [ip_address, setIp_address] = useState("");
@@ -41,8 +42,8 @@ const Login: FC = () => {
                 } else {
                     alert("Невозможно отправить данные. Повторите попытку позже");
                 }
-                
-                
+
+
             } else {
                 alert("Невозможно отправить данные. Повторите попытку позже");
             }
@@ -65,6 +66,10 @@ const Login: FC = () => {
 
     return (
         <>
+            <Helmet>
+                <meta name="robots" content="noindex, nofollow" />
+                <title>Панель администратора</title>
+            </Helmet>
             <main className="h-[100vh] w-full min-h-[700px] flex items-center justify-center">
                 <section className="px-[12%] L:px-[20px] P:px-[10px]">
                     <div>

@@ -10,9 +10,10 @@ import { Manager as IManager } from "../../../models/Manager";
 import { useNavigate } from "react-router-dom";
 import { AuthentificationContext } from "../../../App";
 import { getAllManagers, getAllUserPhones } from "../../../api/requests/Requests";
+import { Helmet } from "react-helmet-async";
 
 const Admin: FC = () => {
-    let {isAuthenticated, setIsAuthenticated} = useContext(AuthentificationContext);
+    let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
     let [userPhones, setUserPhones] = useState<UserPhone[] | undefined>(userPhones_testdata); // Убрать тестовые данные
     let [managers, setManagers] = useState<IManager[] | undefined>(managers_testdata); // Убрать тестовые данные
     let navigate = useNavigate();
@@ -52,11 +53,15 @@ const Admin: FC = () => {
         } catch (error) {
             alert('Произошла ошибка при получении данных: ' + String(error) + 'Перезагрузите страницу, чтобы снова получить данные');
         }
-        
+
     }, [isAuthenticated]);
 
     return (
         <>
+            <Helmet>
+                <meta name="robots" content="noindex, nofollow" />
+                <title>Панель администратора</title>
+            </Helmet>
             {isAuthenticated ?
                 <>
                     {userPhones ?
