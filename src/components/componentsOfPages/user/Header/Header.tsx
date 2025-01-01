@@ -15,14 +15,14 @@ const Header: FC = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsOpenBurgerMenu(false); 
-            document.body.style.overflow = ''; 
+            setIsOpenBurgerMenu(false);
+            document.body.style.overflow = '';
         };
 
         if (isOpenBurgerMenu) {
             document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = ''; 
+            document.body.style.overflow = '';
         }
 
         // Добавляем слушатель на изменение размеров окна
@@ -48,7 +48,7 @@ const Header: FC = () => {
             // Прокрутка вниз
             setShowHeader(false);
         }
-        
+
         setLastScrollY(currentScrollY);
     };
 
@@ -61,8 +61,8 @@ const Header: FC = () => {
     }, [lastScrollY]);
 
     return (
-        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'}  w-full z-50 duration-500 ease overflow-hidden h-[105px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : ''}`}>
-            <div className={`w-full flex justify-between items-center px-[7%] p-[25px] L:px-[20px] duration-500 ease-out`}>
+        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'} w-full z-50 duration-500 ease overflow-hidden h-[105px] TS:h-[100px] P:h-[90px] ${isOpenBurgerMenu ? 'L:h-full TS:h-full P:h-full L:bg-surface' : ''}`}>
+            <div className={`w-full flex justify-between items-center px-[7%] my-[27px] L:px-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
                     <a href="#homeSection">Главная</a>
@@ -87,13 +87,13 @@ const Header: FC = () => {
                     ></span>
                 </div>
             </div>
-            <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0'}`}>
-                <nav className="flex flex-col justify-center items-left pb-[50px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary">
-                    <a href="#homeSection" className="" onClick={closeBurgerMenu}>Главная</a>
-                    <a href="#aboutSection" className="" onClick={closeBurgerMenu}>О нас</a>
-                    <a href="#advantagesSection" className="" onClick={closeBurgerMenu}>Преимущества</a>
-                    <a href="#formalisation" className="" onClick={closeBurgerMenu}>Оформление</a>
-                    <a href="#contacts" className="" onClick={closeBurgerMenu}>Контакты</a>
+            <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0 absolute'}`}>
+                <nav className="flex flex-col justify-center items-left pb-[35px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary">
+                    <a href="#homeSection"  onClick={closeBurgerMenu}>Главная</a>
+                    <a href="#aboutSection"  onClick={closeBurgerMenu}>О нас</a>
+                    <a href="#advantagesSection"  onClick={closeBurgerMenu}>Преимущества</a>
+                    <a href="#formalisation"  onClick={closeBurgerMenu}>Оформление</a>
+                    <a href="#contacts"  onClick={closeBurgerMenu}>Контакты</a>
                 </nav>
                 <NetworkLinks />
             </div>
