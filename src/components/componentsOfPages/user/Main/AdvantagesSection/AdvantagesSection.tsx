@@ -1,16 +1,13 @@
 import { FC } from "react";
 import HeadingOfSection from "../../../../UI/text/HeadingOfSection";
 import H2 from "../../../../UI/text/H2";
-import cake_advantage from '../../../../../assets/jpg/cake_advantage.jpg';
+import cake_advantage from '../../../../../assets/webp/cake_advantage.webp';
 import eco_SVG from '../../../../../assets/svg/eco.svg';
 import brush_SVG from '../../../../../assets/svg/brush.svg';
 import person_SVG from '../../../../../assets/svg/person.svg';
 import H4 from "../../../../UI/text/H4";
 import TextMain from "../../../../UI/text/TextMain";
 import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
-
-
-
 
 const AdvantagesSection: FC = () => {
     return (

@@ -3,11 +3,9 @@ import HeadingOfSection from "../../../../UI/text/HeadingOfSection";
 import H2 from "../../../../UI/text/H2";
 import Subtitle from "../../../../UI/text/Subtitle";
 import ButtonLink from "../../../../UI/button/ButtonLink";
-import cake_about_small from '../../../../../assets/jpg/cake_about_small.jpg';
-import cake_about from '../../../../../assets/jpg/cake_about.jpg';
+import cake_about_small from '../../../../../assets/webp/cake_about_small.webp';
+import cake_about from '../../../../../assets/webp/cake_about.webp';
 import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
-// import circle_SVG from '../../../../../assets/svg/circle.svg';
-
 
 const AboutSection: FC = () => {
     return (

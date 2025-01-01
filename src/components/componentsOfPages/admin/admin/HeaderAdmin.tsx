@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import Logo from "../../../UI/logo/Logo";
 
 const HeaderAdmin: FC = () => {

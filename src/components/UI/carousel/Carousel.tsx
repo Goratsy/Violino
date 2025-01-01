@@ -3,9 +3,9 @@ import { FC, useCallback } from "react";
 import ButtonSwitch from "../button/ButtonSwitch";
 import Autoplay from "embla-carousel-autoplay";
 import './Carousel.css';
-import Cake_main_1 from '../../../assets/jpg/cake_home_section.jpg';
-import Cake_main_2 from '../../../assets/jpg/cake_home_section.jpg';
-import Cake_main_3 from '../../../assets/jpg/cake_home_section.jpg';
+import Cake_main_1 from '../../../assets/webp/cake_home_section.webp';
+import Cake_main_2 from '../../../assets/webp/cake_home_section.webp';
+import Cake_main_3 from '../../../assets/webp/cake_home_section.webp';
 
 const Carousel: FC = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({delay: 4000})])
