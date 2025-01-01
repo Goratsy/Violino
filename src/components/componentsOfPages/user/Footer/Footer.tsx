@@ -13,14 +13,15 @@ import H4 from "../../../UI/text/H4";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import smartPhone_SVG from '../../../../assets/svg/smartphone.svg';
 import gmail_SVG from '../../../../assets/svg/gmail.svg';
-import InputMask from "react-input-mask";;
+import InputMask from "react-input-mask";import { createUserPhone } from "../../../../api/requests/Requests";
+;
 
 const Footer: FC = () => {
     let [userName, setUserName] = useState<string>('');
     let [userPhone, setUserPhone] = useState<string>('');
     let [userMessage, setUserMessage] = useState<string>('');
 
-    const sendUserPhone = (event: FormEvent<HTMLFormElement>) => {
+    const sendUserPhone = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const patternName = /^[A-Za-zА-Яа-яЁё\s]+$/;
@@ -33,7 +34,17 @@ const Footer: FC = () => {
             alert("Введите корректный номер телефона");
             return;
         }
-        alert(`Форма отправлена с данными: ${userName} ${userPhone} ${userMessage}`);
+        try {
+            alert(`Форма отправлена с данными: ${userName} ${userPhone} ${userMessage}`);
+            const response = await createUserPhone({name: userName, phone: userPhone, date_of_send: Date.now().toString(), information_about_user: userMessage})
+            if (response.code >= 200 && response.code <= 299) {
+                alert("Данные успешно сохранены");
+            } else {
+                alert("Что-то не так");
+            }
+        } catch (error) {
+            alert("Невозможно отправить данные. Повторите попытку позже");
+        }
     }
 
     return (
