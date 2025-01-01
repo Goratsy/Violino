@@ -27,22 +27,22 @@ const Footer: FC = () => {
                         <H2 className="text-center mt-[8px] mb-[16px]">Оставьте заявку</H2>
                     </AnimatedElementFade>
                     <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[300ms]" additionalClasses="w-3/4 TS:w-full mx-auto">
-                        <Subtitle className="text-center">Оставьте ваш номер телефона для обратной связи, или свяжитесь с нами удобным для вас способом</Subtitle>
+                        <Subtitle className="text-center">Хотите узнать больше? Оставьте номер или позвоните — расскажем о мастер-классах и увлекательных активностях!</Subtitle>
                     </AnimatedElementFade>
                 </div>
                 <div className="mt-[40px] TS:mt-[30px] P:mt-[20px] ">
                     <form action="">
                         <div className="flex flex-row gap-[30px] T:flex-col T:gap-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-right" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
-                                <Input placeholder="Имя" />
+                                <Input placeholder="Имя*" />
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
-                                <Input placeholder="Телефон" />
+                                <Input placeholder="Телефон*" />
                             </AnimatedElementFade>
                         </div>
                         <div className="my-[30px] T:my-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
-                                <Textarea placeholder="Сообщение, которое вы хотели бы передать..." />
+                                <Textarea placeholder="Сообщение..." />
                             </AnimatedElementFade>
                         </div>
                         <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
