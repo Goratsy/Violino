@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, FormEvent, useState } from "react";
 import AnimatedElementFade from "../../../Animation/AnimatedElementFade";
 import HeadingOfSection from "../../../UI/text/HeadingOfSection";
 import H2 from "../../../UI/text/H2";
@@ -11,11 +11,31 @@ import Logo from "../../../UI/logo/Logo";
 import TextFooter from "../../../UI/text/TextFooter";
 import H4 from "../../../UI/text/H4";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
-import smartPhone_SVG from '../../../../assets/svg/smartphone.svg'
-import gmail_SVG from '../../../../assets/svg/gmail.svg'
-
+import smartPhone_SVG from '../../../../assets/svg/smartphone.svg';
+import gmail_SVG from '../../../../assets/svg/gmail.svg';
+import InputMask from "react-input-mask";;
 
 const Footer: FC = () => {
+    let [userName, setUserName] = useState<string>('');
+    let [userPhone, setUserPhone] = useState<string>('');
+    let [userMessage, setUserMessage] = useState<string>('');
+
+    const sendUserPhone = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const patternName = /^[A-Za-zА-Яа-яЁё\s]+$/;
+        if (!patternName.test(userName)) {
+            alert("Введите корректное имя без специальных символов и цифр");
+            return;
+        }
+
+        if (userPhone.replace(/[^0-9]/g, "").length !== 11) {
+            alert("Введите корректный номер телефона");
+            return;
+        }
+        alert(`Форма отправлена с данными: ${userName} ${userPhone} ${userMessage}`);
+    }
+
     return (
         <footer id="contacts" className="mt-[130px] T:mt-[100px] TS:mt-[70px] ">
             <section className="px-[12%] L:px-[20px] P:px-[10px]">
@@ -31,29 +51,50 @@ const Footer: FC = () => {
                     </AnimatedElementFade>
                 </div>
                 <div className="mt-[40px] TS:mt-[30px] P:mt-[20px] ">
-                    <form action="">
+                    <form action="/" method="POST" onSubmit={sendUserPhone}>
                         <div className="flex flex-row gap-[30px] T:flex-col T:gap-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-right" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
-                                <Input placeholder="Имя*" />
+                                <Input
+                                    placeholder="Имя*"
+                                    type="text"
+                                    name="userName"
+                                    maxLength={25}
+                                    minLength={3}
+                                    required
+                                    onInput={(event: any) => { setUserName(event.target.value); }} value={userName}
+                                />
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
-                                <Input placeholder="Телефон*" />
+                                <InputMask
+                                    mask="+7 (999) 999-99-99"
+                                    onInput={(event: any) => { setUserPhone(event.target.value.slice(0, 18)); }}
+                                    value={userPhone}
+                                    placeholder="Телефон*"
+                                    required
+                                    name="userPhone"
+                                    className="w-full bg-white border border-accent hover:border-accentHover hover:bg-[#fffcfa] text-secondary font-normal duration-500 ease-in-out transition-colors placeholder:text-secondary text-[16px] py-[20px] px-[20px] TS:text-[14px] TS:py-[16px] TS:px-[15px] P:text-[16px] P:py-[20px] P:px-[20px]"
+                                />
                             </AnimatedElementFade>
                         </div>
                         <div className="my-[30px] T:my-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
-                                <Textarea placeholder="Сообщение..." />
+                                <Textarea
+                                    placeholder="Сообщение..."
+                                    name="userMessage"
+                                    onInput={(event: any) => { setUserMessage(event.target.value); }} value={userMessage}
+                                    maxLength={300}
+                                />
                             </AnimatedElementFade>
                         </div>
                         <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
-                            <ButtonSubmit>Отправить</ButtonSubmit>
+                            <ButtonSubmit type="submit">Отправить</ButtonSubmit>
                         </AnimatedElementFade>
                     </form>
                 </div>
             </section>
             <section className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
                 <AnimatedElementFade animateFade="animate-fade" threshold={0.4} delay="animate-delay-300" additionalClasses="w-full max-h-[600px]">
-                    <YandexMap /> 
+                    <YandexMap />
                     {/* в будущем надо будет заменить карту */}
                 </AnimatedElementFade>
                 <div className="flex flex-row items-start justify-center L:flex-col L:items-center gap-[80px] L:gap-y-[40px] py-[130px] T:py-[100px] TS:py-[70px] text-nowrap">

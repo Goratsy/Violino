@@ -87,10 +87,10 @@ const Login: FC = () => {
                         <form action="/admin/login" method="POST" onSubmit={submitForm}>
                             <div className="flex flex-col gap-[30px] T:flex-col T:gap-[15px]">
                                 <AnimatedElementFade animateFade="animate-fade-right" delay="animate-delay-100" additionalClasses="w-full">
-                                    <Input value={username} onChange={(event: any) => { setUserName(event.target.value); }} name="username" required type="text" placeholder="Логин" autoComplete="on" />
+                                    <Input value={username} onInput={(event: any) => { setUserName(event.target.value); }} name="username" required type="text" placeholder="Логин" autoComplete="on" />
                                 </AnimatedElementFade>
                                 <AnimatedElementFade animateFade="animate-fade-left" delay="animate-delay-100" additionalClasses="w-full">
-                                    <Input value={password} onChange={(event: any) => { setPassword(event.target.value); }} name="password" required type="password" placeholder="Пароль" autoComplete="on" />
+                                    <Input value={password} onInput={(event: any) => { setPassword(event.target.value); }} name="password" required type="password" placeholder="Пароль" autoComplete="on" />
                                 </AnimatedElementFade>
                             </div>
                             <AnimatedElementFade animateFade="animate-fade-up" delay="animate-delay-300" additionalClasses="mt-[30px] T:mt-[15px]" threshold={0}>
