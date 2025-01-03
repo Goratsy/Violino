@@ -20,7 +20,6 @@ const Landing: FC = () => {
         setIsOpen(false);
     }
 
-
     return (
         <>
             <Helmet>
@@ -46,10 +45,11 @@ const Landing: FC = () => {
                 <meta name="twitter:title" content="Violino - Кафе-кондитерская: Индивидуальные заказы тортов для каждого клиента" />
                 <meta name="twitter:description" content="Кафе-кондитерская Violino - идеальное место для сладкое" />
             </Helmet>
+
+            <Popup isOpen={isOpen} onClose={closePopup} timeClose={5000}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat qui a, eveniet delectus, temporibus fuga, aspernatur aliquid fugit ad neque magni porro eaque debitis error suscipit inventore sint esse. Blanditiis?</Popup>
             <Header />
             <main>
-                <Popup isOpen={isOpen} onClose={closePopup} timeClose={5000}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat qui a, eveniet delectus, temporibus fuga, aspernatur aliquid fugit ad neque magni porro eaque debitis error suscipit inventore sint esse. Blanditiis?</Popup>
-                <button className="border z-50 cursor-pointer absolute top-72" onClick={openPopup}>Open Popup</button>
+                {/* <button className="border z-50 cursor-pointer absolute top-72" onClick={openPopup}>Open Popup</button> */}
                 <HomeSection />
                 <AboutSection />
                 <AdvantagesSection />

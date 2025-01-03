@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
-import { FC, ReactNode, useEffect, useRef } from "react";
-import BodyOfPopup from "./BodyOfPopup";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 interface Props {
     isOpen: boolean,
@@ -13,14 +12,25 @@ const popupElement = document.getElementById("popup-root");
 
 const Popup: FC<Props> = ({ isOpen, onClose, timeClose, children }) => {
     const closePopupInTime = useRef<number | null>(null);
+    const [isVisible, setIsVisible] = useState(false); 
+
+    const handleClose = () => {
+        setIsVisible(false); 
+
+        closePopupInTime.current = window.setTimeout(() => {
+            onClose();
+        }, 500);
+    };
 
     useEffect(() => {
         if (isOpen) {
-            closePopupInTime.current = setTimeout(() => {
-                onClose();
+            setIsVisible(true); 
+
+            closePopupInTime.current = window.setTimeout(() => {
+                handleClose();
             }, timeClose);
-        } else if (closePopupInTime.current) {
-            clearTimeout(closePopupInTime.current);
+        } else {
+            handleClose(); 
         }
 
         return () => {
@@ -28,16 +38,31 @@ const Popup: FC<Props> = ({ isOpen, onClose, timeClose, children }) => {
                 clearTimeout(closePopupInTime.current);
             }
         };
-    }, [isOpen, onClose]);
+    }, [isOpen, timeClose, onClose]);
 
     return (
         <>
             {isOpen && popupElement ?
                 <>
                     {ReactDOM.createPortal(
-                            <BodyOfPopup onClose={onClose}>{children}</BodyOfPopup>,
-                            popupElement
-                        )}
+                        <div className={`fixed top-4 right-0 px-4 w-[400px] TS:w-[70%] P:w-full flex justify-center items-center z-50 transition-opacity ease-in-out duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+                            <div className="bg-white p-6 shadow-lg relative max-w-[500px] w-full border border-accent">
+                                <div
+                                    onClick={handleClose}
+                                    className="block absolute top-2 right-2 cursor-pointer w-[18px] h-[20px] duration-500 ease-in-out transition-opacity hover:opacity-70"
+                                >
+                                    <span
+                                        className={`absolute top-0 left-0 w-full h-[2px] bg-accent rounded-md rotate-45 translate-y-[9px]`}
+                                    ></span>
+                                    <span
+                                        className={`absolute bottom-0 right-0 w-full h-[2px] bg-accent rounded-md -rotate-45 translate-y-[-9px]`}
+                                    ></span>
+                                </div>
+                                {children}
+                            </div>
+                        </div>,
+                        popupElement
+                    )}
                 </>
                 : ''}
         </>
