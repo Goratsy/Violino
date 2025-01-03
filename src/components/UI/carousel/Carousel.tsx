@@ -24,13 +24,13 @@ const Carousel: FC = () => {
                 <div className="embla h-full" ref={emblaRef}>
                     <div className="embla__container h-full ">
                         <div className="relative embla__slide border h-full">
-                            <img src={Cake_main_1} alt="cake1" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0"/>
+                            <img src={Cake_main_1} alt="cake1" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0" loading="lazy"/>
                         </div>
                         <div className="relative embla__slide border h-full">
-                            <img src={Cake_main_2} alt="cake2" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0"/>
+                            <img src={Cake_main_2} alt="cake2" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0" loading="lazy"/>
                         </div>
                         <div className="relative embla__slide border h-full">
-                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0"/>
+                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0" loading="lazy"/>
                         </div>
                     </div>
                 </div>

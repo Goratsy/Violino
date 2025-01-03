@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Header from "../../components/componentsOfPages/user/Header/Header";
 import HomeSection from "../../components/componentsOfPages/user/Main/HomeSection/HomeSection";
 import AboutSection from "../../components/componentsOfPages/user/Main/AboutSection/AboutSection";
@@ -7,8 +7,20 @@ import FormalisationSection from "../../components/componentsOfPages/user/Main/F
 import Footer from "../../components/componentsOfPages/user/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 import Cake_main from "../../assets/jpg/cake_home_section.jpg"
+import Popup from "../../components/UI/popup/Popup";
 
 const Landing: FC = () => {
+    let [isOpen, setIsOpen] = useState(false);
+
+    const openPopup = () => {
+        setIsOpen(true);
+    }
+
+    const closePopup = () => {
+        setIsOpen(false);
+    }
+
+
     return (
         <>
             <Helmet>
@@ -36,6 +48,8 @@ const Landing: FC = () => {
             </Helmet>
             <Header />
             <main>
+                <Popup isOpen={isOpen} onClose={closePopup} timeClose={5000}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat qui a, eveniet delectus, temporibus fuga, aspernatur aliquid fugit ad neque magni porro eaque debitis error suscipit inventore sint esse. Blanditiis?</Popup>
+                <button className="border z-50 cursor-pointer absolute top-72" onClick={openPopup}>Open Popup</button>
                 <HomeSection />
                 <AboutSection />
                 <AdvantagesSection />

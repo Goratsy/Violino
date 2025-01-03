@@ -83,7 +83,7 @@ const Header: FC = () => {
                         className={`absolute top-[9px] left-0 w-full h-[3px] bg-accent rounded-md transition-opacity duration-300 ease-in-out ${isOpenBurgerMenu ? 'opacity-0' : ''}`}
                     ></span>
                     <span
-                        className={`absolute bottom-0 right-0 h-[3px] bg-accent rounded-md duration-500 ease-in-out ${isOpenBurgerMenu ? '-rotate-45 translate-y-[-9px] w-full' : 'w-[80%]'}`}
+                        className={`absolute bottom-0 right-0 h-[3px] bg-accent transition-transform rounded-md duration-500 ease-in-out ${isOpenBurgerMenu ? '-rotate-45 translate-y-[-9px] w-full' : 'w-[80%]'}`}
                     ></span>
                 </div>
             </div>
