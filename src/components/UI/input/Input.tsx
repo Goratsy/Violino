@@ -1,7 +1,11 @@
 import classNames from "classnames";
 import { FC, InputHTMLAttributes } from "react";
 
-const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({...attributes}) => {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+    additionalClass?: string,
+}
+
+const Input: FC<Props> = ({additionalClass, ...attributes}) => {
     let linkClass = classNames(
         'w-full',
         'bg-white border border-accent hover:border-accentHover hover:bg-[#fffcfa]',
@@ -14,7 +18,7 @@ const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({...attributes}) => {
          'text-[16px] py-[20px] px-[20px]',
          'TS:text-[14px] TS:py-[16px] TS:px-[15px]',
          'P:text-[16px] P:py-[20px] P:px-[20px]',
-         
+         additionalClass,
     );
 
     return(

@@ -3,14 +3,15 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 
 interface Props {
     isOpen: boolean,
+    isErrorPopup: boolean,
     onClose: () => void,
-    timeClose: number,
     children: ReactNode,
+    timeClose: number,
 }
 
 const popupElement = document.getElementById("popup-root");
 
-const Popup: FC<Props> = ({ isOpen, onClose, timeClose, children }) => {
+const Popup: FC<Props> = ({ isOpen, onClose, isErrorPopup = false, timeClose = 5000, children }) => {
     const closePopupInTime = useRef<number | null>(null);
     const [isVisible, setIsVisible] = useState(false); 
 
@@ -38,7 +39,7 @@ const Popup: FC<Props> = ({ isOpen, onClose, timeClose, children }) => {
                 clearTimeout(closePopupInTime.current);
             }
         };
-    }, [isOpen, timeClose, onClose]);
+    }, [isOpen, onClose]);
 
     return (
         <>
@@ -46,7 +47,7 @@ const Popup: FC<Props> = ({ isOpen, onClose, timeClose, children }) => {
                 <>
                     {ReactDOM.createPortal(
                         <div className={`fixed top-4 right-0 px-4 w-[400px] TS:w-[70%] P:w-full flex justify-center items-center z-50 transition-opacity ease-in-out duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-                            <div className="bg-white p-6 shadow-lg relative max-w-[500px] w-full border border-accent">
+                            <div className={`bg-white p-6 shadow-lg relative max-w-[500px] w-full border ${isErrorPopup ? 'border-red-300' : 'border-accent'}`}>
                                 <div
                                     onClick={handleClose}
                                     className="block absolute top-2 right-2 cursor-pointer w-[18px] h-[20px] duration-500 ease-in-out transition-opacity hover:opacity-70"
