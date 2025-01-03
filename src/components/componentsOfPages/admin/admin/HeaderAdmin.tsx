@@ -60,8 +60,8 @@ const HeaderAdmin: FC = () => {
     }, [lastScrollY]);
 
     return (
-        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'}  w-full z-50 duration-500 ease overflow-hidden h-[105px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : ''}`}>
-            <div className={`w-full flex justify-between items-center px-[7%] p-[25px] L:px-[20px] duration-500 ease-out`}>
+        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'}  w-full z-50 duration-500 ease overflow-hidden h-[105px] TS:h-[100px] P:h-[90px] ${isOpenBurgerMenu ? 'L:h-full L:bg-surface' : ''}`}>
+            <div className={`w-full flex justify-between items-center px-[7%] my-[27px] L:px-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
                     <a href="#database">База данных</a>

@@ -35,8 +35,8 @@ const Carousel: FC = () => {
                     </div>
                 </div>
                 <div className="absolute bottom-0 left-0 flex L:justify-between L:items-center L:w-full L:bottom-[calc(50%-50px)] TS:bottom-[calc(50%-25px)]">
-                    <ButtonSwitch onClick={scrollPrev}></ButtonSwitch>
-                    <ButtonSwitch onClick={scrollNext} rotateArrow="rotate-180"></ButtonSwitch>
+                    <ButtonSwitch onClick={scrollPrev} name="to_left_button" title="to_left_button"></ButtonSwitch>
+                    <ButtonSwitch onClick={scrollNext} rotateArrow="rotate-180" name="to_right_button" title="to_right_button"></ButtonSwitch>
                 </div>
             </div>
         </>

@@ -22,7 +22,7 @@ const ButtonSubmit: FC<Props> = ({children, ...attributes}) => {
 
     return(
         <>
-            <button type="button" {...attributes} className={linkClass}>
+            <button name="submit_button" type="button" {...attributes} className={linkClass}>
                 {children}
             </button>
         </>
