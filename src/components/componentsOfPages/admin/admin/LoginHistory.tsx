@@ -25,7 +25,7 @@ const LoginHistory: FC<{ managers: Manager[] }> = ({ managers }) => {
                 <div className="mt-[40px] overflow-x-auto">
                     {managers.map((manager, number) => {
                         return (
-                            <div className="flex flex-col gap-4 mt-6" key={manager.manager_id}>
+                            <div className="flex flex-col gap-4 py-6 border-b" key={manager.manager_id}>
                                 <H4>Менеджер {number} | {manager.manager_name}</H4>
                                 <div className="flex flex-col gap-1">
                                     {manager.loginHistory ?
@@ -34,7 +34,7 @@ const LoginHistory: FC<{ managers: Manager[] }> = ({ managers }) => {
                                                 return (
                                                     <div key={`${manager.manager_id}_history_${history.device}`} className="flex flex-row gap-11">
                                                         <TextMain className="whitespace-nowrap w-64">Устройство: {history.device}</TextMain>
-                                                        <TextMain className="whitespace-nowrap w-28">IP:{history.ip_address}</TextMain>
+                                                        <TextMain className="whitespace-nowrap w-40">IP:{history.ip_address}</TextMain>
                                                         <TextMain className="whitespace-nowrap w-52">Дата входа: {history.date_of_login}</TextMain>
                                                     </div>
                                                 );
