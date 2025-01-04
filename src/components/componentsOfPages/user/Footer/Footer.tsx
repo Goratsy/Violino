@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useContext, useState } from "react";
 import AnimatedElementFade from "../../../Animation/AnimatedElementFade";
 import HeadingOfSection from "../../../UI/text/HeadingOfSection";
 import H2 from "../../../UI/text/H2";
@@ -14,7 +14,7 @@ import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import smartPhone_SVG from '../../../../assets/svg/smartphone.svg';
 import gmail_SVG from '../../../../assets/svg/gmail.svg';
 import InputMask from "react-input-mask"; import { createUserPhone } from "../../../../api/requests/Requests";
-import Popup from "../../../UI/popup/Popup";
+import { PopupContext } from "../../../../App";
 ;
 
 const Footer: FC = () => {
@@ -24,10 +24,7 @@ const Footer: FC = () => {
     let [isNameInputError, setIsNameInputError] = useState<boolean>(false);
     let [isPhoneInputError, setIsPhoneInputError] = useState<boolean>(false);
 
-    let [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
-    let [isErrorPopup, setIsErrorPopup] = useState<boolean>(false);
-    let [popupMessage, setPopupMessage] = useState<string>('');
-    const closePopup = () => { setIsOpenPopup(false); }
+    let { setIsOpenPopup, setIsErrorPopup, setPopupMessage } = useContext(PopupContext);
 
     const sendUserPhone = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -69,8 +66,6 @@ const Footer: FC = () => {
 
     return (
         <>
-            <Popup isOpen={isOpenPopup} onClose={closePopup} isErrorPopup={isErrorPopup} timeClose={3500}>{popupMessage}</Popup>
-
             <footer id="contacts" className="mt-[130px] T:mt-[100px] TS:mt-[70px] ">
                 <section className="px-[12%] L:px-[20px] P:px-[10px]">
                     <div>

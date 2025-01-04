@@ -43,10 +43,10 @@ const Admin: FC = () => {
     useEffect(() => {
         // Authentification
         // Redirecting
-        // if (!isAuthenticated) {
-        //     navigate('/');
-        //     return;
-        // }
+        if (!isAuthenticated) {
+            navigate('/');
+            return;
+        }
         // Requests
         try {
             getData();

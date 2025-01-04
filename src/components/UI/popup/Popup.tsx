@@ -6,7 +6,7 @@ interface Props {
     isErrorPopup: boolean,
     onClose: () => void,
     children: ReactNode,
-    timeClose: number,
+    timeClose?: number,
 }
 
 const popupElement = document.getElementById("popup-root");

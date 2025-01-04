@@ -1,20 +1,45 @@
-import { FC, useMemo, useState } from "react";
+import { FC, useContext, useMemo, useState } from "react";
 import H4 from "../text/H4";
 import Input from "../input/Input";
 import trash_SVG from '../../../assets/svg/trash.svg';
 import { UserPhone } from "../../../models/UserPhone";
 import filterUsersPhoneByInput from "../../../utils/filterUsersPhoneByInput";
+import { deleteUserPhone } from "../../../api/requests/Requests";
+import { AuthentificationContext, PopupContext } from "../../../App";
 
 const TableUsers: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
     let [searchInput, setSearchInput] = useState<string>('');
+    
+    let { setIsOpenPopup, setIsErrorPopup, setPopupMessage } = useContext(PopupContext);
+    let { setIsAuthenticated } = useContext(AuthentificationContext);
 
-    const deleteUserPhone = (): void => {
-        if (window.confirm('Вы действительно хотите удалить пользователя?')) {
-            console.log('The user was deleted');
-        } else {
-            console.log('The operation was canceled');
+    const deleteUserPhoneInTable = async (event: any) => {
+        let id: number = Number(event.currentTarget.getAttribute('data-id'));
+
+        try {
+            let response = await deleteUserPhone(id);
+
+            if (response.code >= 200 && response.code <= 299) {
+                setIsErrorPopup(false);
+                setIsOpenPopup(true);
+                setPopupMessage('Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!');
+                setTimeout(() => { location.reload(); }, 3000);
+            } else if (response.code === 401) {
+                setIsErrorPopup(true);
+                setIsOpenPopup(true);
+                setPopupMessage('Сессия не может быть открыта для вам. Вам следует войти в панель администратора! Сайт переносит вас на страницу входа в панель администрации.');
+                setTimeout(() => { setIsAuthenticated(false); }, 3000);
+            } else {
+                setIsErrorPopup(true);
+                setIsOpenPopup(true);
+                setPopupMessage('Произошла ошибка при удалении данных');
+            }
+        } catch (error) {
+            setIsErrorPopup(true);
+            setIsOpenPopup(true);
+            setPopupMessage('Произошла ошибка во время работы сервера');
         }
-        location.reload();
+
     }
 
     let resultFilter = useMemo(() => filterUsersPhoneByInput(userPhones, searchInput), [searchInput]);
@@ -55,7 +80,7 @@ const TableUsers: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
                                         <td className="pl-5">{userPhone.phone}</td>
                                         <td className="pl-5">{userPhone.date_of_send}</td>
                                         <td className="overflow-x-auto pl-5">{userPhone?.information_about_user}</td>
-                                        <td className="px-5 text-right"><div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onChange={deleteUserPhone}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div></td>
+                                        <td className="px-5 text-right"><div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={deleteUserPhoneInTable} data-id={userPhone.user_phone_id}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div></td>
                                     </tr>
                                 )
                             })}
