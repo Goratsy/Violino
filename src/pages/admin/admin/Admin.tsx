@@ -23,35 +23,35 @@ const Admin: FC = () => {
         if (response_userphone.code >= 200 && response_userphone.code <= 299) {
             setUserPhones(response_userphone.data);
         } else if (response_userphone.code === 401) {
-            alert('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
+            console.log('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
             setIsAuthenticated(false);
         } else {
-            alert('Произошла ошибка при получении данных: ' + String(response_userphone.error) + 'Перезагрузите страницу, чтобы снова получить данные');
+            console.log('Произошла ошибка при получении данных: ' + String(response_userphone.error) + 'Перезагрузите страницу, чтобы снова получить данные');
         }
 
         const response_managers = await getAllManagers();
         if (response_managers.code >= 200 && response_managers.code <= 299) {
             setManagers(response_managers.data);
         } else if (response_managers.code === 401) {
-            alert('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
+            console.log('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
             setIsAuthenticated(false);
         } else {
-            alert('Произошла ошибка при получении данных: ' + String(response_managers.error) + 'Перезагрузите страницу, чтобы снова получить данные');
+            console.log('Произошла ошибка при получении данных: ' + String(response_managers.error) + 'Перезагрузите страницу, чтобы снова получить данные');
         }
     }
 
     useEffect(() => {
         // Authentification
         // Redirecting
-        if (!isAuthenticated) {
-            navigate('/');
-            return;
-        }
+        // if (!isAuthenticated) {
+        //     navigate('/');
+        //     return;
+        // }
         // Requests
         try {
             getData();
         } catch (error) {
-            alert('Произошла ошибка при получении данных: ' + String(error) + 'Перезагрузите страницу, чтобы снова получить данные');
+            console.log('Произошла ошибка при получении данных: ' + String(error) + ' Перезагрузите страницу, чтобы снова получить данные');
         }
 
     }, [isAuthenticated]);

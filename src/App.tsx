@@ -18,7 +18,7 @@ const AuthentificationContext = createContext<{
 });
 
 function App() {
-  let [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  let [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
 
   return (
     <HelmetProvider>
