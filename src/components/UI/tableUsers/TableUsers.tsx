@@ -26,7 +26,7 @@ const TableUsers: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
                 setSteckMessages([{isErrorPopup: true, message: 'Сессия не может быть открыта для вам. Вам следует войти в панель администратора! Сайт переносит вас на страницу входа в панель администрации.'}, ...(steckMessages || [])]);
                 setTimeout(() => { setIsAuthenticated(false); }, 3000);
             } else {
-                setSteckMessages([{isErrorPopup: true, message: 'Произошла ошибка при удалении данных'}, ...(steckMessages || [])]);
+                setSteckMessages([{isErrorPopup: true, message: `Произошла ошибка при удалении ${id} пользователя`}, ...(steckMessages || [])]);
             }
         } catch (error) {
             setSteckMessages([{isErrorPopup: true, message: 'Произошла ошибка во время работы сервера'}, ...(steckMessages || [])]);

@@ -26,7 +26,6 @@ const MessageInPopup: FC<Props> = ({ isErrorPopup, handleClose, children, id }) 
             hideMessage();
         }, 3000);
 
-
         return () => {
             if (closePopupInTime.current) {
                 clearTimeout(closePopupInTime.current);
