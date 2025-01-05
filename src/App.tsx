@@ -19,33 +19,22 @@ const AuthentificationContext = createContext<{
 });
 
 const PopupContext = createContext<{
-  isOpenPopup: boolean,
-  setIsOpenPopup: React.Dispatch<React.SetStateAction<boolean>>,
-  isErrorPopup: boolean,
-  setIsErrorPopup: React.Dispatch<React.SetStateAction<boolean>>, 
-  popupMessage: string,
-  setPopupMessage: React.Dispatch<React.SetStateAction<string>>
+  steckMessages: { isErrorPopup: boolean, message: string }[] | null,
+  setSteckMessages: React.Dispatch<React.SetStateAction<{ isErrorPopup: boolean, message: string }[] | null>>,
 }>({
-  isOpenPopup: false,
-  setIsOpenPopup: noop,
-  isErrorPopup: false,
-  setIsErrorPopup: noop, 
-  popupMessage: '',
-  setPopupMessage: noop
+  steckMessages: null,
+  setSteckMessages: noop,
 });
 
 function App() {
-  let [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
-  let [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
-  let [isErrorPopup, setIsErrorPopup] = useState<boolean>(false);
-  let [popupMessage, setPopupMessage] = useState<string>('');
-  const closePopup = () => { setIsOpenPopup(false); }
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [steckMessages, setSteckMessages] = useState<{ isErrorPopup: boolean, message: string }[] | null>(null);
 
   return (
     <HelmetProvider>
-      <PopupContext.Provider value={{ isOpenPopup, setIsOpenPopup, isErrorPopup, setIsErrorPopup, popupMessage, setPopupMessage }}>
+      <PopupContext.Provider value={{ steckMessages, setSteckMessages }}>
         <AuthentificationContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-          <Popup isOpen={isOpenPopup} onClose={closePopup} isErrorPopup={isErrorPopup} timeClose={3500}>{popupMessage}</Popup>
+          <Popup />
 
           <Routes>
             {/* Landing for user */}

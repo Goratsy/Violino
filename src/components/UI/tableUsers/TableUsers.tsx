@@ -10,7 +10,7 @@ import { AuthentificationContext, PopupContext } from "../../../App";
 const TableUsers: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
     let [searchInput, setSearchInput] = useState<string>('');
     
-    let { setIsOpenPopup, setIsErrorPopup, setPopupMessage } = useContext(PopupContext);
+    let { steckMessages, setSteckMessages } = useContext(PopupContext);
     let { setIsAuthenticated } = useContext(AuthentificationContext);
 
     const deleteUserPhoneInTable = async (event: any) => {
@@ -20,24 +20,16 @@ const TableUsers: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
             let response = await deleteUserPhone(id);
 
             if (response.code >= 200 && response.code <= 299) {
-                setIsErrorPopup(false);
-                setIsOpenPopup(true);
-                setPopupMessage('Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!');
+                setSteckMessages([{isErrorPopup: false, message: 'Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!'}, ...(steckMessages || [])]);
                 setTimeout(() => { location.reload(); }, 3000);
             } else if (response.code === 401) {
-                setIsErrorPopup(true);
-                setIsOpenPopup(true);
-                setPopupMessage('Сессия не может быть открыта для вам. Вам следует войти в панель администратора! Сайт переносит вас на страницу входа в панель администрации.');
+                setSteckMessages([{isErrorPopup: true, message: 'Сессия не может быть открыта для вам. Вам следует войти в панель администратора! Сайт переносит вас на страницу входа в панель администрации.'}, ...(steckMessages || [])]);
                 setTimeout(() => { setIsAuthenticated(false); }, 3000);
             } else {
-                setIsErrorPopup(true);
-                setIsOpenPopup(true);
-                setPopupMessage('Произошла ошибка при удалении данных');
+                setSteckMessages([{isErrorPopup: true, message: 'Произошла ошибка при удалении данных'}, ...(steckMessages || [])]);
             }
         } catch (error) {
-            setIsErrorPopup(true);
-            setIsOpenPopup(true);
-            setPopupMessage('Произошла ошибка во время работы сервера');
+            setSteckMessages([{isErrorPopup: true, message: 'Произошла ошибка во время работы сервера'}, ...(steckMessages || [])]);
         }
 
     }

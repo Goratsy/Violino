@@ -24,43 +24,32 @@ const Footer: FC = () => {
     let [isNameInputError, setIsNameInputError] = useState<boolean>(false);
     let [isPhoneInputError, setIsPhoneInputError] = useState<boolean>(false);
 
-    let { setIsOpenPopup, setIsErrorPopup, setPopupMessage } = useContext(PopupContext);
+    let { steckMessages, setSteckMessages } = useContext(PopupContext);
 
     const sendUserPhone = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const patternName = /^[A-Za-zА-Яа-яЁё\s]+$/;
         if (!patternName.test(userName)) {
-
             setIsNameInputError(true);
-            setIsErrorPopup(true);
-            setIsOpenPopup(true);
-            setPopupMessage('Введите имя без специальных символов и цифр');
+            setSteckMessages([{ isErrorPopup: true, message: 'Введите имя без специальных символов и цифр' }, ...(steckMessages || [])]);
             return;
         }
 
         if (userPhone.replace(/[^0-9]/g, "").length !== 11) {
             setIsPhoneInputError(true);
-            setIsErrorPopup(true);
-            setIsOpenPopup(true);
-            setPopupMessage('Введите корректный номер телефона');
+            setSteckMessages([{ isErrorPopup: true, message: 'Введите корректный номер телефона' }, ...(steckMessages || [])]);
             return;
         }
+        
         try {
             const response = await createUserPhone({ name: userName, phone: userPhone, date_of_send: Date.now().toString(), information_about_user: userMessage })
             if (response.code >= 200 && response.code <= 299) {
-                setIsErrorPopup(false);
-                setIsOpenPopup(true);
-                setPopupMessage('Данные успешно сохранены');
+                setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
             } else {
-                setIsErrorPopup(true);
-                setIsOpenPopup(true);
-                setPopupMessage('Что-то пошло не так');
-            }
+                setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            }
         } catch (error) {
-            setIsErrorPopup(true);
-            setIsOpenPopup(true);
-            setPopupMessage('Невозможно отправить данные. Повторите попытку позже');
+            setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);
         }
     }
 
