@@ -67,7 +67,7 @@ const TableUsers: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
                             {resultFilter.map((userPhone, number) => {
                                 return (
                                     <tr key={userPhone.user_phone_id} className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} >
-                                        <td className="pl-5">{number + 1}</td>
+                                        <td className="pl-5">{userPhone.user_phone_id}</td>
                                         <td className="overflow-x-auto pl-5">{userPhone.name}</td>
                                         <td className="pl-5">{userPhone.phone}</td>
                                         <td className="pl-5">{userPhone.date_of_send}</td>

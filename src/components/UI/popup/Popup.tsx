@@ -9,9 +9,7 @@ const Popup: FC = () => {
     const { steckMessages, setSteckMessages } = useContext(PopupContext);
 
     const handleClose = (id: number) => {
-        if (steckMessages) {
-            setSteckMessages(() => steckMessages.filter((_, index) => index !== id));
-        }
+        setSteckMessages(() => (steckMessages || []).filter((_, index) => index !== id));
     };
 
     return (
