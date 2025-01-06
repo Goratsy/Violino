@@ -46,8 +46,8 @@ export async function createUserPhone(userPhone: Omit<UserPhone, "user_phone_id"
     });
 }
 
-export async function updateUserPhone(id: number, userPhone: Omit<UserPhone, "user_phone_id">): Promise<ApiResponse<UserPhone>> {
-    return apiFetch<UserPhone>(`${BASE_URL}/user_phones/${id}`, {
+export async function updateUserPhone(userPhone: UserPhone[]): Promise<ApiResponse<UserPhone>> {
+    return apiFetch<UserPhone>(`${BASE_URL}/user_phones/`, {
         method: "PUT",
         body: JSON.stringify(userPhone),
     });

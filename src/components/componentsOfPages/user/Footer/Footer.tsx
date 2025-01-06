@@ -13,7 +13,8 @@ import H4 from "../../../UI/text/H4";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import smartPhone_SVG from '../../../../assets/svg/smartphone.svg';
 import gmail_SVG from '../../../../assets/svg/gmail.svg';
-import InputMask from "react-input-mask"; import { createUserPhone } from "../../../../api/requests/Requests";
+import InputMask from "react-input-mask"; 
+import { createUserPhone } from "../../../../api/requests/Requests";
 import { PopupContext } from "../../../../App";
 ;
 
@@ -47,7 +48,8 @@ const Footer: FC = () => {
             if (response.code >= 200 && response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
             } else {
-                setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            }
+                setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            
+            }
         } catch (error) {
             setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);
         }

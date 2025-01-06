@@ -23,7 +23,7 @@ const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUs
                 </div>
                 <div className="mt-[40px] overflow-x-auto">
                     {filteredUserPhones.length !== 0 ?
-                        <TableUsers userPhones={filteredUserPhones} /> : <H4 className="text-center underline underline-offset-2">Пока нет заявок на сегодня</H4>}
+                        <TableUsers onlyRead={true} userPhones={filteredUserPhones} /> : <H4 className="text-center underline underline-offset-2">Пока нет заявок на сегодня</H4>}
                 </div>
             </section>
         </>
