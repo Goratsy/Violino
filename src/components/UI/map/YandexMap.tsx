@@ -2,8 +2,9 @@ import { YMaps, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import React from 'react';
 import logo_violino from '../../../assets/svg/logo_violino.svg'
 
+const apiYandexKey = import.meta.env.VITE_YANDEX_API;
+
 const YandexMap: React.FC = () => {
-    const apiYandexKey = '16244094-4e19-4809-8b8c-570eb0e05edf';
     const coordinatesViolino = [55.684620, 37.541512];
 
     const defaultState = {
