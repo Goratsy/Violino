@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Header from "../../components/componentsOfPages/user/Header/Header";
 import HomeSection from "../../components/componentsOfPages/user/Main/HomeSection/HomeSection";
 import AboutSection from "../../components/componentsOfPages/user/Main/AboutSection/AboutSection";
@@ -9,6 +9,12 @@ import { Helmet } from "react-helmet-async";
 import Cake_main from "../../assets/jpg/cake_home_section.jpg"
 
 const Landing: FC = () => {
+    useEffect(() => {
+        fetch('http://localhost:4000/test').then(data => data.json()).then(data => {
+            console.log(data);
+        });
+    });
+
     return (
         <>
             <Helmet>

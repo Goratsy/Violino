@@ -4,7 +4,7 @@ import TodayUsersSection from "../../../components/componentsOfPages/admin/admin
 import { UserPhone } from "../../../models/UserPhone";
 import LoginHistory from "../../../components/componentsOfPages/admin/admin/LoginHistory";
 import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
-import { managers_testdata, userPhones_testdata } from "../../../models/testdata";
+// import { managers_testdata, userPhones_testdata } from "../../../models/testdata";
 import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
 import { Manager as IManager } from "../../../models/Manager";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +14,8 @@ import { Helmet } from "react-helmet-async";
 
 const Admin: FC = () => {
     let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
-    let [userPhones, setUserPhones] = useState<UserPhone[] | undefined>(userPhones_testdata); // Убрать тестовые данные
-    let [managers, setManagers] = useState<IManager[] | undefined>(managers_testdata); // Убрать тестовые данные
+    let [userPhones, setUserPhones] = useState<UserPhone[] | undefined>(); // Убрать тестовые данные
+    let [managers, setManagers] = useState<IManager[] | undefined>(); // Убрать тестовые данные
     let navigate = useNavigate();
 
     const getData = async () => {
@@ -51,7 +51,7 @@ const Admin: FC = () => {
         try {
             getData();
         } catch (error) {
-            console.log('Произошла ошибка при получении данных: ' + String(error) + ' Перезагрузите страницу, чтобы снова получить данные');
+            console.log('Произошла ошибка при получении данных: ' + String(error));
         }
 
     }, [isAuthenticated]);

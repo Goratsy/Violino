@@ -5,19 +5,21 @@ import H2 from "../../../components/UI/text/H2";
 import Subtitle from "../../../components/UI/text/Subtitle";
 import Input from "../../../components/UI/input/Input";
 import ButtonSubmit from "../../../components/UI/button/ButtonSubmit";
-import { AuthentificationContext } from "../../../App";
+import { AuthentificationContext, PopupContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
 import { getOSInfo } from "../../../utils/getUserDevice";
 import { logManagerLogin } from "../../../api/requests/Requests";
 import { Helmet } from "react-helmet-async";
 
 const Login: FC = () => {
-    const [ip_address, setIp_address] = useState("");
+    // const [ip_address, setIp_address] = useState("");
     const [username, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
     let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
+    let { steckMessages, setSteckMessages } = useContext(PopupContext);
+
     let navigate = useNavigate();
 
     const submitForm = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -25,31 +27,27 @@ const Login: FC = () => {
         setIsSubmit(true);
 
         try {
-            await fetch("https://api.ipify.org?format=json")
-                .then((response) => response.json())
-                .then((data) => setIp_address(data.ip))
-                .catch((error) => console.error("Ошибка получения IP-адреса:", error));
+            let ip_address = await fetch("https://api.ipify.org?format=json").then((response) => response.json());
+            const device = getOSInfo();
 
-            const device = getOSInfo()
-
-            if (device && ip_address || true) { // !!! Убрать true при prod !!!
+            if (device && ip_address) {
                 console.log({ login: username, password: password, date_of_login: String(Date.now()), device, ip_address });
-                let response_log = await logManagerLogin({ login: username, password: password, date_of_login: String(Date.now()), device, ip_address });
-
+                let response_log = await logManagerLogin({ login: username, password: password, date_of_login: String(Date.now()), device, ip_address: ip_address.ip });
+                console.log(response_log);
+                
                 if (response_log.code >= 200 && response_log.code <= 299) {
-                    window.localStorage.setItem('bearer_token', (response_log.data ? response_log.data.token : ''));
+                    localStorage.setItem('bearer_token', (response_log.data ? response_log.data.token : ''));
                     setIsAuthenticated(true);
                 } else {
-                    alert("Невозможно отправить данные. Повторите попытку позже");
+                    setSteckMessages([{ isErrorPopup: true, message: 'Неправильный пароль' }, ...(steckMessages || [])]);
                 }
-
-
             } else {
-                alert("Невозможно отправить данные. Повторите попытку позже");
+                setSteckMessages([{ isErrorPopup: true, message: 'Невозможно определить ваш адрес и устрйоство, с которого вы пытаетесь зайти!' }, ...(steckMessages || [])]);
             }
 
         } catch (error) {
-            alert("Произошла ошибка: " + String(error));
+            setSteckMessages([{ isErrorPopup: true, message: 'Сервер не отвечает :( Повторите попытку позже!' }, ...(steckMessages || [])]);
+
         }
 
         setIsSubmit(false);

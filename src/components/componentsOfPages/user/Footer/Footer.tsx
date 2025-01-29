@@ -44,7 +44,8 @@ const Footer: FC = () => {
         }
         
         try {
-            const response = await createUserPhone({ name: userName, phone: userPhone, date_of_send: Date.now().toString(), information_about_user: userMessage })
+            let date = new Date();
+            const response = await createUserPhone({ name: userName, phone: userPhone, date_of_send:`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay()}`, information_about_user: userMessage })
             if (response.code >= 200 && response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
             } else {

@@ -27,7 +27,7 @@ const PopupContext = createContext<{
 });
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [steckMessages, setSteckMessages] = useState<{ isErrorPopup: boolean, message: string }[] | null>(null);
 
   return (
