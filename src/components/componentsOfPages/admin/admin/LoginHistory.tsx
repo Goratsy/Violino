@@ -4,10 +4,9 @@ import H2 from "../../../UI/text/H2";
 import Subtitle from "../../../UI/text/Subtitle";
 import H4 from "../../../UI/text/H4";
 import TextMain from "../../../UI/text/TextMain";
-import { Manager } from "../../../../models/Manager";
+import { ManagerJoinLoginHistory } from "../../../../models/ManagerJoinLoginHistory";
 
-
-const LoginHistory: FC<{ managers: Manager[] }> = ({ managers }) => {
+const LoginHistory: FC<{ managers: ManagerJoinLoginHistory[] }> = ({ managers }) => {
     return (
         <>
             <section id="manager" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
@@ -25,22 +24,14 @@ const LoginHistory: FC<{ managers: Manager[] }> = ({ managers }) => {
                 <div className="mt-[40px] overflow-x-auto">
                     {managers.map((manager, number) => {
                         return (
-                            <div className="flex flex-col gap-4 py-6 border-b" key={manager.manager_id}>
-                                <H4>Менеджер {number} | {manager.manager_name}</H4>
+                            <div className="flex flex-col gap-4 py-6 border-b" key={`${manager.manager_id}-${manager.ip_address}`}>
+                                <H4>Менеджер {number + 1} | {manager.manager_name} | ID {manager.manager_id}</H4>
                                 <div className="flex flex-col gap-1">
-                                    {manager.loginHistory ?
-                                        <>
-                                            {manager.loginHistory.map((history) => {
-                                                return (
-                                                    <div key={`${manager.manager_id}_history_${history.device}`} className="flex flex-row gap-11">
-                                                        <TextMain className="whitespace-nowrap w-64">Устройство: {history.device}</TextMain>
-                                                        <TextMain className="whitespace-nowrap w-40">IP:{history.ip_address}</TextMain>
-                                                        <TextMain className="whitespace-nowrap w-52">Дата входа: {history.date_of_login}</TextMain>
-                                                    </div>
-                                                );
-                                            })}
-                                        </>
-                                        : ''}
+                                    <div className="flex flex-row gap-11">
+                                        <TextMain className="whitespace-nowrap w-64">Устройство: {manager.device}</TextMain>
+                                        <TextMain className="whitespace-nowrap w-40">IP:{manager.ip_address}</TextMain>
+                                        <TextMain className="whitespace-nowrap w-52">Дата входа: {manager.date_of_login}</TextMain>
+                                    </div>
                                 </div>
                             </div>
                         )

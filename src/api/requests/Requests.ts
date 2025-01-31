@@ -1,8 +1,8 @@
-import { Manager } from "../../models/Manager";
+import { ManagerJoinLoginHistory } from "../../models/ManagerJoinLoginHistory";
 import { UserPhone } from "../../models/UserPhone";
 
 const BASE_URL = "http://localhost:4000";
-const AUTH_TOKEN = String(localStorage.getItem("bearer_token")); // Замените на актуальный токен
+const AUTH_TOKEN = String(localStorage.getItem("bearer_token")); 
 
 interface ApiResponse<T> {
     code: number;
@@ -35,6 +35,10 @@ async function apiFetch<T>(url: string, options: RequestInit): Promise<ApiRespon
 }
 
 // Запросы
+export async function authentificationManager(): Promise<ApiResponse<{message: string}>> {
+    return apiFetch<{message: string}>(`${BASE_URL}/authentification_manager`, { method: "GET" });
+}
+
 export async function getAllUserPhones(): Promise<ApiResponse<UserPhone[]>> {
     return apiFetch<UserPhone[]>(`${BASE_URL}/user_phones`, { method: "GET" });
 }
@@ -57,8 +61,8 @@ export async function deleteUserPhone(id: number): Promise<ApiResponse<null>> {
     return apiFetch<null>(`${BASE_URL}/user_phones/${id}`, { method: "DELETE" });
 }
 
-export async function getAllManagers(): Promise<ApiResponse<Manager[]>> {
-    return apiFetch<Manager[]>(`${BASE_URL}/managers`, { method: "GET" });
+export async function getAllManagers(): Promise<ApiResponse<ManagerJoinLoginHistory[]>> {
+    return apiFetch<ManagerJoinLoginHistory[]>(`${BASE_URL}/managers`, { method: "GET" });
 }
 
 export async function logManagerLogin(loginData: {

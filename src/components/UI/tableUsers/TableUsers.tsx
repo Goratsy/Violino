@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useContext, useMemo, useState } from "react";
 import H4 from "../text/H4";
 import Input from "../input/Input";
 import trash_SVG from '../../../assets/svg/trash.svg';
@@ -19,7 +19,7 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
     let { steckMessages, setSteckMessages } = useContext(PopupContext);
     let { setIsAuthenticated } = useContext(AuthentificationContext);
 
-    const updateData = ({ name, value, id }: { name: string, value: string, id: number }) => {
+    const updateDataInTable = ({ name, value, id }: { name: string, value: string, id: number }) => {
         let findedUserPhone = userPhones.find((userPhone) => userPhone.user_phone_id === id);
 
         if (findedUserPhone) {
@@ -36,40 +36,34 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
             }
 
             if (updatedUserPhones.find((userPhone) => userPhone.user_phone_id === findedUserPhone.user_phone_id)) {
-                setUpdatedUserPhones(updatedUserPhones.map((userPhone) => { return (userPhone.user_phone_id === findedUserPhone.user_phone_id ? findedUserPhone : userPhone) }))
+                setUpdatedUserPhones(updatedUserPhones.map((userPhone) => { return (userPhone.user_phone_id === findedUserPhone.user_phone_id ? findedUserPhone : userPhone) }));
             } else {
-                setUpdatedUserPhones([findedUserPhone, ...(updatedUserPhones || [])])
+                setUpdatedUserPhones([findedUserPhone, ...(updatedUserPhones || [])]);
             }
         }
     }
 
-
-    useEffect(() => {
+    const updateData = async () => {
         console.log(updatedUserPhones);
-    }, [updatedUserPhones])
-
-    const updateData_request = async () => {
-        try {
-            console.log(updatedUserPhones);
+        
+        // try {
             
-            let response = await updateUserPhone(updatedUserPhones);
-            if (response.code >= 200 && response.code <= 299) {
-                setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
-            } else {
-                setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            
-            }
-        } catch (error) {
-            setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);
-        }
+        //     let response = await updateUserPhone(updatedUserPhones);
+        //     if (response.code >= 200 && response.code <= 299) {
+        //         setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
+        //     } else {
+        //         setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            
+        //     }
+        // } catch (error) {
+        //     setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);
+        // }
     }
 
-    const deleteUserPhoneInTable = async (event: any) => {
-        let id: number = Number(event.currentTarget.getAttribute('data-id'));
-
+    const deleteUserPhoneInTable = async (id: number) => {
         try {
             let response = await deleteUserPhone(id);
-
-            if (response.code >= 200 && response.code <= 299) {
+            
+            if (response.code >= 200 || response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!' }, ...(steckMessages || [])]);
                 setTimeout(() => { location.reload(); }, 3000);
             } else if (response.code === 401) {
@@ -125,19 +119,18 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
                                                 name="name"
                                                 disabled={onlyRead}
                                                 className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
-                                                onInput={(event: any) => { updateData({ name: 'name', value: event.target.value, id: userPhone.user_phone_id }) }}
+                                                onInput={(event: any) => { updateDataInTable({ name: 'name', value: event.target.value, id: userPhone.user_phone_id }) }}
                                             />
                                         </td>
                                         <td className="pl-5">
                                             <InputMask
                                                 mask="+7 (999) 999-99-99"
-                                                // onInput={(event: any) => { setUserPhone(event.target.value.slice(0, 18)); setIsPhoneInputError(false); }}
                                                 value={userPhone.phone}
                                                 placeholder="Телефон*"
                                                 name="userPhone"
                                                 disabled={onlyRead}
                                                 className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
-                                                onInput={(event: any) => { updateData({ name: 'phone', value: event.target.value, id: userPhone.user_phone_id }) }}
+                                                onInput={(event: any) => { updateDataInTable({ name: 'phone', value: event.target.value, id: userPhone.user_phone_id }) }}
                                             />
                                         </td>
                                         <td className="pl-5">
@@ -156,26 +149,26 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
                                                 name="info_about_user"
                                                 disabled={onlyRead}
                                                 className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
-                                                onInput={(event: any) => { updateData({ name: 'info', value: event.target.value, id: userPhone.user_phone_id }) }}
+                                                onInput={(event: any) => { updateDataInTable({ name: 'info', value: event.target.value, id: userPhone.user_phone_id }) }}
                                             />
                                         </td>
                                         <td className="px-5 text-right">
                                             {onlyRead ? 
                                             ''
                                             :
-                                            <div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={deleteUserPhoneInTable} data-id={userPhone.user_phone_id}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div>
+                                            <div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={() => {deleteUserPhoneInTable(userPhone.user_phone_id)}}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div>
                                             }
                                         </td>
                                     </tr>
                                 )
                             })}
                         </>
-                        : <tr><td colSpan={6} className="text-center font-semibold text-[26px] text-secondary">Упростите фильтр</td></tr>}
+                        : <tr><td colSpan={5} className="text-center font-semibold text-[26px] text-secondary">Упростите фильтр</td></tr>}
                 </tbody>
             </table>
             {updatedUserPhones.length > 0 ?
                 <AnimatedElementFade animateFade="animate-fade">
-                    <ButtonSubmit onClick={updateData_request}>Сохранить изменения</ButtonSubmit>
+                    <ButtonSubmit onClick={updateData}>Сохранить изменения</ButtonSubmit>
                 </AnimatedElementFade>
                 : ''}
         </>
