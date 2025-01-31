@@ -13,7 +13,7 @@ import H4 from "../../../UI/text/H4";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import smartPhone_SVG from '../../../../assets/svg/smartphone.svg';
 import gmail_SVG from '../../../../assets/svg/gmail.svg';
-import InputMask from "react-input-mask"; 
+import { InputMask } from 'primereact/inputmask';
 import { createUserPhone } from "../../../../api/requests/Requests";
 import { PopupContext } from "../../../../App";
 ;

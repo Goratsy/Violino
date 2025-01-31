@@ -4,13 +4,11 @@ import Input from "../input/Input";
 import trash_SVG from '../../../assets/svg/trash.svg';
 import { UserPhone } from "../../../models/UserPhone";
 import filterUsersPhoneByInput from "../../../utils/filterUsersPhoneByInput";
-import { deleteUserPhone, updateUserPhone } from "../../../api/requests/Requests";
+import { deleteUserPhone } from "../../../api/requests/Requests";
 import { AuthentificationContext, PopupContext } from "../../../App";
-import InputMask from "react-input-mask";
+import { InputMask } from 'primereact/inputmask';
 import ButtonSubmit from "../button/ButtonSubmit";
 import AnimatedElementFade from "../../Animation/AnimatedElementFade";
-
-
 
 const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userPhones, onlyRead = false }) => {
     let [searchInput, setSearchInput] = useState<string>('');
