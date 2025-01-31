@@ -12,14 +12,12 @@ import { authentificationManager, logManagerLogin } from "../../../api/requests/
 import { Helmet } from "react-helmet-async";
 
 const Login: FC = () => {
-    // const [ip_address, setIp_address] = useState("");
+    let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
+    let { steckMessages, setSteckMessages } = useContext(PopupContext);
+
     const [username, setUserName] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
-    // let [isLoading, setIsLoading] = useState<boolean>(true);
-
-    let { setIsAuthenticated } = useContext(AuthentificationContext);
-    let { steckMessages, setSteckMessages } = useContext(PopupContext);
 
     let navigate = useNavigate();
 
@@ -38,15 +36,14 @@ const Login: FC = () => {
 
             if (device && ip_address) {
                 let date = new Date();
-                let response_log = await logManagerLogin({ login: username, password: password, date_of_login: `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`, device, ip_address: ip_address.ip });
+                let response = await logManagerLogin({ login: username, password, date_of_login: `${('0' + String(date.getDate())).slice(-2)}.${('0' + String(date.getMonth() + 1)).slice(-2)}.${date.getFullYear()} ${('0' + String(date.getHours())).slice(-2)}:${('0' + String(date.getMinutes())).slice(-2)}:${('0' + String(date.getSeconds())).slice(-2)}`, device, ip_address: ip_address.ip });
 
-                if (response_log.code >= 200 && response_log.code <= 299) {
-                    localStorage.setItem('bearer_token', (response_log.data ? response_log.data.token : ''));
+                if (response.code >= 200 && response.code <= 299) {
+                    setSteckMessages([{ isErrorPopup: false, message: 'Регистрацию прошла успешно! Подождите...' }, ...(steckMessages || [])]);
+                    localStorage.setItem('bearer_token', response.data ? response.data.token : '');
                     setIsAuthenticated(true);
-                    navigate('/admin');
-                    return;
-                } else {
-                    setSteckMessages([{ isErrorPopup: true, message: 'Неправильный пароль' }, ...(steckMessages || [])]);
+                } else if (response.code >= 400 && response.code <= 499) {
+                    setSteckMessages([{ isErrorPopup: true, message: 'Некорректно введены данные' }, ...(steckMessages || [])]);
                 }
             } else {
                 setSteckMessages([{ isErrorPopup: true, message: 'Невозможно определить ваш адрес и устрйоство, с которого вы пытаетесь зайти!' }, ...(steckMessages || [])]);
@@ -61,7 +58,12 @@ const Login: FC = () => {
     }
 
     useEffect(() => {
-        
+        if (isAuthenticated) {
+            navigate('/admin');
+        }
+    }, [isAuthenticated]);
+
+    useEffect(() => {        
         const checkAuthAndFetchData = async () => {
             const auth: boolean = await getAuthentification();
 

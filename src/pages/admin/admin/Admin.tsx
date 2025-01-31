@@ -8,16 +8,17 @@ import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
 import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
 
 import { useNavigate } from "react-router-dom";
-import { AuthentificationContext } from "../../../App";
+import { AuthentificationContext, PopupContext } from "../../../App";
 import { authentificationManager, getAllManagers, getAllUserPhones } from "../../../api/requests/Requests";
 import { Helmet } from "react-helmet-async";
 import { ManagerJoinLoginHistory } from "../../../models/ManagerJoinLoginHistory";
 
 const Admin: FC = () => {
     let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
+    let { steckMessages, setSteckMessages } = useContext(PopupContext);
+
     let [userPhones, setUserPhones] = useState<UserPhone[] | undefined>();
     let [managers, setManagers] = useState<ManagerJoinLoginHistory[] | undefined>();
-    // let [isLoading, setIsLoading] = useState<boolean>(true);
     let navigate = useNavigate();
 
     const getAuthentification = async (): Promise<boolean> => {
@@ -31,10 +32,10 @@ const Admin: FC = () => {
         if (response_userphone.code >= 200 && response_userphone.code <= 299) {
             setUserPhones(response_userphone.data);
         } else if (response_userphone.code === 401) {
-            console.log('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
+            setSteckMessages([{ isErrorPopup: true, message: 'Сессия не может быть открыта для вам. Вам следует войти в панель администратора!' }, ...(steckMessages || [])]);
             setIsAuthenticated(false);
         } else {
-            console.log('Произошла ошибка при получении данных: ' + String(response_userphone.error));
+            setSteckMessages([{ isErrorPopup: true, message: 'Ошибка сервера :(' }, ...(steckMessages || [])]);
         }
 
         const response_managers = await getAllManagers();
@@ -42,10 +43,10 @@ const Admin: FC = () => {
         if (response_managers.code >= 200 && response_managers.code <= 299) {
             setManagers(response_managers.data);
         } else if (response_managers.code === 401) {
-            console.log('Сессия не может быть открыта для вам. Вам следует войти в панель администратора!');
+            setSteckMessages([{ isErrorPopup: true, message: 'Сессия не может быть открыта для вам. Вам следует войти в панель администратора!' }, ...(steckMessages || [])]);
             setIsAuthenticated(false);
         } else {
-            console.log('Произошла ошибка при получении данных: ' + String(response_managers.error));
+            setSteckMessages([{ isErrorPopup: true, message: 'Ошибка сервера :(' }, ...(steckMessages || [])]);
         }
     }
 
@@ -53,7 +54,7 @@ const Admin: FC = () => {
         const checkAuthAndFetchData = async () => {
             const auth: boolean = await getAuthentification();
             setIsAuthenticated(auth);
-    
+            
             if (!auth) {
                 navigate('/admin/login');
                 return;

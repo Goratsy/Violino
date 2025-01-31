@@ -2,7 +2,6 @@ import { ManagerJoinLoginHistory } from "../../models/ManagerJoinLoginHistory";
 import { UserPhone } from "../../models/UserPhone";
 
 const BASE_URL = "http://localhost:4000";
-const AUTH_TOKEN = String(localStorage.getItem("bearer_token")); 
 
 interface ApiResponse<T> {
     code: number;
@@ -11,6 +10,8 @@ interface ApiResponse<T> {
 }
 
 async function apiFetch<T>(url: string, options: RequestInit): Promise<ApiResponse<T>> {
+    const AUTH_TOKEN = String(localStorage.getItem("bearer_token")); 
+
     try {
         const response = await fetch(url, {
             ...options,

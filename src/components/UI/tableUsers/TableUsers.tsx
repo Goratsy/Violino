@@ -61,7 +61,7 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
         try {
             let response = await deleteUserPhone(id);
             
-            if (response.code >= 200 || response.code <= 299) {
+            if (response.code >= 200 && response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!' }, ...(steckMessages || [])]);
                 setTimeout(() => { location.reload(); }, 3000);
             } else if (response.code === 401) {

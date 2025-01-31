@@ -25,11 +25,11 @@ const LoginHistory: FC<{ managers: ManagerJoinLoginHistory[] }> = ({ managers })
                     {managers.map((manager, number) => {
                         return (
                             <div className="flex flex-col gap-4 py-6 border-b" key={`${manager.manager_id}-${manager.ip_address}`}>
-                                <H4>Менеджер {number + 1} | {manager.manager_name} | ID {manager.manager_id}</H4>
+                                <H4>Вход {number + 1} | {manager.manager_name} | ID {manager.manager_id}</H4>
                                 <div className="flex flex-col gap-1">
                                     <div className="flex flex-row gap-11">
                                         <TextMain className="whitespace-nowrap w-64">Устройство: {manager.device}</TextMain>
-                                        <TextMain className="whitespace-nowrap w-40">IP:{manager.ip_address}</TextMain>
+                                        <TextMain className="whitespace-nowrap w-40">IP: {manager.ip_address}</TextMain>
                                         <TextMain className="whitespace-nowrap w-52">Дата входа: {manager.date_of_login}</TextMain>
                                     </div>
                                 </div>
