@@ -12,8 +12,8 @@ interface Props {
 
 const AnimatedElementFade: FC<Props> = ({ children, threshold = 0.1, triggerOnce = true, delay, animateFade, additionalClasses }) => {
     const { ref, inView } = useInView({
-        triggerOnce, // При true: Анимация срабатывает только при первом просмотре
-        threshold   // Срабатывает, когда какая-то часть элемента видима
+        triggerOnce, 
+        threshold 
     });
 
     return (

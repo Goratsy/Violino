@@ -2,7 +2,7 @@ import { YMaps, Map, Placemark, ZoomControl } from '@pbe/react-yandex-maps';
 import React from 'react';
 import logo_violino from '../../../assets/svg/logo_violino.svg'
 
-const apiYandexKey = import.meta.env.VITE_YANDEX_API;
+const apiYandexKey = import.meta.env.VITE_YANDEX_MAP_API;
 
 const YandexMap: React.FC = () => {
     const coordinatesViolino = [55.684620, 37.541512];
@@ -10,7 +10,6 @@ const YandexMap: React.FC = () => {
     const defaultState = {
         center: coordinatesViolino,
         zoom: 16,
-
     };
 
     return (
@@ -19,7 +18,7 @@ const YandexMap: React.FC = () => {
                 <Map
                     defaultState={defaultState}
                     className='w-full h-[500px]'
-                    modules={['control.ZoomControl']}
+                    modules={['control.ZoomControl', 'control.FullscreenControl']}
                     instanceRef={ref => { ref && ref.behaviors.disable('scrollZoom'); }}
                 >
                     <ZoomControl options={{ size: 'small', position: { bottom: 200, left: 10 } }} />
@@ -28,7 +27,7 @@ const YandexMap: React.FC = () => {
                         geometry={coordinatesViolino}
                         options={{
                             iconLayout: 'default#image',
-                            iconImageHref: logo_violino, // Ссылка на кастомную иконку
+                            iconImageHref: logo_violino,
                             iconImageSize: [45, 45],
                         }}
                         properties={{

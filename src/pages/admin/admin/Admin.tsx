@@ -70,34 +70,6 @@ const Admin: FC = () => {
         checkAuthAndFetchData();
     }, []);
 
-    // useEffect(() => {
-    //     const checkAuth = async (): Promise<void> => {
-    //         // Authentification
-    //         setIsLoading(true);
-    //         let auth: boolean = await getAuthentification();
-    //         setIsAuthenticated(auth);
-    //         setIsLoading(false);
-    //     }
-    //     checkAuth();
-    // }, [])
-
-    // useEffect(() => {
-    //     if (isLoading) return;
-
-    //     if (!isAuthenticated) {
-    //         navigate('/admin/login');
-    //         return;
-    //     }
-
-    //     try {
-    //         getData();
-    //     } catch (error) {
-    //         console.log('Произошла ошибка при получении данных: ' + String(error));
-    //     }
-    // }, [isAuthenticated, isLoading]);
-
-    
-
     return (
         <>
             <Helmet>
