@@ -13,7 +13,7 @@ const AdvantagesSection: FC = () => {
     return (
         <>
             <section id="advantagesSection" className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
-                <div className="w-full bg-surface py-[40px] mb-[40px] TS:mb-[30px]">
+                <div className="w-full bg-surface py-[40px] mb-[40px] TS:mb-[30px] selection:bg-accent selection:text-white">
                     <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8}>
                         <HeadingOfSection className="text-center">Наши преимущества</HeadingOfSection>
                     </AnimatedElementFade>

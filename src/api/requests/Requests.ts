@@ -1,7 +1,7 @@
 import { ManagerJoinLoginHistory } from "../../models/ManagerJoinLoginHistory";
 import { UserPhone } from "../../models/UserPhone";
 
-const BASE_URL = "http://localhost:4000";
+const BASE_URL = import.meta.env.PROD ? import.meta.env.VITE_SERVER_URL : "http://localhost:4000";
 
 interface ApiResponse<T> {
     code: number;

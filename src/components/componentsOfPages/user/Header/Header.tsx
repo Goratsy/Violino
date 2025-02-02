@@ -64,7 +64,7 @@ const Header: FC = () => {
         <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'} w-full z-50 duration-500 ease overflow-hidden h-[105px] TS:h-[100px] P:h-[90px] ${isOpenBurgerMenu ? 'L:h-full TS:h-full P:h-full L:bg-surface' : ''}`}>
             <div className={`w-full flex justify-between items-center px-[7%] my-[27px] L:px-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
-                <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary">
+                <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
                     <a href="#homeSection">Главная</a>
                     <a href="#aboutSection">О нас</a>
                     <a href="#advantagesSection">Преимущества</a>
@@ -88,7 +88,7 @@ const Header: FC = () => {
                 </div>
             </div>
             <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0 absolute'}`}>
-                <nav className="flex flex-col justify-center items-left pb-[35px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary">
+                <nav className="flex flex-col justify-center items-left pb-[35px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
                     <a href="#homeSection"  onClick={closeBurgerMenu}>Главная</a>
                     <a href="#aboutSection"  onClick={closeBurgerMenu}>О нас</a>
                     <a href="#advantagesSection"  onClick={closeBurgerMenu}>Преимущества</a>
