@@ -4,7 +4,7 @@ import Input from "../input/Input";
 import trash_SVG from '../../../assets/svg/trash.svg';
 import { UserPhone } from "../../../models/UserPhone";
 import filterUsersPhoneByInput from "../../../utils/filterUsersPhoneByInput";
-import { deleteUserPhone } from "../../../api/requests/Requests";
+import { deleteUserPhone, updateUserPhone } from "../../../api/requests/Requests";
 import { AuthentificationContext, PopupContext } from "../../../App";
 import { InputMask } from 'primereact/inputmask';
 import ButtonSubmit from "../button/ButtonSubmit";
@@ -12,55 +12,60 @@ import AnimatedElementFade from "../../Animation/AnimatedElementFade";
 
 const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userPhones, onlyRead = false }) => {
     let [searchInput, setSearchInput] = useState<string>('');
-    let [updatedUserPhones, setUpdatedUserPhones] = useState<UserPhone[]>([]);
+    let [updatedUserPhones, setUpdatedUserPhones] = useState<UserPhone[]>(userPhones);
+    let [IDupdatedUserPhones, setIDUpdatedUserPhones] = useState<number[]>([]);
 
     let { steckMessages, setSteckMessages } = useContext(PopupContext);
     let { setIsAuthenticated } = useContext(AuthentificationContext);
 
     const updateDataInTable = ({ name, value, id }: { name: string, value: string, id: number }) => {
-        let findedUserPhone = userPhones.find((userPhone) => userPhone.user_phone_id === id);
+        let findedUserPhoneIndex = userPhones.findIndex((userPhone) => userPhone.user_phone_id === id);
 
-        if (findedUserPhone) {
-            switch (name) {
-                case 'name':
-                    findedUserPhone.name = value;
-                    break;
-                case 'phone':
-                    findedUserPhone.phone = value.slice(0, 18);
-                    break;
-                case 'info':
-                    findedUserPhone.information_about_user = value;
-                    break;
-            }
-
-            if (updatedUserPhones.find((userPhone) => userPhone.user_phone_id === findedUserPhone.user_phone_id)) {
-                setUpdatedUserPhones(updatedUserPhones.map((userPhone) => { return (userPhone.user_phone_id === findedUserPhone.user_phone_id ? findedUserPhone : userPhone) }));
-            } else {
-                setUpdatedUserPhones([findedUserPhone, ...(updatedUserPhones || [])]);
-            }
+        if (updatedUserPhones[findedUserPhoneIndex]) {
+            setUpdatedUserPhones(updatedUserPhones.map((updatedUserPhone) => {
+                
+                if (updatedUserPhone.user_phone_id === id) {
+                    switch (name) {
+                        case 'name':
+                            updatedUserPhone.name = value;
+                            break;
+                        case 'phone':
+                            updatedUserPhone.phone = value.slice(0, 18);
+                            break;
+                        case 'info':
+                            updatedUserPhone.information_about_user = value;
+                            break;
+                    }
+                }
+                return updatedUserPhone;
+            }));
+            setIDUpdatedUserPhones(IDupdatedUserPhones.findIndex((id_updated) => id_updated === id) < 0 ? [id, ...IDupdatedUserPhones] : IDupdatedUserPhones);
         }
     }
 
     const updateData = async () => {
-        console.log(updatedUserPhones);
-        
-        // try {
-            
-        //     let response = await updateUserPhone(updatedUserPhones);
-        //     if (response.code >= 200 && response.code <= 299) {
-        //         setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
-        //     } else {
-        //         setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            
-        //     }
-        // } catch (error) {
-        //     setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);
-        // }
+        try {
+            let dataToSend = updatedUserPhones.filter((updateUserPhone) => IDupdatedUserPhones.includes(updateUserPhone.user_phone_id));
+
+            if (dataToSend) {
+                let response = await updateUserPhone(dataToSend);
+                
+                if (response.code >= 200 && response.code <= 299) {
+                    setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
+                    setIDUpdatedUserPhones([]);  
+                } else if (response.code >= 400 && response.code <= 499) {
+                    setSteckMessages([{ isErrorPopup: true, message: 'Сессия закончилась, пройдите аутентификацию!' }, ...(steckMessages || [])]);      
+                }
+            }
+        } catch (error) {
+            setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);
+        }
     }
 
     const deleteUserPhoneInTable = async (id: number) => {
         try {
             let response = await deleteUserPhone(id);
-            
+
             if (response.code >= 200 && response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!' }, ...(steckMessages || [])]);
                 setTimeout(() => { location.reload(); }, 3000);
@@ -76,95 +81,98 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
 
     }
 
-    let resultFilter = useMemo(() => filterUsersPhoneByInput(userPhones, searchInput), [searchInput]);
+    let resultFilter = useMemo(() => filterUsersPhoneByInput(updatedUserPhones, searchInput), [searchInput]);
 
     return (
         <>
-            <table className="table-fixed w-full min-w-[1300px]">
-                <thead className="h-[90px] px-5">
-                    <tr>
-                        <th className="pl-5 w-36">
-                            <H4>Номер</H4>
-                        </th>
-                        <th className="pl-5 w-48">
-                            <H4>Имя</H4>
-                        </th>
-                        <th className="pl-5 w-44">
-                            <H4>Телефон</H4>
-                        </th>
-                        <th className="pl-5 w-28">
-                            <H4>Дата</H4>
-                        </th>
-                        <th className="pl-5 w-96">
-                            <H4>Информация</H4>
-                        </th>
-                        <th className="px-5">
-                            <Input placeholder="Поиск..." name="search" onInput={(event: any) => { setSearchInput(event.target.value); }} />
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {resultFilter.length !== 0 ?
-                        <>
-                            {resultFilter.map((userPhone, number) => {
-                                return (
-                                    <tr key={userPhone.user_phone_id} className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} >
-                                        <td className="pl-5">{userPhone.user_phone_id}</td>
-                                        <td className="overflow-x-auto pl-5">
-                                            <input
-                                                value={userPhone.name}
-                                                placeholder="Имя"
-                                                name="name"
-                                                disabled={onlyRead}
-                                                className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
-                                                onInput={(event: any) => { updateDataInTable({ name: 'name', value: event.target.value, id: userPhone.user_phone_id }) }}
-                                            />
-                                        </td>
-                                        <td className="pl-5">
-                                            <InputMask
-                                                mask="+7 (999) 999-99-99"
-                                                value={userPhone.phone}
-                                                placeholder="Телефон*"
-                                                name="userPhone"
-                                                disabled={onlyRead}
-                                                className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
-                                                onInput={(event: any) => { updateDataInTable({ name: 'phone', value: event.target.value, id: userPhone.user_phone_id }) }}
-                                            />
-                                        </td>
-                                        <td className="pl-5">
-                                            <input
-                                                value={userPhone.date_of_send}
-                                                placeholder="Дата отправки"
-                                                name="date"
-                                                disabled
-                                                className="bg-transparent border-0 w-full cursor-no-drop"
-                                            />
-                                        </td>
-                                        <td className="overflow-x-auto pl-5">
-                                            <textarea
-                                                value={userPhone?.information_about_user}
-                                                placeholder="Доп. инфа о пользователе"
-                                                name="info_about_user"
-                                                disabled={onlyRead}
-                                                className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
-                                                onInput={(event: any) => { updateDataInTable({ name: 'info', value: event.target.value, id: userPhone.user_phone_id }) }}
-                                            />
-                                        </td>
-                                        <td className="px-5 text-right">
-                                            {onlyRead ? 
-                                            ''
-                                            :
-                                            <div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={() => {deleteUserPhoneInTable(userPhone.user_phone_id)}}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div>
-                                            }
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </>
-                        : <tr><td colSpan={5} className="text-center font-semibold text-[26px] text-secondary">Упростите фильтр</td></tr>}
-                </tbody>
-            </table>
-            {updatedUserPhones.length > 0 ?
+            <div className="mt-[40px] overflow-x-auto">
+
+                <table className="table-fixed w-full min-w-[1300px]">
+                    <thead className="h-[90px] px-5">
+                        <tr>
+                            <th className="pl-5 w-36">
+                                <H4>Номер</H4>
+                            </th>
+                            <th className="pl-5 w-48">
+                                <H4>Имя</H4>
+                            </th>
+                            <th className="pl-5 w-44">
+                                <H4>Телефон</H4>
+                            </th>
+                            <th className="pl-5 w-28">
+                                <H4>Дата</H4>
+                            </th>
+                            <th className="pl-5 w-96">
+                                <H4>Информация</H4>
+                            </th>
+                            <th className="px-5">
+                                <Input placeholder="Поиск..." name="search" onInput={(event: any) => { setSearchInput(event.target.value); }} />
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {resultFilter.length !== 0 ?
+                            <>
+                                {resultFilter.map((userPhone, number) => {
+                                    return (
+                                        <tr key={userPhone.user_phone_id} className={`border-t border-accent h-[75px] ${number % 2 === 0 ? 'bg-surface' : ''}`} >
+                                            <td className="pl-5">{userPhone.user_phone_id}</td>
+                                            <td className="overflow-x-auto pl-5">
+                                                <input
+                                                    value={userPhone.name}
+                                                    placeholder="Имя"
+                                                    name="name"
+                                                    disabled={onlyRead}
+                                                    className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
+                                                    onInput={(event: any) => { updateDataInTable({ name: 'name', value: event.target.value, id: userPhone.user_phone_id }); }}
+                                                />
+                                            </td>
+                                            <td className="pl-5">
+                                                <InputMask
+                                                    mask="+7 (999) 999-99-99"
+                                                    value={userPhone.phone}
+                                                    placeholder="Телефон*"
+                                                    name="userPhone"
+                                                    disabled={onlyRead}
+                                                    className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
+                                                    onChange={(event: any) => { updateDataInTable({ name: 'phone', value: event.target.value, id: userPhone.user_phone_id });}}
+                                                />
+                                            </td>
+                                            <td className="pl-5">
+                                                <input
+                                                    value={userPhone.date_of_send}
+                                                    placeholder="Дата отправки"
+                                                    name="date"
+                                                    disabled
+                                                    className="bg-transparent border-0 w-full cursor-no-drop"
+                                                />
+                                            </td>
+                                            <td className="overflow-x-auto pl-5">
+                                                <textarea
+                                                    value={userPhone?.information_about_user}
+                                                    placeholder="Доп. инфа о пользователе"
+                                                    name="info_about_user"
+                                                    disabled={onlyRead}
+                                                    className={`bg-transparent border-0 w-full ${onlyRead ? 'cursor-not-allowed' : ''}`}
+                                                    onInput={(event: any) => { updateDataInTable({ name: 'info', value: event.target.value, id: userPhone.user_phone_id }); }}
+                                                />
+                                            </td>
+                                            <td className="px-5 text-right">
+                                                {onlyRead ?
+                                                    ''
+                                                    :
+                                                    <div className="cursor-pointer hover:opacity-40 duration-500 ease-in-out" onClick={() => { deleteUserPhoneInTable(userPhone.user_phone_id) }}><img src={trash_SVG} alt="trash_icon" className="inline-block" /></div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </>
+                            : <tr><td colSpan={5} className="text-center font-semibold text-[26px] text-secondary">Упростите фильтр</td></tr>}
+                    </tbody>
+                </table>
+            </div>
+            {IDupdatedUserPhones.length > 0 ?
                 <AnimatedElementFade animateFade="animate-fade">
                     <ButtonSubmit onClick={updateData}>Сохранить изменения</ButtonSubmit>
                 </AnimatedElementFade>

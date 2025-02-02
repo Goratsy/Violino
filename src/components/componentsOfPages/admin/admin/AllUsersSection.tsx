@@ -20,9 +20,7 @@ const AllUsersSection: FC<{ userPhones: UserPhone[] }> = ({ userPhones }) => {
                         <Subtitle className="text-center">Здесь представлена база данных всех пользователей, оставивших свои данных для их обработки. Число пользователей, прислалавших заявку: {userPhones.length}</Subtitle>
                     </div>
                 </div>
-                <div className="mt-[40px] overflow-x-auto">
-                    <TableUsers userPhones={userPhones} />
-                </div>
+                <TableUsers userPhones={userPhones} />
             </section>
         </>
     );
