@@ -4,7 +4,6 @@ import TodayUsersSection from "../../../components/componentsOfPages/admin/admin
 import { UserPhone } from "../../../models/UserPhone";
 import LoginHistory from "../../../components/componentsOfPages/admin/admin/LoginHistory";
 import { filterUsersPhoneByDate } from "../../../utils/filterUsersPhoneByDate";
-// import { managers_testdata, userPhones_testdata } from "../../../models/testdata";
 import HeaderAdmin from "../../../components/componentsOfPages/admin/admin/HeaderAdmin";
 
 import { useNavigate } from "react-router-dom";
