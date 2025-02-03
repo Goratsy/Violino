@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev_host": "vite --host"
+    "dev_host": "vite --host",
+    "prod_host": "vite --host"
   },
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.5",
