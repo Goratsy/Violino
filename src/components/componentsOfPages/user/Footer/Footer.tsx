@@ -36,7 +36,7 @@ const Footer: FC = () => {
             setSteckMessages([{ isErrorPopup: true, message: 'Введите имя без специальных символов и цифр' }, ...(steckMessages || [])]);
             return;
         }
-
+        
         if (userPhone.replace(/[^0-9]/g, "").length !== 11) {
             setIsPhoneInputError(true);
             setSteckMessages([{ isErrorPopup: true, message: 'Введите корректный номер телефона' }, ...(steckMessages || [])]);
@@ -88,7 +88,7 @@ const Footer: FC = () => {
                                 <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
                                     <InputMask
                                         mask="+7 (999) 999-99-99"
-                                        onInput={(event: any) => { setUserPhone(event.target.value.slice(0, 18)); setIsPhoneInputError(false); }}
+                                        onChange={(event: any) => { setUserPhone(event.target.value); setIsPhoneInputError(false); }}
                                         value={userPhone}
                                         placeholder="Телефон*"
                                         name="userPhone"
