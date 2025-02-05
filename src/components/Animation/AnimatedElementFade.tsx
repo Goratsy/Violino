@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 interface Props {
@@ -10,16 +10,27 @@ interface Props {
     delay?: string
 }
 
-const AnimatedElementFade: FC<Props> = ({ children, threshold = 0.1, triggerOnce = true, delay, animateFade, additionalClasses }) => {
+const AnimatedElementFade: FC<Props> = ({ children, threshold = 0.5, triggerOnce = true, delay, animateFade, additionalClasses }) => {
     const { ref, inView } = useInView({
-        triggerOnce, 
-        threshold 
+        triggerOnce,
+        threshold,
+        rootMargin: "10px 0px" 
     });
+    
+    const hasRun = useRef(false);
+    const [hasAppeared, setHasAppeared] = useState(false);
+  
+    useEffect(() => {
+      if (inView && !hasRun.current) {
+        setHasAppeared(true);
+        hasRun.current = true;
+      }
+    }, [inView]);
 
     return (
         <div
             ref={ref}
-            className={`${inView ? `${animateFade} opacity-100` : `opacity-0`} duration-500 transition-opacity animate-duration-500 animate-ease-in-out ${delay} ${additionalClasses}`}
+            className={`${hasAppeared ? `${animateFade} opacity-100` : `opacity-0`} duration-500 transition-opacity animate-duration-500 animate-ease-in-out ${delay} ${additionalClasses}`}
         >
             {children}
         </div>

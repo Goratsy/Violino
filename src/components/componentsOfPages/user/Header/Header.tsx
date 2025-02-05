@@ -42,10 +42,8 @@ const Header: FC = () => {
         const currentScrollY = window.scrollY;
 
         if (currentScrollY < lastScrollY) {
-            // Прокрутка вверх
             setShowHeader(true);
         } else if (currentScrollY > lastScrollY) {
-            // Прокрутка вниз
             setShowHeader(false);
         }
 
@@ -61,15 +59,15 @@ const Header: FC = () => {
     }, [lastScrollY]);
 
     return (
-        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent '} ${showHeader ? 'translate-y-0' : '-translate-y-full'} w-full z-50 duration-500 ease overflow-hidden h-[105px] TS:h-[100px] P:h-[90px] ${isOpenBurgerMenu ? 'L:h-full TS:h-full P:h-full L:bg-surface' : ''}`}>
+        <header className={`${lastScrollY !== 0 ? `fixed bg-surface` : 'absolute bg-transparent'} ${showHeader ? 'translate-y-0' : (lastScrollY === 0 ? 'translate-y-0' : '-translate-y-full')} w-full z-50 duration-500 ease overflow-hidden h-[105px] TS:h-[100px] P:h-[90px] ${isOpenBurgerMenu ? 'L:h-full TS:h-full P:h-full L:bg-surface' : ''}`}>
             <div className={`w-full flex justify-between items-center px-[7%] my-[27px] L:px-[20px] duration-500 ease-out`}>
                 <Logo></Logo>
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
-                    <a href="#homeSection">Главная</a>
-                    <a href="#aboutSection">О нас</a>
-                    <a href="#advantagesSection">Преимущества</a>
-                    <a href="#formalisation">Оформление</a>
-                    <a href="#contacts">Контакты</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#homeSection">Главная</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#aboutSection">О нас</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#advantagesSection">Преимущества</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#formalisation">Оформление</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#contacts">Контакты</a>
                 </nav>
                 <NetworkLinks styleDisplay="L:hidden block" />
                 <div
@@ -89,11 +87,11 @@ const Header: FC = () => {
             </div>
             <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0 absolute'}`}>
                 <nav className="flex flex-col justify-center items-left pb-[35px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
-                    <a href="#homeSection"  onClick={closeBurgerMenu}>Главная</a>
-                    <a href="#aboutSection"  onClick={closeBurgerMenu}>О нас</a>
-                    <a href="#advantagesSection"  onClick={closeBurgerMenu}>Преимущества</a>
-                    <a href="#formalisation"  onClick={closeBurgerMenu}>Оформление</a>
-                    <a href="#contacts"  onClick={closeBurgerMenu}>Контакты</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#homeSection"  onClick={closeBurgerMenu}>Главная</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#aboutSection"  onClick={closeBurgerMenu}>О нас</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#advantagesSection"  onClick={closeBurgerMenu}>Преимущества</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#formalisation"  onClick={closeBurgerMenu}>Оформление</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#contacts"  onClick={closeBurgerMenu}>Контакты</a>
                 </nav>
                 <NetworkLinks />
             </div>

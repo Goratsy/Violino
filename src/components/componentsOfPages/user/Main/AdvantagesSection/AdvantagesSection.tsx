@@ -12,7 +12,7 @@ import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 const AdvantagesSection: FC = () => {
     return (
         <>
-            <section id="advantagesSection" className="mt-[130px] T:mt-[100px] TS:mt-[70px]">
+            <section id="advantagesSection" className="relative mt-[130px] T:mt-[100px] TS:mt-[70px]">
                 <div className="w-full bg-surface py-[40px] mb-[40px] TS:mb-[30px] selection:bg-accent selection:text-white">
                     <AnimatedElementFade animateFade="animate-fade-down" threshold={0.8}>
                         <HeadingOfSection className="text-center">Наши преимущества</HeadingOfSection>
@@ -23,7 +23,7 @@ const AdvantagesSection: FC = () => {
                 </div>
                 <div className="flex justify-center items-center TS:flex-col-reverse gap-[75px] TS:gap-[50px] px-[12%] L:px-[20px] P:px-[10px]">
                     <div className="w-1/2 TS:w-full flex flex-col gap-[70px] TS:gap-[50px] TS:px-[40px] P:px-0">
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-center gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={person_SVG} alt="person_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -34,7 +34,7 @@ const AdvantagesSection: FC = () => {
                                 </div>
                             </div>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-center gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={eco_SVG} alt="eco_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
@@ -45,7 +45,7 @@ const AdvantagesSection: FC = () => {
                                 </div>
                             </div>
                         </AnimatedElementFade>
-                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-start gap-[50px] TS:gap-[30px] P:gap-[7%]">
+                        <AnimatedElementFade animateFade="animate-fade-left" threshold={0.7} additionalClasses="flex items-center gap-[50px] TS:gap-[30px] P:gap-[7%]">
                             <img src={brush_SVG} alt="brush_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">

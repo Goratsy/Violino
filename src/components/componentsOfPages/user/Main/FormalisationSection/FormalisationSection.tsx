@@ -58,7 +58,7 @@ const FormalisationSection: FC = () => {
 
     return (
         <>
-            <section id="formalisation" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
+            <section id="formalisation" className="pt-[130px] T:pt-[100px] TS:pt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[100ms]">
                         <HeadingOfSection className="text-center">Оформление</HeadingOfSection>

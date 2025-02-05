@@ -10,7 +10,7 @@ import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 const AboutSection: FC = () => {
     return (
         <>
-            <section id="aboutSection" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px] relative flex flex-row gap-[75px]">
+            <section id="aboutSection" className="relative pt-[130px] T:pt-[100px] TS:pt-[70px] px-[12%] L:px-[20px] P:px-[10px] flex flex-row gap-[75px]">
                 <div className="w-1/2 T:w-full">
                     <AnimatedElementFade animateFade="animate-fade">
                         <img src={cake_about_small} alt="cake_about_small" className='w-full z-10' loading="lazy" />

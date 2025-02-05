@@ -19,13 +19,13 @@ const NetworkLinks: FC<{styleDisplay?: string}> = ({styleDisplay}) => {
 
     return(
         <div className={`${styleDisplay}`}>
-            <a href="https://t.me/viotort" target="_blank" className="inline-flex justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full">
+            <a href="https://t.me/viotort" target="_blank" className="inline-flex justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full duration-500 ease-in-out transition-opacity hover:opacity-70">
                 <img src={telegram_SVG} alt="telegram_SVG"/>
             </a>
-            <a href="https://wa.me/79153312431" target="_blank" className="inline-flex mx-[16px] justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full">
+            <a href="https://wa.me/79153312431" target="_blank" className="inline-flex mx-[16px] justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full duration-500 ease-in-out transition-opacity hover:opacity-70">
                 <img src={whatsapp_SVG} alt="whatsapp_SVG"/>
             </a>
-            <a href="/" onClick={copyBufferPhone} className="inline-flex justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full">
+            <a href="/" onClick={copyBufferPhone} className="inline-flex justify-center items-center w-[46px] h-[46px] bg-[#F7F7F7] rounded-full duration-500 ease-in-out transition-opacity hover:opacity-70">
                 <img src={phone_SVG} alt="phone_SVG"/>
             </a>
         </div>
