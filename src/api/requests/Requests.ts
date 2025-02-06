@@ -11,7 +11,7 @@ interface ApiResponse<T> {
 
 async function apiFetch<T>(url: string, options: RequestInit): Promise<ApiResponse<T>> {
     const AUTH_TOKEN = String(localStorage.getItem("bearer_token")); 
-
+    console.log(BASE_URL);
     try {
         const response = await fetch(url, {
             ...options,
