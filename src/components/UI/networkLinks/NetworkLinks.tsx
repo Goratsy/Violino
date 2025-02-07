@@ -7,7 +7,7 @@ import phone_SVG from '../../../assets/svg/phone.svg';
 const NetworkLinks: FC<{styleDisplay?: string}> = ({styleDisplay}) => {
     let copyBufferPhone = async (event: any) => {
         event.preventDefault();
-        const textToCopy = "89166904531";
+        const textToCopy = "+79153312431";
         try {
             await navigator.clipboard.writeText(textToCopy);
             alert("Номер телефона успешно скопирован!");

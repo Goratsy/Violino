@@ -130,7 +130,7 @@ const Footer: FC = () => {
                                         <div className="inline-block w-[20px] mr-2">
                                             <img src={smartPhone_SVG} alt="smartphone" className="w-auto h-[19px]" />
                                         </div>
-                                        <TextFooter>+7 (915) 331-45-31</TextFooter>
+                                        <TextFooter>+7 (915) 331-24-31</TextFooter>
                                     </div>
                                     <div className="flex items-center mt-[10px]">
                                         <div className="inline-block w-[20px] mr-2">
