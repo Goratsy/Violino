@@ -3,24 +3,33 @@ import Subtitle from "../../../../UI/text/Subtitle";
 import H2 from "../../../../UI/text/H2";
 import HeadingOfSection from "../../../../UI/text/HeadingOfSection";
 import H4 from "../../../../UI/text/H4";
-import cake_formalisation_1_JPG from '../../../../../assets/jpg/cake_formalisation_decor_1.jpg';
-import cake_formalisation_decor_1_JPG from '../../../../../assets/jpg/cake_formalisation_decor_1.jpg';
-import cake_formalisation_decor_2_JPG from '../../../../../assets/jpg/cake_formalisation_decor_2.jpg';
-import cake_formalisation_decor_3_JPG from '../../../../../assets/jpg/cake_formalisation_decor_3.jpg';
-import cake_formalisation_decor_4_JPG from '../../../../../assets/jpg/cake_formalisation_decor_4.jpg';
+import cake_formalisation_decor_1_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_1.webp';
+import cake_formalisation_decor_2_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_2.webp';
+import cake_formalisation_decor_3_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_3.webp';
+import cake_formalisation_decor_4_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_4.webp';
 
-import cake_formalisation_filling_1_WEBP from '../../../../../assets/webp/filling/filling_1.webp';
-import cake_formalisation_filling_2_WEBP from '../../../../../assets/webp/filling/filling_2.webp';
-import cake_formalisation_filling_3_WEBP from '../../../../../assets/webp/filling/filling_3.webp';
-import cake_formalisation_filling_4_WEBP from '../../../../../assets/webp/filling/filling_4.webp';
-import cake_formalisation_filling_5_WEBP from '../../../../../assets/webp/filling/filling_5.webp';
-import cake_formalisation_filling_6_WEBP from '../../../../../assets/webp/filling/filling_6.webp';
-import cake_formalisation_filling_7_WEBP from '../../../../../assets/webp/filling/filling_7.webp';
-import cake_formalisation_filling_8_WEBP from '../../../../../assets/webp/filling/filling_8.webp';
-import cake_formalisation_filling_9_WEBP from '../../../../../assets/webp/filling/filling_9.webp';
-import cake_formalisation_filling_10_WEBP from '../../../../../assets/webp/filling/filling_10.webp';
-import cake_formalisation_filling_11_WEBP from '../../../../../assets/webp/filling/filling_11.webp';
-import cake_formalisation_filling_12_WEBP from '../../../../../assets/webp/filling/filling_12.webp';
+import cake_formalisation_desert_1_JPG from '../../../../../assets/webp/formalisationSection/deserts/photo_desert_1.webp';
+import cake_formalisation_desert_2_JPG from '../../../../../assets/webp/formalisationSection/deserts/photo_desert_2.webp';
+import cake_formalisation_desert_3_JPG from '../../../../../assets/webp/formalisationSection/deserts/photo_desert_3.webp';
+import cake_formalisation_desert_4_JPG from '../../../../../assets/webp/formalisationSection/deserts/photo_desert_4.webp';
+
+import cake_formalisation_form_1_JPG from '../../../../../assets/webp/formalisationSection/formation/photo_form_1.webp';
+import cake_formalisation_form_2_JPG from '../../../../../assets/webp/formalisationSection/formation/photo_form_2.webp';
+import cake_formalisation_form_3_JPG from '../../../../../assets/webp/formalisationSection/formation/photo_form_3.webp';
+import cake_formalisation_form_4_JPG from '../../../../../assets/webp/formalisationSection/formation/photo_form_4.webp';
+
+import cake_formalisation_filling_1_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_1.webp';
+import cake_formalisation_filling_2_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_2.webp';
+import cake_formalisation_filling_3_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_3.webp';
+import cake_formalisation_filling_4_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_4.webp';
+import cake_formalisation_filling_5_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_5.webp';
+import cake_formalisation_filling_6_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_6.webp';
+import cake_formalisation_filling_7_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_7.webp';
+import cake_formalisation_filling_8_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_8.webp';
+import cake_formalisation_filling_9_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_9.webp';
+import cake_formalisation_filling_10_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_10.webp';
+import cake_formalisation_filling_11_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_11.webp';
+import cake_formalisation_filling_12_WEBP from '../../../../../assets/webp/formalisationSection/filling/filling_12.webp';
 
 import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 import TextMain from "../../../../UI/text/TextMain";
@@ -38,7 +47,7 @@ const FormalisationSection: FC = () => {
 
     const switchFormalisation = (formalisation: string): void => {
         setFormalisation(formalisation);
-        
+
         switch (formalisation) {
             case 'filling':
                 setSubtitle_text('Разнообразие вкусовых сочетаний, созданных для вашего удовольствия, от классических до самых изысканных');
@@ -73,13 +82,13 @@ const FormalisationSection: FC = () => {
                     <div className="flex flex-row flex-wrap justify-center items-center gap-[40px] L:gap-[30px] TS:gap-[20px]  P:gap-[15px]">
                         <span className="flex flex-row flex-nowrap justify-center items-center gap-[40px] L:gap-[30px] TS:gap-[20px] P:gap-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[100ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('filling')}}>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('filling') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'filling' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                                    <H4 >Начинки</H4>
+                                    <H4>Начинки</H4>
                                 </span>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[200ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('decor')}}>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('decor') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'decor' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
                                     <H4>Декор</H4>
                                 </span>
@@ -87,13 +96,13 @@ const FormalisationSection: FC = () => {
                         </span>
                         <span className="flex flex-row justify-center items-center gap-[40px] L:gap-[30px] TS:gap-[20px] P:gap-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[300ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('stylisation')}}>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('stylisation') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'stylisation' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
                                     <H4>Стилизация</H4>
                                 </span>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[400ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('deserts')}}>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('deserts') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'deserts' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
                                     <H4>Десерты</H4>
                                 </span>
@@ -125,19 +134,31 @@ const FormalisationSection: FC = () => {
                         }
                         {'decor' === formalisation ?
                             <>
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[100ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_decor_1_JPG} alt="cake_formalisation_decor_1_JPG" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[100ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Карамель без сахара ручной работы и мраморный рисунок
+                                    </span>
+                                    <img src={cake_formalisation_decor_2_JPG} alt="cake_formalisation_decor_1_JPG" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[200ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_decor_2_JPG} alt="cake_formalisation_decor_2_JPG" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[200ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Фигуры ручной работы из бельгийского шоколада, листовая поталь и макарони
+                                    </span>
+                                    <img src={cake_formalisation_decor_1_JPG} alt="cake_formalisation_decor_2_JPG" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[300ms]' threshold={0.3}>
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[300ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Фигуры ручной работы из бельгийского шоколада и ваза из карамели
+                                    </span>
                                     <img src={cake_formalisation_decor_3_JPG} alt="cake_formalisation_decor_3_JPG" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[400ms]' threshold={0.3}>
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[400ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Покрытие кондитерским бархатом и «осколки» из карамели
+                                    </span>
                                     <img src={cake_formalisation_decor_4_JPG} alt="cake_formalisation_decor_4_JPG" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
                             </>
@@ -145,40 +166,64 @@ const FormalisationSection: FC = () => {
                         }
                         {'stylisation' === formalisation ?
                             <>
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[100ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_1" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[100ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Сложна форма машины / сумки / здания / еда
+                                    </span>
+                                    <img src={cake_formalisation_form_1_JPG} alt="cake_formalisation_1" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[200ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_2" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[200ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Торт в виде цифры
+                                    </span>
+                                    <img src={cake_formalisation_form_2_JPG} alt="cake_formalisation_2" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[300ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_3" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[300ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Эскиз / Рисунок клиента или фото торта
+                                    </span>
+                                    <img src={cake_formalisation_form_3_JPG} alt="cake_formalisation_3" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[400ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_4" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[400ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Торт с несколькими ярусами
+                                    </span>
+                                    <img src={cake_formalisation_form_4_JPG} alt="cake_formalisation_4" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
                             </>
                             : ''
                         }
                         {'deserts' === formalisation ?
                             <>
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[100ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_1" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[100ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Пирожное Шу
+                                    </span>
+                                    <img src={cake_formalisation_desert_1_JPG} alt="cake_formalisation_1" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[200ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_2" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[200ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Макарони
+                                    </span>
+                                    <img src={cake_formalisation_desert_2_JPG} alt="cake_formalisation_2" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[300ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_3" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[300ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Чизкейк, Павлова, Тарты
+                                    </span>
+                                    <img src={cake_formalisation_desert_3_JPG} alt="cake_formalisation_3" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
 
-                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[400ms]' threshold={0.3}>
-                                    <img src={cake_formalisation_1_JPG} alt="cake_formalisation_4" loading="lazy" className="w-full h-auto" />
+                                <AnimatedElementFade animateFade="animate-fade" delay='animate-delay-[400ms]' threshold={0.3} additionalClasses="relative">
+                                    <span className="absolute flex justify-center items-center text-center px-4 font-medium bg-black/50 text-white w-full h-full opacity-0 hover:opacity-100 active:opacity-100 duration-500 transition-opacity animate-duration-500 animate-ease-in-out">
+                                        Брауни
+                                    </span>
+                                    <img src={cake_formalisation_desert_4_JPG} alt="cake_formalisation_4" loading="lazy" className="w-full h-auto" />
                                 </AnimatedElementFade>
                             </>
                             : ''

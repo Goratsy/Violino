@@ -6,7 +6,7 @@ import AdvantagesSection from "../../components/componentsOfPages/user/Main/Adva
 import FormalisationSection from "../../components/componentsOfPages/user/Main/FormalisationSection/FormalisationSection";
 import Footer from "../../components/componentsOfPages/user/Footer/Footer";
 import { Helmet } from "react-helmet-async";
-import Cake_main from "../../assets/jpg/cake_home_section.jpg"
+import Cake_main from "../../assets/webp/cake_home_section.webp";
 
 const Landing: FC = () => {
 
