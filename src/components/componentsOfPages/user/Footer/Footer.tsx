@@ -48,8 +48,8 @@ const Footer: FC = () => {
             const response = await createUserPhone({ name: userName, phone: userPhone, date_of_send:`${('0' + String(date.getDate())).slice(-2)}.${('0' + String(date.getMonth() + 1)).slice(-2)}.${date.getFullYear()}`, information_about_user: userMessage })
             if (response.code >= 200 && response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...(steckMessages || [])]);
-            } else {
-                setSteckMessages([{ isErrorPopup: true, message: 'Что-то пошло не так' }, ...(steckMessages || [])]);            
+            } else if (response.code === 400) {
+                setSteckMessages([{ isErrorPopup: true, message: 'Данные не могут быть сохранены' }, ...(steckMessages || [])]);            
             }
         } catch (error) {
             setSteckMessages([{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...(steckMessages || [])]);

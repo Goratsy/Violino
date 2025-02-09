@@ -86,12 +86,12 @@ const Header: FC = () => {
                 </div>
             </div>
             <div className={`duration-300 ease-in-out ${isOpenBurgerMenu ? 'L:flex L:flex-col L:opacity-100 L:px-[20px]' : 'opacity-0 absolute'}`}>
-                <nav className="flex flex-col justify-center items-left pb-[35px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
-                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#homeSection"  onClick={closeBurgerMenu}>Главная</a>
-                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#aboutSection"  onClick={closeBurgerMenu}>О нас</a>
-                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#advantagesSection"  onClick={closeBurgerMenu}>Преимущества</a>
-                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#formalisation"  onClick={closeBurgerMenu}>Оформление</a>
-                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#contacts"  onClick={closeBurgerMenu}>Контакты</a>
+                <nav className="flex flex-col justify-start items-start pb-[35px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
+                    <a className="duration-500 ease-in-out transition-opacity hover:opacity-70" href="#homeSection"  onClick={closeBurgerMenu}>Главная</a>
+                    <a className="duration-500 ease-in-out transition-opacity hover:opacity-70" href="#aboutSection"  onClick={closeBurgerMenu}>О нас</a>
+                    <a className="duration-500 ease-in-out transition-opacity hover:opacity-70" href="#advantagesSection"  onClick={closeBurgerMenu}>Преимущества</a>
+                    <a className="duration-500 ease-in-out transition-opacity hover:opacity-70" href="#formalisation"  onClick={closeBurgerMenu}>Оформление</a>
+                    <a className="duration-500 ease-in-out transition-opacity hover:opacity-70" href="#contacts"  onClick={closeBurgerMenu}>Контакты</a>
                 </nav>
                 <NetworkLinks />
             </div>

@@ -4,8 +4,8 @@ import ButtonSwitch from "../button/ButtonSwitch";
 import Autoplay from "embla-carousel-autoplay";
 import './Carousel.css';
 import Cake_main_1 from '../../../assets/webp/cake_home_section.webp';
-import Cake_main_2 from '../../../assets/webp/cake_home_section.webp';
-import Cake_main_3 from '../../../assets/webp/cake_home_section.webp';
+import Cake_main_2 from '../../../assets/webp/cake_home_section_2.webp';
+import Cake_main_3 from '../../../assets/webp/cake_home_section_3.webp';
 
 const Carousel: FC = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({delay: 4000})])
@@ -22,15 +22,15 @@ const Carousel: FC = () => {
         <>
             <div className="relative h-full">
                 <div className="embla h-full" ref={emblaRef}>
-                    <div className="embla__container h-full ">
+                    <div className="embla__container h-full">
                         <div className="relative embla__slide border h-full">
-                            <img src={Cake_main_1} alt="cake1" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0" loading="lazy"/>
+                            <img src={Cake_main_2} alt="cake1" className="h-auto w-full absolute -bottom-16 L:-bottom-24 P:bottom-0 TS:bottom-0"/>
                         </div>
                         <div className="relative embla__slide border h-full">
-                            <img src={Cake_main_2} alt="cake2" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0" loading="lazy"/>
+                            <img src={Cake_main_1} alt="cake2" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0"/>
                         </div>
                         <div className="relative embla__slide border h-full">
-                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute bottom-0 L:-bottom-24 P:bottom-0 TS:bottom-0" loading="lazy"/>
+                            <img src={Cake_main_3} alt="cake3" className="h-auto w-full absolute -bottom-16 L:-bottom-24 P:bottom-0 TS:bottom-0"/>
                         </div>
                     </div>
                 </div>

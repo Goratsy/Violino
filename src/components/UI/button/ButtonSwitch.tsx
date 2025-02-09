@@ -4,13 +4,13 @@ import { ButtonHTMLAttributes, FC } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     rotateArrow?: string,
-    accent?: boolean,
+    accent?: boolean
 }
 
 const ButtonSwitch: FC<Props> = ({ rotateArrow, accent = false, ...attributes }) => {
     let linkClass = classNames(
         'flex items-center justify-center',
-        'duration-500 ease-in-out transition-colors',
+        'duration-500 ease-in-out transition-colors transition-opacity opacity-40 hover:opacity-90',
         `${accent ? 'bg-accent hover:bg-accentHover stroke-white fill-white' : 'bg-white hover:bg-[#fffcfa] stroke-accent fill-accent'}`,
         'w-[100px] h-[100px]',
         'TS:w-[50px] TS:h-[50px]',

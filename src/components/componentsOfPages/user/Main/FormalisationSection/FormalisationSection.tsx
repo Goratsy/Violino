@@ -8,6 +8,7 @@ import cake_formalisation_decor_1_JPG from '../../../../../assets/jpg/cake_forma
 import cake_formalisation_decor_2_JPG from '../../../../../assets/jpg/cake_formalisation_decor_2.jpg';
 import cake_formalisation_decor_3_JPG from '../../../../../assets/jpg/cake_formalisation_decor_3.jpg';
 import cake_formalisation_decor_4_JPG from '../../../../../assets/jpg/cake_formalisation_decor_4.jpg';
+
 import cake_formalisation_filling_1_WEBP from '../../../../../assets/webp/filling/filling_1.webp';
 import cake_formalisation_filling_2_WEBP from '../../../../../assets/webp/filling/filling_2.webp';
 import cake_formalisation_filling_3_WEBP from '../../../../../assets/webp/filling/filling_3.webp';
@@ -20,6 +21,7 @@ import cake_formalisation_filling_9_WEBP from '../../../../../assets/webp/fillin
 import cake_formalisation_filling_10_WEBP from '../../../../../assets/webp/filling/filling_10.webp';
 import cake_formalisation_filling_11_WEBP from '../../../../../assets/webp/filling/filling_11.webp';
 import cake_formalisation_filling_12_WEBP from '../../../../../assets/webp/filling/filling_12.webp';
+
 import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 import TextMain from "../../../../UI/text/TextMain";
 
@@ -34,11 +36,10 @@ const FormalisationSection: FC = () => {
     [{ image: cake_formalisation_filling_10_WEBP, text: 'Морковная с черносливом' }, { image: cake_formalisation_filling_11_WEBP, text: 'Три шоколада' }, { image: cake_formalisation_filling_12_WEBP, text: 'Шоколадная' }]];
     const imagesFilling_animateDelay = ['animate-delay-[100ms]', 'animate-delay-[200ms]', 'animate-delay-[300ms]', 'animate-delay-[400ms]']
 
-    const switchFormalisation = (e: any): void => {
-        const id: string = e.currentTarget.getAttribute('data-id');
-        setFormalisation(id);
+    const switchFormalisation = (formalisation: string): void => {
+        setFormalisation(formalisation);
         
-        switch (id) {
+        switch (formalisation) {
             case 'filling':
                 setSubtitle_text('Разнообразие вкусовых сочетаний, созданных для вашего удовольствия, от классических до самых изысканных');
                 break;
@@ -50,8 +51,6 @@ const FormalisationSection: FC = () => {
                 break;
             case 'deserts':
                 setSubtitle_text('Аппетитные капкейки, нежные макарони, воздушные профитроли и кремовые чизкейки для особых моментов');
-                break;
-            default:
                 break;
         }
     }
@@ -74,28 +73,28 @@ const FormalisationSection: FC = () => {
                     <div className="flex flex-row flex-wrap justify-center items-center gap-[40px] L:gap-[30px] TS:gap-[20px]  P:gap-[15px]">
                         <span className="flex flex-row flex-nowrap justify-center items-center gap-[40px] L:gap-[30px] TS:gap-[20px] P:gap-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[100ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={switchFormalisation} data-id="filling">
-                                    <span className={`absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'filling' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                                    <H4>Начинки</H4>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('filling')}}>
+                                    <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'filling' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                                    <H4 >Начинки</H4>
                                 </span>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[200ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={switchFormalisation} data-id="decor">
-                                    <span className={`absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'decor' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('decor')}}>
+                                    <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'decor' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
                                     <H4>Декор</H4>
                                 </span>
                             </AnimatedElementFade>
                         </span>
                         <span className="flex flex-row justify-center items-center gap-[40px] L:gap-[30px] TS:gap-[20px] P:gap-[15px]">
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[300ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={switchFormalisation} data-id="stylisation">
-                                    <span className={`absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'stylisation' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('stylisation')}}>
+                                    <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'stylisation' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
                                     <H4>Стилизация</H4>
                                 </span>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[400ms]'>
-                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={switchFormalisation} data-id="deserts">
-                                    <span className={`absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'deserts' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
+                                <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => {switchFormalisation('deserts')}}>
+                                    <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'deserts' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
                                     <H4>Десерты</H4>
                                 </span>
                             </AnimatedElementFade>

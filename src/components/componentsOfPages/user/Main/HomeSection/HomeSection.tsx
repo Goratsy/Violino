@@ -34,11 +34,13 @@ const HomeSection: FC = () => {
                         </AnimatedElementFade>
                     </div>
                 </div>
-                <div className="w-[60%] L:w-full h-full L:h-[700px] TS:h-[600px] P:h-[400px] z-40">
+                <div className="w-[60%] h-full z-40 L:hidden">
                     <Carousel></Carousel>
                 </div>
             </section>
-
+            <div className="hidden L:block L:w-full L:pt-[140px] L:h-[1100px] TS:h-[1100px] P:h-[600px]  z-40">
+                <Carousel></Carousel>
+            </div>
         </>
     );
 }
