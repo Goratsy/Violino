@@ -19,16 +19,16 @@ const AuthentificationContext = createContext<{
 });
 
 const PopupContext = createContext<{
-  steckMessages: { isErrorPopup: boolean, message: string }[] | null,
-  setSteckMessages: React.Dispatch<React.SetStateAction<{ isErrorPopup: boolean, message: string }[] | null>>,
+  steckMessages: { isErrorPopup: boolean, message: string }[],
+  setSteckMessages: React.Dispatch<React.SetStateAction<{ isErrorPopup: boolean, message: string }[]>>,
 }>({
-  steckMessages: null,
+  steckMessages: [],
   setSteckMessages: noop,
 });
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [steckMessages, setSteckMessages] = useState<{ isErrorPopup: boolean, message: string }[] | null>(null);
+  const [steckMessages, setSteckMessages] = useState<{ isErrorPopup: boolean, message: string }[]>([]);
 
   return (
     <HelmetProvider>

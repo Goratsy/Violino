@@ -9,7 +9,7 @@ import { ManagerJoinLoginHistory } from "../../../../models/ManagerJoinLoginHist
 const LoginHistory: FC<{ managers: ManagerJoinLoginHistory[] }> = ({ managers }) => {
     return (
         <>
-            <section id="manager" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
+            <section id="manager" className="pt-[130px] T:pt-[100px] TS:pt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <div>
                         <HeadingOfSection className="text-center">История входов</HeadingOfSection>

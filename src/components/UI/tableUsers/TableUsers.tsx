@@ -65,10 +65,11 @@ const TableUsers: FC<{ userPhones: UserPhone[], onlyRead?: boolean }> = ({ userP
     const deleteUserPhoneInTable = async (id: number) => {
         try {
             let response = await deleteUserPhone(id);
-
+            console.log(response);
+            
             if (response.code >= 200 && response.code <= 299) {
                 setSteckMessages([{ isErrorPopup: false, message: 'Пользователь успешно удален из базы данных. Сайт скоро обновится, чтобы данные синхронизировались!' }, ...(steckMessages || [])]);
-                setTimeout(() => { location.reload(); }, 3000);
+                setTimeout(() => { location.reload(); }, 1000);
             } else if (response.code === 401) {
                 setSteckMessages([{ isErrorPopup: true, message: 'Сессия не может быть открыта для вам. Вам следует войти в панель администратора! Сайт переносит вас на страницу входа в панель администрации.' }, ...(steckMessages || [])]);
                 setTimeout(() => { setIsAuthenticated(false); }, 3000);

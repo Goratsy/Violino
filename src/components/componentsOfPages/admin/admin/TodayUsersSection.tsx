@@ -9,7 +9,7 @@ import H4 from "../../../UI/text/H4";
 const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUserPhones }) => {
     return (
         <>
-            <section id="today" className="mt-[130px] T:mt-[100px] TS:mt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
+            <section id="today" className="pt-[130px] T:pt-[100px] TS:pt-[70px] px-[12%] L:px-[20px] P:px-[10px]">
                 <div>
                     <div>
                         <HeadingOfSection className="text-center">Заявки на сегодня</HeadingOfSection>

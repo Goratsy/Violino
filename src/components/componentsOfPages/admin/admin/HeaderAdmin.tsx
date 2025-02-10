@@ -66,6 +66,8 @@ const HeaderAdmin: FC = () => {
                 <nav className="L:hidden flex justify-center items-center gap-[30px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
                     <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#database">База данных</a>
                     <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#today">Сегодня</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#last">Перезвонить</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#add">Добавить</a>
                     <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#manager">Менеджеры</a>
                 </nav>
                 <div
@@ -87,6 +89,8 @@ const HeaderAdmin: FC = () => {
                 <nav className="flex flex-col justify-center items-left pb-[50px] gap-[20px] whitespace-nowrap font-semibold text-[16px] text-secondary selection:bg-accent selection:text-white">
                     <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#database" onClick={closeBurgerMenu}>База данных</a>
                     <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#today" onClick={closeBurgerMenu}>Сегодня</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#last" onClick={closeBurgerMenu}>Перезвонить</a>
+                    <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#add" onClick={closeBurgerMenu}>Добавить</a>
                     <a className="flex items-center justify-center duration-500 ease-in-out transition-opacity hover:opacity-70" href="#manager" onClick={closeBurgerMenu}>Менеджеры</a>
                 </nav>
             </div>

@@ -22,6 +22,7 @@ async function apiFetch<T>(url: string, options: RequestInit): Promise<ApiRespon
             },
         });
         const data = await response.json();
+        
         return {
             code: response.status,
             data: response.ok ? data : undefined,
@@ -58,8 +59,8 @@ export async function updateUserPhone(userPhone: UserPhone[]): Promise<ApiRespon
     });
 }
 
-export async function deleteUserPhone(id: number): Promise<ApiResponse<null>> {
-    return apiFetch<null>(`${BASE_URL}/user_phones/${id}`, { method: "DELETE" });
+export async function deleteUserPhone(id: number): Promise<ApiResponse<{message: string}>> {
+    return apiFetch<{message: string}>(`${BASE_URL}/user_phones/${id}`, { method: "DELETE" });
 }
 
 export async function getAllManagers(): Promise<ApiResponse<ManagerJoinLoginHistory[]>> {
