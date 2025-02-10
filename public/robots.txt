@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin
+Disallow: /admin/login
+
+Sitemap: https://violinocake.ru/sitemap.xml
