@@ -58,7 +58,7 @@ const Footer: FC = () => {
 
     return (
         <>
-            <footer id="contacts" className="pt-[130px] T:pt-[100px] TS:pt-[70px] ">
+            <footer id="contacts" className="pt-[130px] T:pt-[100px] TS:pt-[70px]">
                 <section className="px-[12%] L:px-[20px] P:px-[10px]">
                     <div>
                         <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[100ms]">

@@ -14,6 +14,7 @@ import { ManagerJoinLoginHistory } from "../../../models/ManagerJoinLoginHistory
 import LastYearUserSection from "../../../components/componentsOfPages/admin/admin/LastYearUsersSection";
 import { filterUsersPhoneByLastDate } from "../../../utils/filterUsersPhoneByLastDate";
 import newUserPhone from '../../../assets/mp3/newUserPhone.mp3';
+import AddUserPhones from "../../../components/componentsOfPages/admin/admin/AddUserPhones";
 
 const Admin: FC = () => {
     let { isAuthenticated, setIsAuthenticated } = useContext(AuthentificationContext);
@@ -162,6 +163,7 @@ const Admin: FC = () => {
                                 <AllUsersSection userPhones={userPhones} />
                                 <TodayUsersSection filteredUserPhones={filterUsersPhoneByDate(userPhones)} />
                                 <LastYearUserSection filteredUserPhones={filterUsersPhoneByLastDate(userPhones)} />
+                                <AddUserPhones/>
                                 {managers ? <LoginHistory managers={managers} /> : ''}
                             </main>
                         </>
