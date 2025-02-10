@@ -4,7 +4,7 @@ import H2 from "../../../UI/text/H2";
 import Subtitle from "../../../UI/text/Subtitle";
 import TableUsers from "../../../UI/tableUsers/TableUsers";
 import { UserPhone } from "../../../../models/UserPhone";
-import H4 from "../../../UI/text/H4";
+import H3 from "../../../UI/text/H3";
 
 const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUserPhones }) => {
     return (
@@ -23,7 +23,7 @@ const TodayUsersSection: FC<{ filteredUserPhones: UserPhone[] }> = ({ filteredUs
                 </div>
                 <div className="mt-[40px] overflow-x-auto">
                     {filteredUserPhones.length !== 0 ?
-                        <TableUsers onlyRead={true} userPhones={filteredUserPhones} /> : <H4 className="text-center underline underline-offset-2">Пока нет заявок на сегодня</H4>}
+                        <TableUsers onlyRead={true} userPhones={filteredUserPhones} /> : <H3 className="text-center underline underline-offset-2">Пока нет заявок на сегодня</H3>}
                 </div>
             </section>
         </>

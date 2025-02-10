@@ -30,11 +30,11 @@ export default {
         'h2_TS': ['35px', '1'],
         'h2_P': ['30px', '1'], // TODO: write correct size font
   
-        'h4_D': ['24px', '1'],
+        'h3_D': ['24px', '1'],
         //'h4_L': [],
         //'h4_T': [], the same
-        'h4_TS': ['22px', '1'],
-        'h4_P': ['21px', '1'], // TODO: write correct size font. Mb 20 px
+        'h3_TS': ['22px', '1'],
+        'h3_P': ['21px', '1'], // TODO: write correct size font. Mb 20 px
   
         'subtitle_D': ['20px', '30px'],
         //'subtitle_L': [],

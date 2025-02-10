@@ -9,7 +9,7 @@ import Textarea from "../../../UI/textarea/Textarea";
 import ButtonSubmit from "../../../UI/button/ButtonSubmit";
 import Logo from "../../../UI/logo/Logo";
 import TextFooter from "../../../UI/text/TextFooter";
-import H4 from "../../../UI/text/H4";
+import H3 from "../../../UI/text/H3";
 import NetworkLinks from "../../../UI/networkLinks/NetworkLinks";
 import smartPhone_SVG from '../../../../assets/svg/smartphone.svg';
 import gmail_SVG from '../../../../assets/svg/gmail.svg';
@@ -124,7 +124,7 @@ const Footer: FC = () => {
                                     Ленинский проспект, 79</TextFooter>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[200ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
-                                <H4>Контакты</H4>
+                                <H3>Контакты</H3>
                                 <div>
                                     <div className="flex items-center ">
                                         <div className="inline-block w-[20px] mr-2">
@@ -143,7 +143,7 @@ const Footer: FC = () => {
                         </div>
                         <div className="flex justify-between flex-row P:flex-col gap-[80px] L:gap-[70px] TS:gap-[30px] ">
                             <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[300ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
-                                <H4>График работы</H4>
+                                <H3>График работы</H3>
                                 <div>
                                     <div>
                                         <TextFooter>Пн-Пт с 9 до 20</TextFooter>
@@ -154,7 +154,7 @@ const Footer: FC = () => {
                                 </div>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[400ms]" additionalClasses="flex flex-col gap-[30px] L:w-[200px]">
-                                <H4>Полезные ссылки</H4>
+                                <H3>Полезные ссылки</H3>
                                 <div>
                                     <div>
                                         <TextFooter>Контакты для связи:</TextFooter>

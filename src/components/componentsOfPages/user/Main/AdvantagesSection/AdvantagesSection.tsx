@@ -5,7 +5,7 @@ import cake_advantage from '../../../../../assets/webp/cake_advantage.webp';
 import eco_SVG from '../../../../../assets/svg/eco.svg';
 import brush_SVG from '../../../../../assets/svg/brush.svg';
 import person_SVG from '../../../../../assets/svg/person.svg';
-import H4 from "../../../../UI/text/H4";
+import H3 from "../../../../UI/text/H3";
 import TextMain from "../../../../UI/text/TextMain";
 import AnimatedElementFade from "../../../../Animation/AnimatedElementFade";
 
@@ -27,7 +27,7 @@ const AdvantagesSection: FC = () => {
                             <img src={person_SVG} alt="person_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
-                                    <H4>Авторские рецепты</H4>
+                                    <H3>Авторские рецепты</H3>
                                 </div>
                                 <div className="mt-[10px]">
                                     <TextMain>Уникальные рецепты, созданные с душой, чтобы каждые из них дарили незабываемые впечатления</TextMain>
@@ -38,7 +38,7 @@ const AdvantagesSection: FC = () => {
                             <img src={eco_SVG} alt="eco_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
-                                    <H4>Натуральный состав</H4>
+                                    <H3>Натуральный состав</H3>
                                 </div>
                                 <div className="mt-[10px]">
                                     <TextMain>Используем только натуральные ингредиенты, чтобы десерты были вкусными, полезными и безопасными</TextMain>
@@ -49,7 +49,7 @@ const AdvantagesSection: FC = () => {
                             <img src={brush_SVG} alt="brush_icon" className="P:w-[15vw] P:h-auto" />
                             <div>
                                 <div className="text-nowrap P:text-wrap">
-                                    <H4>Актуальный дизайн</H4>
+                                    <H3>Актуальный дизайн</H3>
                                 </div>
                                 <div className="mt-[10px]">
                                     <TextMain>Современные оформления, отражающие тренды и подчеркивающие эстетику каждого праздничного момента</TextMain>

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import Subtitle from "../../../../UI/text/Subtitle";
 import H2 from "../../../../UI/text/H2";
 import HeadingOfSection from "../../../../UI/text/HeadingOfSection";
-import H4 from "../../../../UI/text/H4";
+import H3 from "../../../../UI/text/H3";
 import cake_formalisation_decor_1_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_1.webp';
 import cake_formalisation_decor_2_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_2.webp';
 import cake_formalisation_decor_3_JPG from '../../../../../assets/webp/formalisationSection/decor/photo_decor_3.webp';
@@ -84,13 +84,13 @@ const FormalisationSection: FC = () => {
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[100ms]'>
                                 <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('filling') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'filling' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                                    <H4>Начинки</H4>
+                                    <H3>Начинки</H3>
                                 </span>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[200ms]'>
                                 <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('decor') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'decor' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                                    <H4>Декор</H4>
+                                    <H3>Декор</H3>
                                 </span>
                             </AnimatedElementFade>
                         </span>
@@ -98,13 +98,13 @@ const FormalisationSection: FC = () => {
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[300ms]'>
                                 <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('stylisation') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'stylisation' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                                    <H4>Стилизация</H4>
+                                    <H3>Стилизация</H3>
                                 </span>
                             </AnimatedElementFade>
                             <AnimatedElementFade animateFade="animate-fade-down" delay='animate-delay-[400ms]'>
                                 <span className="relative cursor-pointer hover:opacity-70 duration-500 transition-opacity ease-in-out" onClick={() => { switchFormalisation('deserts') }}>
                                     <span className={`block z-30 absolute top-[53%] h-[2.5px] w-full bg-accent duration-500 transition-transform origin-left ease-out ${'deserts' === formalisation ? 'scale-x-100' : 'scale-x-0'}`}></span>
-                                    <H4>Десерты</H4>
+                                    <H3>Десерты</H3>
                                 </span>
                             </AnimatedElementFade>
                         </span>
