@@ -12,7 +12,7 @@ import Input from "@/shared/ui/input/Input";
 import H2 from "@/shared/ui/text/H2";
 import HeadingOfSection from "@/shared/ui/text/HeadingOfSection";
 import Subtitle from "@/shared/ui/text/Subtitle";
-import { loginAsStaff, verifyAdminSession } from "@/features/auth/api/auth";
+import { loginAsStaff, verifyStaffSession } from "@/features/auth/api/auth";
 import { clearSession } from "@/features/auth/lib/session";
 
 const Login: FC = () => {
@@ -41,14 +41,8 @@ const Login: FC = () => {
                     ipAddress: ipAddressData.ip,
                 });
 
-                if (response.staff.role !== 'admin') {
-                    clearSession();
-                    setIsAuthenticated(false);
-                    setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'У этой учётной записи нет доступа к панели администратора' }, ...prevMessages]);
-                } else {
-                    setSteckMessages((prevMessages) => [{ isErrorPopup: false, message: 'Авторизация прошла успешно. Подождите...' }, ...prevMessages]);
-                    setIsAuthenticated(true);
-                }
+                setSteckMessages((prevMessages) => [{ isErrorPopup: false, message: `Авторизация прошла успешно. Роль: ${response.staff.role}` }, ...prevMessages]);
+                setIsAuthenticated(true);
             } else {
                 setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'Невозможно определить адрес или устройство, с которого вы пытаетесь зайти' }, ...prevMessages]);
             }
@@ -69,7 +63,7 @@ const Login: FC = () => {
 
     useEffect(() => {        
         const checkAuthAndFetchData = async () => {
-            const auth = await verifyAdminSession();
+            const auth = await verifyStaffSession();
 
             if (auth) {
                 setIsAuthenticated(true);

@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/shared/lib/contexts/auth-context";
 import { usePopup } from "@/shared/lib/contexts/popup-context";
 import { getStoredStaff, clearSession } from "@/features/auth/lib/session";
-import { verifyAdminSession } from "@/features/auth/api/auth";
+import { verifyStaffSession } from "@/features/auth/api/auth";
 import HeaderAdmin from "@/widgets/admin/header/HeaderAdmin";
-import AdminAuthSummary from "@/features/auth/ui/AdminAuthSummary";
+import RoleDashboard from "@/features/admin/ui/RoleDashboard";
 import type { AuthLoginResponse } from "@/shared/api/generated";
 
 const Admin: FC = () => {
@@ -22,7 +22,7 @@ const Admin: FC = () => {
     useEffect(() => {
         const checkAuthAndFetchData = async () => {
             try {
-                const auth = await verifyAdminSession();
+                const auth = await verifyStaffSession();
 
                 if (!auth) {
                     clearSession();
@@ -55,7 +55,7 @@ const Admin: FC = () => {
             {isAuthenticated ?
                 <>
                     <HeaderAdmin />
-                    <AdminAuthSummary staff={staff} />
+                    {staff ? <RoleDashboard staff={staff} /> : null}
                 </>
                 : ''}
         </>

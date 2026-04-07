@@ -1,4 +1,4 @@
-import { ApiError, AuthService, StaffsService, type AuthLoginRequest, type AuthLoginResponse } from '@/shared/api/generated';
+import { ApiError, AuthService, OrdersService, type AuthLoginRequest, type AuthLoginResponse } from '@/shared/api/generated';
 import '@/shared/api/openapi-client';
 
 import { clearSession, getStoredSession, persistSession } from '../lib/session';
@@ -16,15 +16,15 @@ export const loginAsStaff = async (payload: AuthLoginRequest): Promise<AuthLogin
   return response;
 };
 
-export const verifyAdminSession = async (): Promise<boolean> => {
+export const verifyStaffSession = async (): Promise<boolean> => {
   const session = getStoredSession();
 
-  if (!session || session.staff.role !== 'admin') {
+  if (!session) {
     return false;
   }
 
   try {
-    await StaffsService.getApiStaffs();
+    await OrdersService.getApiOrders({ limit: 1, offset: 0 });
     return true;
   } catch (error) {
     if (error instanceof ApiError && (error.status === 401 || error.status === 403)) {

@@ -17,23 +17,23 @@ export default {
         fancy: ['"Great Vibes"', 'sans-serif'],
       },
       fontSize: { // D - desktop, L - laptop, T - tablet, TS - tablet small, P - phone, LS - landscape
-        'h1_D': ['98px', '96px'],
-        'h1_L': ['72px', '1'], 
-        'h1_T': ['60px', '1'],
-        'h1_TS': ['8.5vw', '1'],
-        'h1_P': ['10vw', '1'], // TODO: write correct size font
+        'h1_D': ['118px', '115px'],
+        'h1_L': ['86px', '1'], 
+        'h1_T': ['72px', '1'],
+        'h1_TS': ['10.2vw', '1'],
+        'h1_P': ['12vw', '1'], // TODO: write correct size font
   
-        'h2_D': ['48px', '55px'],
+        'h2_D': ['58px', '66px'],
         //'h2_L': [], the same
-        'h2_T': ['40px', '1'],
-        'h2_TS': ['35px', '1'],
-        'h2_P': ['30px', '1'], // TODO: write correct size font
+        'h2_T': ['48px', '1'],
+        'h2_TS': ['42px', '1'],
+        'h2_P': ['36px', '1'], // TODO: write correct size font
   
-        'h3_D': ['24px', '1'],
+        'h3_D': ['29px', '1'],
         //'h4_L': [],
         //'h4_T': [], the same
-        'h3_TS': ['22px', '1'],
-        'h3_P': ['21px', '1'], // TODO: write correct size font. Mb 20 px
+        'h3_TS': ['26px', '1'],
+        'h3_P': ['25px', '1'], // TODO: write correct size font. Mb 20 px
   
         'subtitle_D': ['20px', '30px'],
         //'subtitle_L': [],
@@ -41,11 +41,11 @@ export default {
         'subtitle_TS': ['18px', '24px'],
         'subtitle_P': ['16px', '18px'],  // TODO: write correct size font. Mb 16 px
   
-        'heading_of_section_D': ['24px', '24px'],
+        'heading_of_section_D': ['29px', '29px'],
         //'heading_of_section_L': [],
         //'heading_of_section_T': [],
         //'heading_of_section_TS': [],
-        'heading_of_section_P': ['22px', '1'], // TODO: write correct size font. Mb 16 px
+        'heading_of_section_P': ['26px', '1'], // TODO: write correct size font. Mb 16 px
   
         'text_D': ['16px', '24px'],
         //'text_L': [],
