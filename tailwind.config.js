@@ -1,8 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -71,7 +70,7 @@ export default {
         LS: { 'raw': '(orientation: landscape)' }, // Горизонтальная ориентация
       },
       backgroundImage: {
-        home_bg: "url(./public/png/home_bg.png)",
+        home_bg: "url(/assets/png/home_bg.png)",
       }
     },
   },
@@ -79,4 +78,3 @@ export default {
     require('tailwindcss-animated')
   ],
 }
-
