@@ -13,6 +13,7 @@ Violino — фронтенд сайта и административной па
 
 ```bash
 pnpm install
+pnpm generate:api
 pnpm dev
 ```
 
