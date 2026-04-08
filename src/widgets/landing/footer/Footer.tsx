@@ -1,6 +1,7 @@
-import { FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useMemo, useState } from "react";
 import { InputMask } from 'primereact/inputmask';
-import { createUserPhone } from "@/shared/api/requests";
+import { createPublicOrder } from "@/shared/api/public";
+import type { CatalogItem, GroupedCatalog } from "@/shared/api/generated";
 import { usePopup } from "@/shared/lib/contexts/popup-context";
 import AnimatedElementFade from "@/shared/ui/AnimatedElementFade";
 import ButtonSubmit from "@/shared/ui/button/ButtonSubmit";
@@ -13,45 +14,210 @@ import H3 from "@/shared/ui/text/H3";
 import HeadingOfSection from "@/shared/ui/text/HeadingOfSection";
 import Subtitle from "@/shared/ui/text/Subtitle";
 import TextFooter from "@/shared/ui/text/TextFooter";
+import TextMain from "@/shared/ui/text/TextMain";
 import Textarea from "@/shared/ui/textarea/Textarea";
 
-const Footer: FC = () => {
-    let [userName, setUserName] = useState<string>('');
-    let [userPhone, setUserPhone] = useState<string>('');
-    let [userMessage, setUserMessage] = useState<string>('');
+type FooterProps = {
+    catalog: GroupedCatalog | null;
+    isCatalogLoading: boolean;
+    catalogError: string | null;
+    onRetryCatalog: () => Promise<void>;
+};
+
+type SelectedItems = Record<number, number>;
+
+const catalogGroups: Array<{ key: keyof GroupedCatalog; label: string }> = [
+    { key: 'fillings', label: 'Начинки' },
+    { key: 'decorations', label: 'Декоры' },
+    { key: 'styles', label: 'Стили' },
+];
+
+const Footer: FC<FooterProps> = ({ catalog, isCatalogLoading, catalogError, onRetryCatalog }) => {
+    let [fullName, setFullName] = useState<string>('');
+    let [phone, setPhone] = useState<string>('');
+    let [email, setEmail] = useState<string>('');
+    let [address, setAddress] = useState<string>('');
+    let [deliveryAddress, setDeliveryAddress] = useState<string>('');
+    let [deliveryDate, setDeliveryDate] = useState<string>('');
+    let [additionalInfo, setAdditionalInfo] = useState<string>('');
+    let [comment, setComment] = useState<string>('');
+    let [selectedItems, setSelectedItems] = useState<SelectedItems>({});
     let [isNameInputError, setIsNameInputError] = useState<boolean>(false);
     let [isPhoneInputError, setIsPhoneInputError] = useState<boolean>(false);
+    let [isItemsInputError, setIsItemsInputError] = useState<boolean>(false);
+    let [isSubmittingOrder, setIsSubmittingOrder] = useState<boolean>(false);
 
     let { setSteckMessages } = usePopup();
 
-    const sendUserPhone = async (event: FormEvent<HTMLFormElement>) => {
+    const selectedOrderItems = useMemo(
+        () =>
+            Object.entries(selectedItems)
+                .filter(([, quantity]) => quantity > 0)
+                .map(([catalogItemId, quantity]) => ({
+                    catalogItemId: Number(catalogItemId),
+                    quantity,
+                })),
+        [selectedItems],
+    );
+
+    const resetForm = () => {
+        setFullName('');
+        setPhone('');
+        setEmail('');
+        setAddress('');
+        setDeliveryAddress('');
+        setDeliveryDate('');
+        setAdditionalInfo('');
+        setComment('');
+        setSelectedItems({});
+        setIsNameInputError(false);
+        setIsPhoneInputError(false);
+        setIsItemsInputError(false);
+    };
+
+    const toggleCatalogItem = (catalogItemId: number, checked: boolean) => {
+        setSelectedItems((prevState) => {
+            const nextState = { ...prevState };
+
+            if (checked) {
+                nextState[catalogItemId] = nextState[catalogItemId] || 1;
+            } else {
+                delete nextState[catalogItemId];
+            }
+
+            return nextState;
+        });
+        setIsItemsInputError(false);
+    };
+
+    const changeCatalogQuantity = (catalogItemId: number, quantity: number) => {
+        setSelectedItems((prevState) => ({
+            ...prevState,
+            [catalogItemId]: Math.max(1, quantity),
+        }));
+        setIsItemsInputError(false);
+    };
+
+    const sendOrder = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setIsSubmittingOrder(true);
 
         const patternName = /^[A-Za-zА-Яа-яЁё\s]+$/;
-        if (!patternName.test(userName)) {
+        if (fullName && !patternName.test(fullName)) {
             setIsNameInputError(true);
             setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'Введите имя без специальных символов и цифр' }, ...prevMessages]);
+            setIsSubmittingOrder(false);
             return;
         }
         
-        if (userPhone.replace(/[^0-9]/g, "").length !== 11) {
+        if (phone.replace(/[^0-9]/g, "").length !== 11) {
             setIsPhoneInputError(true);
             setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'Введите корректный номер телефона' }, ...prevMessages]);
+            setIsSubmittingOrder(false);
+            return;
+        }
+
+        if (selectedOrderItems.length === 0) {
+            setIsItemsInputError(true);
+            setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'Выберите хотя бы один элемент каталога для заказа' }, ...prevMessages]);
+            setIsSubmittingOrder(false);
             return;
         }
         
         try {
-            let date = new Date();
-            const response = await createUserPhone({ name: userName, phone: userPhone, date_of_send:`${('0' + String(date.getDate())).slice(-2)}.${('0' + String(date.getMonth() + 1)).slice(-2)}.${date.getFullYear()}`, information_about_user: userMessage })
-            if (response.code >= 200 && response.code <= 299) {
-                setSteckMessages((prevMessages) => [{ isErrorPopup: false, message: 'Данные успешно сохранены' }, ...prevMessages]);
-            } else if (response.code === 400) {
-                setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'Данные не могут быть сохранены' }, ...prevMessages]);            
-            }
+            const order = await createPublicOrder({
+                phone,
+                fullName: fullName || undefined,
+                email: email || undefined,
+                address: address || undefined,
+                deliveryAddress: deliveryAddress || undefined,
+                deliveryDate: deliveryDate || undefined,
+                additionalInfo: additionalInfo || undefined,
+                comment: comment || undefined,
+                items: selectedOrderItems,
+            });
+
+            setSteckMessages((prevMessages) => [{
+                isErrorPopup: false,
+                message: `Заказ №${order.orderId} успешно создан. Мы свяжемся с вами в ближайшее время`,
+            }, ...prevMessages]);
+            resetForm();
         } catch (error) {
-            setSteckMessages((prevMessages) => [{ isErrorPopup: true, message: 'Невозможно отправить данные. Повторите попытку позже' }, ...prevMessages]);
+            setSteckMessages((prevMessages) => [{
+                isErrorPopup: true,
+                message: error instanceof Error ? error.message : 'Невозможно оформить заказ. Повторите попытку позже',
+            }, ...prevMessages]);
+        } finally {
+            setIsSubmittingOrder(false);
         }
-    }
+    };
+
+    const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setFullName(event.target.value);
+        setIsNameInputError(false);
+    };
+
+    const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+
+    const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setAddress(event.target.value);
+    };
+
+    const handleDeliveryAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setDeliveryAddress(event.target.value);
+    };
+
+    const handleDeliveryDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setDeliveryDate(event.target.value);
+    };
+
+    const renderCatalogGroup = (title: string, items: CatalogItem[]) => (
+        <div className="border border-accent p-4 bg-white">
+            <H3>{title}</H3>
+            <div className="mt-4 flex flex-col gap-3">
+                {items.map((item) => {
+                    const isSelected = Boolean(selectedItems[item.catalogItemId]);
+
+                    return (
+                        <label
+                            key={item.catalogItemId}
+                            className={`flex flex-col gap-3 border p-4 transition-colors ${isSelected ? 'border-accent bg-surface' : 'border-[#e7ddd0]'}`}
+                        >
+                            <div className="flex items-start justify-between gap-4 T:flex-col">
+                                <div className="flex items-start gap-3">
+                                    <input
+                                        type="checkbox"
+                                        checked={isSelected}
+                                        onChange={(event) => toggleCatalogItem(item.catalogItemId, event.target.checked)}
+                                        className="mt-1 h-4 w-4 accent-accent"
+                                    />
+                                    <div>
+                                        <TextMain className="block font-semibold">{item.name}</TextMain>
+                                        {item.description ? <TextMain className="block mt-1">{item.description}</TextMain> : null}
+                                    </div>
+                                </div>
+                                <TextMain className="block whitespace-nowrap">{item.price} ₽</TextMain>
+                            </div>
+                            {isSelected ? (
+                                <div className="flex items-center gap-3">
+                                    <TextMain className="block whitespace-nowrap">Количество</TextMain>
+                                    <input
+                                        type="number"
+                                        min={1}
+                                        value={selectedItems[item.catalogItemId]}
+                                        onChange={(event) => changeCatalogQuantity(item.catalogItemId, Number(event.target.value) || 1)}
+                                        className="w-[120px] border border-accent px-3 py-2"
+                                    />
+                                </div>
+                            ) : null}
+                        </label>
+                    );
+                })}
+            </div>
+        </div>
+    );
 
     return (
         <>
@@ -62,49 +228,123 @@ const Footer: FC = () => {
                             <HeadingOfSection className="text-center">Контакты</HeadingOfSection>
                         </AnimatedElementFade>
                         <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[200ms]">
-                            <H2 className="text-center mt-[8px] mb-[16px]">Оставьте заявку</H2>
+                            <H2 className="text-center mt-[8px] mb-[16px]">Оформите заказ</H2>
                         </AnimatedElementFade>
                         <AnimatedElementFade animateFade="animate-fade-down" delay="animate-delay-[300ms]" additionalClasses="w-3/4 TS:w-full mx-auto">
-                            <Subtitle className="text-center">Хотите узнать больше? Оставьте номер или позвоните — расскажем о мастер-классах и увлекательных активностях!</Subtitle>
+                            <Subtitle className="text-center">Выберите позиции из каталога, заполните данные для связи и отправьте заказ прямо с сайта.</Subtitle>
                         </AnimatedElementFade>
                     </div>
                     <div className="mt-[40px] TS:mt-[30px] P:mt-[20px] ">
-                        <form action="/" method="POST" onSubmit={sendUserPhone}>
+                        <form action="/" method="POST" onSubmit={sendOrder}>
                             <div className="flex flex-row gap-[30px] T:flex-col T:gap-[15px]">
                                 <AnimatedElementFade animateFade="animate-fade-right" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
                                     <Input
-                                        placeholder="Имя*"
+                                        placeholder="Имя"
                                         type="text"
-                                        name="userName"
+                                        name="fullName"
                                         maxLength={25}
-                                        minLength={3}
+                                        minLength={2}
                                         additionalClass={`${isNameInputError ? 'border-red-300 hover:border-red-400' : ''}`}
-                                        onInput={(event: any) => { setUserName(event.target.value); setIsNameInputError(false); }} value={userName}
+                                        onChange={handleNameChange}
+                                        value={fullName}
                                     />
                                 </AnimatedElementFade>
                                 <AnimatedElementFade animateFade="animate-fade-left" threshold={0.6} delay="animate-delay-100" additionalClasses="w-full">
                                     <InputMask
                                         mask="+7 (999) 999-99-99"
-                                        onChange={(event: any) => { setUserPhone(event.target.value); setIsPhoneInputError(false); }}
-                                        value={userPhone}
+                                        onChange={(event) => { setPhone(event.target.value ?? ''); setIsPhoneInputError(false); }}
+                                        value={phone}
                                         placeholder="Телефон*"
-                                        name="userPhone"
+                                        name="phone"
                                         className={`w-full bg-white border border-accent hover:border-accentHover hover:bg-[#fffcfa] text-secondary font-normal duration-500 ease-in-out transition-colors placeholder:text-secondary text-[16px] py-[20px] px-[20px] TS:text-[14px] TS:py-[16px] TS:px-[15px] P:text-[16px] P:py-[20px] P:px-[20px] ${isPhoneInputError ? 'border-red-300 hover:border-red-400' : ''}`}
                                     />
                                 </AnimatedElementFade>
                             </div>
-                            <div className="my-[30px] T:my-[15px]">
+                            <div className="my-[30px] grid grid-cols-2 gap-[30px] T:grid-cols-1 T:gap-[15px]">
+                                <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                    <Input
+                                        placeholder="Email"
+                                        type="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={handleEmailChange}
+                                    />
+                                </AnimatedElementFade>
+                                <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                    <Input
+                                        placeholder="Ваш адрес"
+                                        type="text"
+                                        name="address"
+                                        value={address}
+                                        onChange={handleAddressChange}
+                                    />
+                                </AnimatedElementFade>
+                                <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                    <Input
+                                        placeholder="Адрес доставки"
+                                        type="text"
+                                        name="deliveryAddress"
+                                        value={deliveryAddress}
+                                        onChange={handleDeliveryAddressChange}
+                                    />
+                                </AnimatedElementFade>
+                                <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                    <Input
+                                        type="date"
+                                        name="deliveryDate"
+                                        value={deliveryDate}
+                                        onChange={handleDeliveryDateChange}
+                                    />
+                                </AnimatedElementFade>
+                            </div>
+
+                            <div className="my-[30px] grid gap-[20px]">
+                                <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                    <div className={`${isItemsInputError ? 'border border-red-300 p-3' : ''}`}>
+                                        {isCatalogLoading ? (
+                                            <TextMain className="block">Загружаем актуальный каталог...</TextMain>
+                                        ) : null}
+                                        {catalogError ? (
+                                            <div className="flex flex-col gap-4">
+                                                <TextMain className="block text-red-600">{catalogError}</TextMain>
+                                                <ButtonSubmit type="button" onClick={() => { void onRetryCatalog(); }}>
+                                                    Повторить загрузку каталога
+                                                </ButtonSubmit>
+                                            </div>
+                                        ) : null}
+                                        {catalog ? (
+                                            <div className="grid gap-[20px]">
+                                                {catalogGroups.map((group) => renderCatalogGroup(group.label, catalog[group.key]))}
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                </AnimatedElementFade>
+                            </div>
+
+                            <div className="my-[30px] grid grid-cols-2 gap-[30px] T:grid-cols-1 T:gap-[15px]">
                                 <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
                                     <Textarea
-                                        placeholder="Сообщение..."
-                                        name="userMessage"
-                                        onInput={(event: any) => { setUserMessage(event.target.value); }} value={userMessage}
-                                        maxLength={300}
+                                        placeholder="Дополнительная информация о вас"
+                                        name="additionalInfo"
+                                        onChange={(event) => { setAdditionalInfo(event.target.value); }}
+                                        value={additionalInfo}
+                                        maxLength={5000}
+                                    />
+                                </AnimatedElementFade>
+                                <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
+                                    <Textarea
+                                        placeholder="Комментарий к заказу"
+                                        name="comment"
+                                        onChange={(event) => { setComment(event.target.value); }}
+                                        value={comment}
+                                        maxLength={5000}
                                     />
                                 </AnimatedElementFade>
                             </div>
                             <AnimatedElementFade animateFade="animate-fade-up" threshold={0.5} delay="animate-delay-100">
-                                <ButtonSubmit type="submit">Отправить</ButtonSubmit>
+                                <ButtonSubmit type="submit" disabled={isSubmittingOrder || isCatalogLoading || Boolean(catalogError)}>
+                                    {isSubmittingOrder ? 'Оформляем заказ...' : 'Оформить заказ'}
+                                </ButtonSubmit>
                             </AnimatedElementFade>
                         </form>
                     </div>
